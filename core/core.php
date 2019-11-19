@@ -17,4 +17,6 @@ require EXCORE . '/app/global.func.php';
 
 require EXCORE . '/app/auth.func.php';
 
+require EXCORE . '/app/app.func.php';
+
 ?>

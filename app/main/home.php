@@ -1,14 +1,20 @@
 <?php
+/**
+ *	Expozart
+ *	register app:	gére les inscriptions des utilisateurs
+ *	Code:	yitzakD
+ */
 
-if(!is_logged()) {
+
+
+
+if(!exAuth_islogged()) {
 
 	$fwURI = $_SERVER['REQUEST_URI'];
 
-	$_SESSION['forwardingURI'] = $fwURI.'/';
+	$_SESSION['forwardingURI'] = $fwURI;
 
-	header('Location:' . WURI . '/login/');	
-		
-	exit();
+	ex_redirect(WURI . '/login');
 
 }
 

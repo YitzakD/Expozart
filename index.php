@@ -13,7 +13,10 @@ session_start();
 require 'core/core.php';
 
 $match = $router->match();
+
 if($match !== null) {
+
+	include_once ASSETS . '/_header.php';
 
 	if(is_callable($match['target'])) {
 
@@ -26,6 +29,8 @@ if($match !== null) {
 		require APP . "/{$match['target']}.php";
 
 	}
+
+	include_once ASSETS . '/_footer.php';
 
 } else {
 

@@ -7,6 +7,53 @@
 
 
 
+
+/**
+ * 	exAuth_paswordhashing($value, $options)
+ *	$value =>string; $options => array()
+ *	permet de hasher le mot de passe grâce à bcrypt
+ *	retourne $hash (mot de passe hashé)
+ */
+if(!function_exists('exAuth_paswordhashing')) {
+
+    function exAuth_paswordhashing($value, $options = array())
+    {
+
+        $cost = isset($options['rounds']) ? $options['rounds'] : 10;
+
+        $hash = password_hash($value, PASSWORD_BCRYPT, array('cost' => $cost));
+
+        if($hash === false) { throw new Exception("Bcrypt hashing n'est pas supporté."); }
+
+        return $hash;
+
+    }
+
+}
+
+
+
+
+/**
+ * 	exAuth_paswordverifying($value, $hashedvalue)
+ *	$value =>string; $hashedvalue => hashed DBB password
+ *	permet de hashé la valeur entrée et de vérifier sa similitude avec le mot de passe en BDD
+ *	retourne password_verify($value, $hashedvalue)
+ */
+if(!function_exists('exAuth_paswordverifying')) {
+
+    function exAuth_paswordverifying($value, $hashedvalue)
+    {
+
+    	return password_verify($value, $hashedvalue);
+
+    }
+
+}
+
+
+
+
 /**
  * 	exAuth_islogged
  *	verifie si un utilisateur est connecté et que sa session est bien créer
@@ -108,14 +155,14 @@ if(!function_exists('exAuth_getsession')) {
 
 
 /**
- * 	exAuth_getsession($key)
- *	$key => int | string
- *	permet de recuperer les clés sauvegarder dans la session
- *	retourne $_SESSION[$key] (echappe celui-ci)
+ * 	exAuth_rememberme($userid)
+ *	$userid => int
+ *	permet d'enregistrer en BDD le tokens et le selector de sécurité pour faciliter la connexion automatique
  */
-if(!function_exists('remember_me')) {
+if(!function_exists('exAuth_rememberme')) {
     
-    function remember_me($user_id) {
+    function exAuth_rememberme($userid)
+    {
 
         global $db;
 
@@ -131,7 +178,7 @@ if(!function_exists('remember_me')) {
         $q = $db->prepare("INSERT INTO ex_authtokens(uID, expires, selector, token) VALUES(:uID, DATE_ADD(NOW(), INTERVAL 365 DAY), :selector, :token)");
 
         $q->execute([
-            'uID' => $user_id,
+            'uID' => $userid,
             'selector' => $selector,
             'token' => $token
         ]);

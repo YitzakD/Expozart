@@ -18,6 +18,9 @@ define('WURI', 'http://localhost:8000');
 define('CDN', 'http://localhost/localcdn/');
 
 
+define('WEBSITE_COPYRIGHT', date('Y') . '&nbsp;©&nbsp;Expozart - Tous droits réservés');
+
+
 define('ROOT', dirname(dirname(dirname(__FILE__))));
 
 define('DS', DIRECTORY_SEPARATOR);
@@ -49,15 +52,15 @@ define('RESOURCES', ROOT . DS . 'resources');
 
 	define('PAGES', VIEWS . DS . 'pages');
 
-	define('TEMPLATES', RESOURCES . DS . 'templates');
+	define('EX_EMAILS', RESOURCES . DS . 'mailer');
 
-		define('EX_EMAILS', TEMPLATES . DS . 'emails');
+		/*define('EX_EMAILS', TEMPLATES . DS . 'emails');*/
 
 
 
 
 #	HARD constants
-$RESOURCES = WURI . 'resources';
+$RESOURCES = WURI . '/resources';
 
 $NEEDLES = $RESOURCES . '/public';
 
@@ -66,6 +69,7 @@ $NEEDLES = $RESOURCES . '/public';
 	$JS		= $NEEDLES .  '/js';
 
 	$MEDIAS	= $NEEDLES . '/media';
+	define('MEDIAS', WURI . '/resources/public/media');
 
 		$UPLOAD = $MEDIAS . '/uploads';		
 
