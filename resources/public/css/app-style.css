@@ -531,6 +531,8 @@ button.ex-alert-close {
 }
 
 
+
+
 /** category style */
 .ex-category-page { padding: 7rem 1.5rem; }
 .ex-categories-cards {
@@ -634,11 +636,9 @@ button.ex-alert-close {
 .choice-finished { height: 3rem; }
 
 
-/** 
- * home style
- */
 
- /** Placehoder */
+
+/** Home Placehoder */
 .ex-home-placeholder {
     width: 90%;
     margin: 1rem auto;
@@ -696,7 +696,10 @@ button.ex-alert-close {
 .art-h-500 { height: 500px; }
 .art-h-550 { height: 550px; }
 
-/** masonry item */
+
+
+
+/** masonry artwork */
 #home-content { display: none; padding-top: 8px; }
 .ex-home-page {
     max-width: 1220px;
@@ -773,7 +776,10 @@ button.ex-alert-close {
 }
 .exart-art-item:hover .exart-info { box-shadow: 0 15px 10px -15px var(--ex-color-grey-ea); }
 
-/** Item displayer */
+
+
+
+/** Artwork displayer */
 .locked-body { overflow: hidden; }
 .ex-display-container,
 .ex-art-container {
@@ -784,7 +790,7 @@ button.ex-alert-close {
     top: 0;
     right: 0;
     overflow-y: scroll;
-    background-color: var(--ex-color-grey-hover-ea);
+    background-color: var(--ex-color-light-ea);
 
     z-index: 100;
 }
@@ -842,6 +848,7 @@ button.ex-alert-close {
 
 
 
+
 /** Others utilities */
 .ex-avatarname {
     display: inline-flex;
@@ -856,6 +863,10 @@ button.ex-alert-close {
     font-weight: bold;
     border-radius: 50%;
 }
+
+
+
+
 
 
 

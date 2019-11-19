@@ -1,7 +1,7 @@
 <?php
 /**
  *	Expozart
- *	register app:	gére les inscriptions des utilisateurs
+ *	art app:	afichage de l'artwork sélectionné et des artworks de la même catégorie
  *	Code:	yitzakD
  */
 
@@ -29,11 +29,11 @@ global $match;
 
 global $MOD; global $CON; global $VUE; global $RVUE;
 
-$SUBPAGE = VIEWS . '/' . ucfirst('home') . '/parts/';
+$SUBPAGE = VIEWS . '/' . ucfirst($MOD) . '/parts/';
 
 
 
 #   Template
-require VIEWS . '/' . ucfirst('home') . '/home.php';
+require VIEWS . '/' . ucfirst($MOD) . '/' . $MOD . '.php';
 
 ?>

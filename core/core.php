@@ -19,4 +19,6 @@ require EXCORE . '/app/auth.func.php';
 
 require EXCORE . '/app/app.func.php';
 
+require EXCORE . '/includes/account.var.php';
+
 ?>

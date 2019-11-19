@@ -98,7 +98,7 @@
 
 					<div class="dropdown-divider"></div>
 
-					<form action="<?= WURI . '?r=logout/' . get_session('userhash') . '/' ?>" method="POST" class="p-0 m-0">
+					<form action="<?= WURI . '?r=logout/' . exAuth_getsession('userhash') . '/' ?>" method="POST" class="p-0 m-0">
 						
 						<button type="submit" class="btn dropdown-item">Se déconecter</button>
 

@@ -18,7 +18,7 @@ $router->map('GET|POST', '/', function() {
 
 	require EXPOZART . '/home.php';
 
-});
+}, 'accueil');
 
 
 
@@ -45,7 +45,7 @@ $router->map('GET|POST', '/recovery', function() {
 
 	require AUTH . '/recovery.php';
 
-}, 'récuperation de compte');
+}, 'récupération de compte');
 
 
 
@@ -91,3 +91,12 @@ $router->map('GET|POST', '/categories', function() {
 	require EXPOZART . '/categories.php';
 
 }, 'catégories');
+
+
+
+
+$router->map('GET|POST', '/art/[i:arthash]', function() {
+
+	require EXPOZART . '/art.php';
+
+}, 'artwork');

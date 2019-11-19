@@ -1,7 +1,11 @@
 /**
- * Copyright: Expozart
- * Code by Yitzak DEKPEMOU
+ *  Expozart
+ *  form script: gére le fonctionnement des formulaires, et les actions associées
+ *  Code:   yitzakD
  */
+
+
+
 
 $(document).ready(function() {
 
@@ -154,6 +158,7 @@ $(document).ready(function() {
 
         }
 
-
     });
+
+
 });

@@ -24,7 +24,7 @@
 
     <div class="text-right small">
         
-        <a href="<?= $router->generate('récuperation de compte'); ?>">Mot de passe oublié?</a>
+        <a href="<?= $router->generate('récupération de compte'); ?>">Mot de passe oublié?</a>
 
     </div>
 

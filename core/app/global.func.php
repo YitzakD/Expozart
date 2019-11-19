@@ -590,3 +590,47 @@ if(!function_exists('ex_deleteone')) {
     }
 
 }
+
+
+
+
+/**
+ *  ex_inarray($needle, $needle_field, $haystack, $strict = false)
+ *  $needle => string (valeur à comparer); $needle_field => string (nom de la valeur); $haystack => var
+ *  Recherche l'existence dans un tableaux pluridimensionnel
+ */
+if(!function_exists('ex_inarray')) {
+
+    function ex_inarray($needle, $needle_field, $haystack, $strict = false) {
+
+        if($strict) {
+            
+            foreach($haystack as $item) {
+
+                if(isset($item->$needle_field) && $item->$needle_field === $needle) {
+
+                    return true;
+
+                }
+
+            }
+
+        } else {
+
+            foreach($haystack as $item) {
+
+                if(isset($item->$needle_field) && $item->$needle_field == $needle) {
+
+                    return true;
+
+                }
+
+            }
+
+        }
+
+        return false;
+
+    }
+
+}

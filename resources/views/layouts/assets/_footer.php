@@ -15,7 +15,9 @@
 
 	<script src="<?= $JS . '/app-form.script.js'; ?>" type="text/javascript"></script>
 
-	<?php if(($match['name'] !== "connexion") && ($match['name'] !== "inscription") && ($match['name'] !== "réinitialisation de compte") && ($match['name'] !== "récuperation de compte") && ($match['name'] !== "confirmation") && ($match['name'] !== "activation")): ?>
+	<?php if(!in_array($match['name'], $exVar_authappentriesname)): ?>
+
+	<script src="<?= $JS . '/app-global.script.js'; ?>" type="text/javascript"></script>
 
 	<script src="<?= $JS . '/app-artwork.script.js'; ?>" type="text/javascript"></script>
 

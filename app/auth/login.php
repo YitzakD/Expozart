@@ -7,6 +7,7 @@
 
 
 
+if(exAuth_islogged()) { ex_redirect(WURI); }
 
 global $router;
 

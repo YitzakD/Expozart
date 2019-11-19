@@ -8,47 +8,49 @@
 
 
 
-
 /**
  * 	exApp_getparm($key)
  *	$key => obj
- *	permet de rcuperer à la volée les paramêtres de l'url
+ *	permet de récupérer à la volée les paramêtres de l'url
  * 	retourne $parm
  */
-function exApp_getparm($key)
-{
-	
-	$parm = explode('/', $key);
+if(!function_exists('exApp_getparm')) {
 
-	return $parm;
+    function exApp_getparm($key)
+    {
+    	
+    	$parm = explode('/', $key);
+
+    	return $parm;
+
+    }
+
+    $m = exApp_getparm($_SERVER['REQUEST_URI']);
+
+    $MOD = $m[1];
+
+    if(count($m) > 2) {
+
+    	$CON = $m[2];
+
+    	if(isset($m[3])) { $VUE = $m[3]; }
+
+    	if(isset($m[4])) { $RVUE = $m[4]; }
+
+    	$ID = end($m);
+
+    }
 
 }
-
-$m = exApp_getparm($_SERVER['REQUEST_URI']);
-
-$MOD = $m[1];
-
-if(count($m) > 2) {
-
-	$CON = $m[2];
-
-	if(isset($m[3])) { $VUE = $m[3]; }
-
-	if(isset($m[4])) { $RVUE = $m[4]; }
-
-	$ID = end($m);
-
-}
-
 
 
 
 
 /**
- * 	exApp_sendmail($key)
- *	$key => obj
- *	permet de rcuperer à la volée les paramêtres de l'url
- * 	retourne $parm
+ * 	exApp_sendmail($name, $to, $pass, $type)
+ *	$nomm => string (username); $to => string (email); $pass => string (hashed password); $type => int (type of mail)
+ *	permet l'envoie de mail
+ * 	retourne $array (tableau contenant les informations à envoyer par mail)
  */
 if(!function_exists('exApp_sendmail')) {
 

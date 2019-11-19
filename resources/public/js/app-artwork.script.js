@@ -1,14 +1,18 @@
 /**
- * Copyright: Expozart
- * Code by Yitzak DEKPEMOU
+ *	Expozart
+ *	artwork script:	gére le fonctionnement des tuiles, et les actions associées
+ *	Code:	yitzakD
  */
+
+
+
 
 $(document).ready(function() {
 
 	/**	Liens vers le dossiers des vues	 */
-	ajaxlink = "http://localhost/www.expozart.com/resources/views/";
+	ajaxlink = "http://localhost:8000/resources/views/";
 
-	rootlink = "?r=home/";
+	rootlink = "/";
 
 
 
@@ -68,7 +72,7 @@ $(document).ready(function() {
 
 
 	/** overlay:   application du système d'overlay quand on clique sur une grille   */
-    artDisplayer = $('.ex-display-container');
+    /*artDisplayer = $('.ex-display-container');
 
 	artDpOverlay = $('.exart-display-overlay');
 
@@ -82,9 +86,9 @@ $(document).ready(function() {
 
 		$(artDisplayer).toggleClass('ex-dp-block');
 
-	}
+	}*/
 
-	getArtEscaped();
+	/*getArtEscaped();
 	function getArtEscaped() {
 
 		$(artDpOverlay).click(function() {
@@ -123,13 +127,13 @@ $(document).ready(function() {
 
 		});
 
-    }
+    }*/
 
 
 
 
 	/** ArtLoad:   application du système d'overlay quand on clique sur une grille   */
-	function ArtLoad(xURI, x) {
+	/*function ArtLoad(xURI, x) {
 
 		$.get(ajaxlink + 'home/contents/art.ajax.php', {x:x}, function(singleArtDataResponse) {
 
@@ -150,21 +154,21 @@ $(document).ready(function() {
 
 		});
 
-	}
+	}*/
 
 
 
 
 	/** infinite scroll:   application du système de chargement continue de contenu   */
-    exStart = 0;
+    artworkStart = 0;
 
-    exLimit = 18;
+    artworkLimit = 18;
 
-    exNewstart = 0;
+    /*exNewstart = 0;
 
-    exNewlimit = 50;
+    exNewlimit = 50;*/
 
-    exReachedMax = false;
+    artworksReachedMax = false;
 
 	$(window).scroll(function() {
 
@@ -174,22 +178,22 @@ $(document).ready(function() {
 	
 		if($(window).scrollTop() === docHeight - winHeight) {
 
-			gethomeArts();
+			getUserArtworksTastes();
 
 		}
 
 	});
 
-    gethomeArts();
-    function gethomeArts() {
+    getUserArtworksTastes();
+    function getUserArtworksTastes() {
 
-    	if(exReachedMax)
+    	if(artworksReachedMax)
 
     		return;
 
     		$.ajax({
 
-    			url: ajaxlink + 'home/contents/userhome.ajax.php',
+    			url: ajaxlink + 'Home/parts/artworktaste.ajax.php',
 
     			method: 'POST',
 
@@ -197,24 +201,24 @@ $(document).ready(function() {
 
     			data: {
 
-    				gethomeArts: 1,
+    				getUserArtworksTastes: 1,
 
-    				exStart: exStart,
+    				artworkStart: artworkStart,
 
-    				exLimit: exLimit
+    				artworkLimit: artworkLimit
     			},
 
-    			success: function(userhomeresponse) {
+    			success: function(userArtworksTastesResponseData) {
 
-    				if(userhomeresponse === "exReachedMax")
+    				if(userArtworksTastesResponseData === "artworksReachedMax")
 
-    					exReachedMax = true;
+    					artworksReachedMax = true;
 
     				else {
 
-    					exStart += exLimit;
+    					artworkStart += artworkLimit;
 
-						$(exArtcontainer).append(userhomeresponse).masonry('reloadItems').masonry();
+						$(exArtcontainer).append(userArtworksTastesResponseData).masonry('reloadItems').masonry();
 
 						exArtitem = $(exArtcontainer).find("a.open-exart-ajax");
 
@@ -226,7 +230,7 @@ $(document).ready(function() {
 							
 							xURI = $(this).attr("href");
 
-							history.pushState({key: 'value'}, 'Artwork', xURI);
+							/*history.pushState({key: 'value'}, 'Artwork', xURI);*/
 
 							ArtLoad(xURI, x);
 
@@ -238,7 +242,7 @@ $(document).ready(function() {
 
     		});
 
-	    window.onpopstate = function(event) {
+	    /*window.onpopstate = function(event) {
 
 	    	if(event.state == null) {
 
@@ -258,110 +262,8 @@ $(document).ready(function() {
 
 	    	// console.log(event);
 
-	    }
+	    }*/
 
     }
-
-
-
-
-
-	/** uc_affiliation:   indique le nomdre d'affiliations de l'utilisateur  */
-	uc_affiliation();
-	function uc_affiliation() {
-
-		tootltip = $("#uc-tooltip");
-
-		$.get(ajaxlink + 'categories/choice/chosen.ajax.php', function(ucAffiliationData) {
-
-			tootltip.html(ucAffiliationData);
-
-		});
-
-	}
-
-
-
-
-	/** count_uc_affiliation:   indique le nomdre d'affiliations de l'utilisateur  */
-	count_uc_affiliation();
-	function count_uc_affiliation() {
-
-		tootltipcounter = $("#count-uc-tooltip");
-
-		$.get(ajaxlink + 'categories/choice/counter.ajax.php', function(ucCounterData) {
-
-			tootltipcounter.html(ucCounterData);
-
-		});
-
-	}
-
-
-
-
-	/** add_c_affiliation:   ajjout et suppression d'affiliations utilisateur  */
-	add_c_affiliation();
-	function add_c_affiliation() {
-
-		card = $(".js-card");
-
-		exCheck = '<span class="card-checked"><i class="fas fa-check-circle fa-lg"></i></span>';			
-		
-		
-		card.click(function(e) {
-
-			e.preventDefault();
-
-			cToAffiliate = $(this).attr("accesskey");
-
-			function removeCxT() {
-
-				$.post(ajaxlink + 'categories/choice/remove.ajax.php', {cToAffiliate:cToAffiliate}, function(removeData) {
-            		
-            	});
-			}
-
-
-			if($(this).hasClass("js-card-checked")) {
-	            
-	            $(this).removeClass("js-card-checked");
-
-	            jsCC = $(this).find("span.card-checked");
-
-	            jsCC.remove();
-
-	            removeCxT();
-
-				uc_affiliation();
-				
-				count_uc_affiliation();
-
-	        } else {
-	            
-	            $(this).addClass("js-card-checked");
-            	
-        		$(this).prepend(exCheck);
-            	
-            	$.post(ajaxlink + 'categories/choice/choose.ajax.php', {cToAffiliate:cToAffiliate}, function(choosenData) {
-
-					uc_affiliation();
-				
-					count_uc_affiliation();
-
-            	});
-
-	        }
-
-		});
-
-
-
-	}
-
-
-
-
-    /** shPassword:   afficher ou cacher le mot de passe  */
 
 });
