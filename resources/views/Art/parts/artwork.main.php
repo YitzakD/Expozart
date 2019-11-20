@@ -2,7 +2,7 @@
 
 	<div class="row no-gutters exrow">
 		
-		<div class="col-sx-12 col-md-12 col-lg-8">
+		<div class="col-sx-12 col-md-6 col-lg-8">
 
 			<div class="d-block art-content p-3">
 
@@ -12,7 +12,7 @@
 
 		</div>
 
-		<div class="col-sx-12 col-md-12 col-lg-4">
+		<div class="col-sx-12 col-md-6 col-lg-4">
 
 			<div class="d-block art-comment">
 				

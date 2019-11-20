@@ -22,6 +22,8 @@
 
     <link rel="stylesheet" type="text/css" href="<?= $CSS . '/app-style.css'; ?>">
 
+    <link rel="stylesheet" type="text/css" href="<?= $CSS . '/app-query.css'; ?>">
+
 </head>
 
 <body>

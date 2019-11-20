@@ -57,7 +57,7 @@ $(document).ready(function() {
 
 		    $(exArtcontainer).masonry({
 			    		
-				columnWidth: 244,
+				/*columnWidth: 244,*/
 
 				itemSelector: '.exart',
 

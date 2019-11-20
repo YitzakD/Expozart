@@ -86,7 +86,7 @@
 
 				</a>
 
-				<div class="dropdown-menu" aria-labelledby="ex-nav-content-dropdown">
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="ex-nav-content-dropdown">
 
 					<a class="dropdown-item" href="#">Modifier les  paramètres</a>
 
