@@ -17,13 +17,15 @@ $DS = DIRECTORY_SEPARATOR;
 
 $CORE = $ROOT.$DS.'core';
 
-/**
- *	$URI = $_SERVER["HTTP_REFERER"];
- *	
- *	$URL = array_filter(explode('/categories', $URI));
- */
 
-$WURI = 'http://' . $_SERVER['HTTP_HOST'];
+$URI = $_SERVER["HTTP_REFERER"];
+
+$URL = array_filter(explode('http://', $URI));
+
+$URL = explode('/', $URI, -1);
+
+$WURI = $URL[0] . '//' . $URL[2];
+
 
 session_start();
 
@@ -57,7 +59,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 
 					<div class="exart-art">
 						
-						<a href="<?= $WURI . '/art/' . $item->arthash . '/'; ?>" class="exart-art-item relative open-exart-ajax" style="background-color: #<?= ex_randomcolor() ?>" accesskey="<?= $item->arthash  ?>">
+						<a href="<?= $WURI . '/art/' . $item->arthash; ?>" class="exart-art-item relative open-artwork-ajax" style="background-color: #<?= ex_randomcolor() ?>" accesskey="<?= $item->arthash  ?>">
 
 							<div class="exart-hover" accesskey="<?= $item->ID . '-' . $item->uID . '-' . $item->cID . '-' . $item->tID  ?>"></div>
 

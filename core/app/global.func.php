@@ -597,7 +597,7 @@ if(!function_exists('ex_deleteone')) {
 /**
  *  ex_inarray($needle, $needle_field, $haystack, $strict = false)
  *  $needle => string (valeur à comparer); $needle_field => string (nom de la valeur); $haystack => var
- *  Recherche l'existence dans un tableaux pluridimensionnel
+ *  recherche l'existence dans un tableaux pluridimensionnel
  */
 if(!function_exists('ex_inarray')) {
 
@@ -630,6 +630,62 @@ if(!function_exists('ex_inarray')) {
         }
 
         return false;
+
+    }
+
+}
+
+
+
+
+/**
+ *  ex_nextElement($array, $currentKey)
+ *  $array => array; $currentKey => string
+ *  permet d'avancer ou de réculer en fonction d'un résultat
+ */
+if(!function_exists('ex_nextElement')) {
+
+    function ex_nextElement(array $array, $currentKey)
+    {
+
+        if (!isset($array[$currentKey])) { return false; }
+
+        $nextElement = false;
+
+        foreach ($array as $key => $item) {
+
+            $nextElement = next($array);
+
+            if ($key == $currentKey) {
+                
+                break;
+
+            }
+
+        }
+
+        return $nextElement;
+
+    }
+
+    function ex_prevElement(array $array, $currentKey)
+    {
+
+        if (!isset($array[$currentKey])) { return false; }
+        
+        end($array);
+        
+        do {
+            
+            $key = array_search(current($array), $array);
+            
+            $prevElement = prev($array);
+        
+        }
+        
+        while($key != $currentKey);
+
+        return $prevElement;
 
     }
 

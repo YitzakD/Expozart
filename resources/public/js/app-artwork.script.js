@@ -12,12 +12,12 @@ $(document).ready(function() {
 	/**	Liens vers le dossiers des vues	 */
 	ajaxlink = "http://localhost:8000/resources/views/";
 
-	rootlink = "/";
+	rootlink = "http://localhost:8000/";
 
 
 
 
-    /** placeholder:   Affiche un placeholder au chargement de la page  */
+    /** placeholder:   Affiche un placeholder au chargement de page  */
 	$(".ex-home-placeholder").masonry({
 
 		isAnimated: true,
@@ -28,7 +28,7 @@ $(document).ready(function() {
 
 	});
 
-	function explaceholder() {
+	function exHomeplaceholder() {
 
 		$(".ex-home-placeholder").hide();
 
@@ -36,7 +36,14 @@ $(document).ready(function() {
 		
 		appMasonry();
 	}
-	setTimeout(explaceholder, 3000);
+	setTimeout(exHomeplaceholder, 3000);
+
+	function exArtworkplaceholder() {
+
+		$(".exart-display-placeholder").hide();
+
+		$("#artwork-content").show();
+	}
 
 
 
@@ -72,32 +79,24 @@ $(document).ready(function() {
 
 
 	/** overlay:   application du système d'overlay quand on clique sur une grille   */
-    /*artDisplayer = $('.ex-display-container');
+    artworkDisplayer = $('.ex-display-container');
 
-	artDpOverlay = $('.exart-display-overlay');
-
-	artDP = $('<div/>').attr('class', 'exart-display');
-	
-	artDpSimili = $('<div/>').attr('class', 'exart-art-simili');
+	artworkDisplaypOverlay = $('.exart-display-overlay');
 
 	function extoggleModal() {
 
 		$('body').toggleClass('locked-body');
 
-		$(artDisplayer).toggleClass('ex-dp-block');
+		$(artworkDisplayer).toggleClass('ex-dp-block');
 
-	}*/
+	}
 
-	/*getArtEscaped();
-	function getArtEscaped() {
+	artworkEscaped();
+	function artworkEscaped() {
 
-		$(artDpOverlay).click(function() {
+		$(artworkDisplaypOverlay).click(function() {
 
 			extoggleModal();
-
-			artDP.remove();
-
-			artDpSimili.remove();
 
 			history.pushState(null, 'Home', rootlink);
 
@@ -105,7 +104,7 @@ $(document).ready(function() {
 
 	}
 
-    function appArtMasonry() {
+    /*function appArtMasonry() {
 
 		$(artDpSimili).imagesLoaded(function() {
 
@@ -132,33 +131,6 @@ $(document).ready(function() {
 
 
 
-	/** ArtLoad:   application du système d'overlay quand on clique sur une grille   */
-	/*function ArtLoad(xURI, x) {
-
-		$.get(ajaxlink + 'home/contents/art.ajax.php', {x:x}, function(singleArtDataResponse) {
-
-			extoggleModal();
-
-			$(artDP).appendTo(artDisplayer).empty();
-
-			setTimeout(getArt, 500);
-			function getArt() {
-
-				$(artDP).imagesLoaded(function() {
-
-	    			$(artDP).append(singleArtDataResponse);
-
-	    		});
-
-			}
-
-		});
-
-	}*/
-
-
-
-
 	/** infinite scroll:   application du système de chargement continue de contenu   */
     artworkStart = 0;
 
@@ -169,6 +141,10 @@ $(document).ready(function() {
     exNewlimit = 50;*/
 
     artworksReachedMax = false;
+
+    isHistoryAvailable = true;
+
+    if(typeof history.pushState === 'undefined') { isHistoryAvailable = false; }
 
 	$(window).scroll(function() {
 
@@ -220,21 +196,97 @@ $(document).ready(function() {
 
 						$(exArtcontainer).append(userArtworksTastesResponseData).masonry('reloadItems').masonry();
 
-						exArtitem = $(exArtcontainer).find("a.open-exart-ajax");
-
-						$(exArtitem).on('click', function(e) {
+						$('a.open-artwork-ajax').on('click', function(e) {
 
 							e.preventDefault();
 
-							x = $(this).attr("accesskey");
+							a = $(this);
+
+							url = a.attr('href');
+
+							if(isHistoryAvailable) {
+								
+								history.pushState({key: 'value'}, 'Artwork', url);
+
+							}
 							
-							xURI = $(this).attr("href");
+							artworkLoad(url);
 
-							/*history.pushState({key: 'value'}, 'Artwork', xURI);*/
-
-							ArtLoad(xURI, x);
+							setTimeout(exArtworkplaceholder, 3000);
 
 						});
+
+						$("#close").click(function(e) {
+
+							e.preventDefault();
+
+							$('body').removeClass('locked-body');
+
+							$(artworkDisplayer).removeClass('ex-dp-block');
+
+							getUserArtworksTastes();
+
+							history.pushState(null, 'Home', rootlink);
+
+						});
+
+						/** artworkLoad:   application du système d'overlay quand on clique sur une tuile   */
+						function artworkLoad(url) {
+
+							extoggleModal();
+
+							$.get(url, {}, function(artworkResponseData) {
+
+								$(".exart-display").imagesLoaded(function() {
+
+									$("#json-image").attr('src', artworkResponseData.fileroad_sm);
+
+									$("#json-post-content").html(artworkResponseData.artcontent);
+
+									if(artworkResponseData.next) {
+
+										$("#next").show();
+
+										$("#next").attr('href', rootlink + 'art/' + artworkResponseData.next.arthash);
+
+									} else { $("#next").hide(); }
+
+									if(artworkResponseData.prev) {
+
+										$("#prev").show();
+
+										$("#prev").attr('href', rootlink + 'art/' + artworkResponseData.prev.arthash);
+
+									} else { $("#prev").hide(); }
+
+					    		});
+
+							});
+
+						}
+
+						/** Historique:   gère l'historique   */
+						window.addEventListener('popstate', function(e) {
+
+					    	if(e.state == null) {
+
+								$('body').removeClass('locked-body');
+
+								$(artworkDisplayer).removeClass('ex-dp-block');
+
+								getUserArtworksTastes();
+
+					    	} else {
+							
+					    		artworkLoad(window.location.href);
+
+								setTimeout(exArtworkplaceholder, 3000);
+
+								if(window.location.href == rootlink) { getUserArtworksTastes(); }
+
+					    	}
+
+					    });
 
     				}
 
@@ -242,28 +294,9 @@ $(document).ready(function() {
 
     		});
 
-	    /*window.onpopstate = function(event) {
-
-	    	if(event.state == null) {
-
-		    	$('body').toggleClass('locked-body');
-
-				$(artDisplayer).toggleClass('ex-dp-block');
-
-				artDP.remove();
-
-				artDpSimili.remove();
-
-	    	} else {
-
-	    		ArtLoad(document.location.pathname, x);
-
-	    	}
-
-	    	// console.log(event);
-
-	    }*/
+	    
 
     }
+
 
 });

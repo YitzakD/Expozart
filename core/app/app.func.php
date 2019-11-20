@@ -9,19 +9,19 @@
 
 
 /**
- * 	exApp_getparm($key)
- *	$key => obj
- *	permet de récupérer à la volée les paramêtres de l'url
- * 	retourne $parm
+ *  exApp_getparm($key)
+ *  $key => obj
+ *  permet de récupérer à la volée les paramêtres de l'url
+ *  retourne $parm
  */
 if(!function_exists('exApp_getparm')) {
 
     function exApp_getparm($key)
     {
-    	
-    	$parm = explode('/', $key);
+        
+        $parm = explode('/', $key);
 
-    	return $parm;
+        return $parm;
 
     }
 
@@ -31,13 +31,13 @@ if(!function_exists('exApp_getparm')) {
 
     if(count($m) > 2) {
 
-    	$CON = $m[2];
+        $CON = $m[2];
 
-    	if(isset($m[3])) { $VUE = $m[3]; }
+        if(isset($m[3])) { $VUE = $m[3]; }
 
-    	if(isset($m[4])) { $RVUE = $m[4]; }
+        if(isset($m[4])) { $RVUE = $m[4]; }
 
-    	$ID = end($m);
+        $ID = end($m);
 
     }
 

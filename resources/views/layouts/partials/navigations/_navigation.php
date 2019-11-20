@@ -4,7 +4,7 @@
 
 		<div class="logo d-inline-block mr-3">
 
-			<a href="<?= WURI . '?r=home/' ?>">
+			<a href="<?= $router->generate('accueil'); ?>">
 
 				<img src="<?= $MEDIAS . '/uses/ico.png'; ?>" alt>
 
@@ -38,7 +38,7 @@
 
 			<li class="nav-item">
 
-				<a class="nav-link ex-nav-link active" href="<?= WURI . '?r=home/'; ?>">
+				<a class="nav-link ex-nav-link active" href="<?= $router->generate('accueil'); ?>">
 
 					<span>Accueil</span>
 

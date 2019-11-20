@@ -100,3 +100,19 @@ $router->map('GET|POST', '/art/[i:arthash]', function() {
 	require EXPOZART . '/art.php';
 
 }, 'artwork');
+
+
+
+
+/**
+ * 	exVar_authappentriesname
+ *	tableau contenant les nom des pages sans menu
+ */
+$exVar_authappentriesname = array(
+	'connexion', 
+	'inscription', 
+	'réinitialisation de compte', 
+	'récupération de compte', 
+	'confirmation', 
+	'activation'
+);

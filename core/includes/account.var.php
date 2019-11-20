@@ -20,22 +20,6 @@ if(exAuth_getsession('userid') && exAuth_getsession('userhash')) {
 
 
 	/**
-	 * 	exVar_authappentriesname
-	 *	tableau contenant les nom des pages sans menu
-	 */
-	$exVar_authappentriesname = array(
-		'connexion', 
-		'inscription', 
-		'réinitialisation de compte', 
-		'récupération de compte', 
-		'confirmation', 
-		'activation'
-	);
-
-
-
-
-	/**
 	 *  exApp_findalltopicsXmedia()
 	 *  permet de récupérer à la volée les catégories et les media associés
 	 *  retourne $data
@@ -62,6 +46,12 @@ if(exAuth_getsession('userid') && exAuth_getsession('userhash')) {
 		/** exVar_allcategories:	variable de récupération tableau contenant les nom des pages sans menu 	*/
 		$exVar_allcategories = exApp_findalltopicsXmedia();
 
-	}	
+	}
 
+
+
+
+	/**
+	 * 
+	 */
 }

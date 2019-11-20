@@ -66,9 +66,8 @@ $(document).ready(function() {
 
 			function remove_ucaffiliation() {
 
-				$.post(ajaxlink + 'Categories/parts/remove.ajax.php', {cToAffiliate:cToAffiliate}, function(removeData) {
-            		
-            	});
+				$.post(ajaxlink + 'Categories/parts/remove.ajax.php', {cToAffiliate:cToAffiliate}, function(removeData) {});
+				
 			}
 
 
@@ -88,7 +87,7 @@ $(document).ready(function() {
 
 	        } else {
 
-    			alreadyused = false;
+    			allreadyused = false;
 	            
 	            $(this).addClass("js-card-checked");
             	
@@ -110,9 +109,9 @@ $(document).ready(function() {
 
 	    			success: function(choiceData) {
 
-	    				if(choiceData === "alreadyused") {
+	    				if(choiceData === "allreadyused") {
 	    					
-	    					alreadyused = true;
+	    					allreadyused = true;
 
 	    				} else {
 
@@ -125,14 +124,6 @@ $(document).ready(function() {
 	    			}
 
         		});
-            	
-            	/*$.post(ajaxlink + 'Categories/parts/choose.ajax.php', {cToAffiliate:cToAffiliate}, function(chooseData) {
-
-					ucaffiliation();
-				
-					count_ucaffiliation();
-
-            	});*/
 
 	        }
 
