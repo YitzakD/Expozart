@@ -104,6 +104,15 @@ $router->map('GET|POST', '/art/[i:arthash]', function() {
 
 
 
+$router->map('GET|POST', '/logout/[*:hashedid]', function() {
+
+	require AUTH . '/logout.php';
+
+}, 'deconnexion');
+
+
+
+
 /**
  * 	exVar_authappentriesname
  *	tableau contenant les nom des pages sans menu
