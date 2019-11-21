@@ -58,6 +58,7 @@
     /** All placeholder */
     .placeholder-exart-self { width: 650px; }
     .placeholder-exart-self .exrow { width: 650px; }
+    .placeholder-exart-self .art-comment {  border-radius: 0 0 1rem 1rem;  }
     .placeholder-exart-self .info-simulate {
         width: 100%!important;
         height: 60px;
@@ -74,7 +75,12 @@
     }
 
     /** Artwork displayer */
+    .exart-display-overlay {
+        width: 98%;
+        right: 2%;
+    }
     .exart-self { width: 650px; }
+    .art-work-content { padding: .5rem 1rem; }
 }
   
 
@@ -132,6 +138,7 @@
         padding: .5rem;
     }
     .info-simulate .avatar,
+    .exart-self .avatar,
     .exart-info .avatar {
         width: 33px;
         height: 33px;
@@ -160,12 +167,25 @@
     .exart-hover { width: 162.5px; }
 
     /** Artwork displayer */
+    .exart-display-overlay {
+        width: 96%;
+        right: 4%;
+    }
     .exart-self { width: 280px; }
     .exart-self .art-content img {
         width: 100%;
         transition-property: color;
         clear: right;
         border-radius: 1rem 1rem 0 0;
+    }
+    .art-work-content { padding: .5rem 1rem; }
+    .exart-closer { right: 7%; }
+    #prev { left: 7%; }
+    #next{ right: 7%; }
+
+    .ex-avatarname {
+        height: 33px;
+        width: 33px;
     }
 }
  
@@ -230,6 +250,10 @@
 
     /** Artwork displayer */
     .exart-self { width: 350px; }
+    .art-work-content { padding: .5rem 1rem; }
+    .exart-closer { right: 7%; }
+    #prev { left: 7%; }
+    #next{ right: 7%; }
 }
  
 

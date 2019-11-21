@@ -210,7 +210,13 @@ $(document).ready(function() {
 
 							a = $(this);
 
+							par1 = $(a).parent();
+								
+								artworktasteLikecounter = $(par1).find("#ajax-likes-counter");
+
 							url = a.attr('href');
+
+								console.log(artworktasteLikecounter);
 
 							if(isHistoryAvailable) {
 								
@@ -266,23 +272,94 @@ $(document).ready(function() {
 									}
 
 
+
+
 									$("#json-username").attr('href', rootlink + artworkResponseData.username);
 
 									$("#json-username").attr('title', artworkResponseData.username);
 
 									$("#json-username").text(artworkResponseData.username);
 
-
-
-									/*$("#json-post-ago").html(artworkResponseData.created);*/
+									$("#json-post-ago").html(artworkResponseData.created);
 									
 									$("#json-post-likes").html(artworkResponseData.likes + ' <i class="far fa-sm fa-heart"></i>');
+									
+									$("#json-menu-artwork-access").attr('action', rootlink + 'art/' + artworkResponseData.arthash);
+
+
+
+
+									$("#json-post-username").html(artworkResponseData.username);
+
+									$("#json-post-username").attr('title', artworkResponseData.username);
+
+									$("#json-post-username").attr('href', rootlink + artworkResponseData.username);
+
+									$("#json-post-content").html(artworkResponseData.artcontent);
+
+
+
+
+									if(artworkResponseData.userliked == 0) {
+									
+										$("#json-liker-box").html('<button class="btn btn-sm exart-like" title="liker" id="ajax-liker"><i class="far fa-lg fa-heart"></i></button>');
+
+									} else {
+
+										$("#json-liker-box").html('<button class="btn btn-sm exart-like" title="disliker" id="ajax-disliker"><i class="fas fa-lg fa-heart text-expozart-pink"></i></button>');
+
+									}
+
+									$("#ajax-liker").click(function(e) {
+
+										e.preventDefault();
+
+										console.log("Liker");
+
+										$.post(ajaxlink + 'Art/parts/artwork-like.ajax.php', {aid:artworkResponseData.ID}, function(likerDataresponse) {
+										
+											if(likerDataresponse !== 'not-liked') {
+
+												artworkLoad(url);
+
+											}
+
+										});
+
+										$("#json-liker-box").html('<button class="btn btn-sm exart-like" title="liker" id="ajax-disliker"><i class="fas fa-lg fa-heart text-expozart-pink"></i></button>');
+
+										artworktasteLikecounter.html((artworkResponseData.likes + 1) + ' <i class="fas fa-sm fa-heart text-expozart-pink"></i>');
+
+									});
+
+									$("#ajax-disliker").click(function(e) {
+
+										console.log("Disliker");
+
+										$.post(ajaxlink + 'Art/parts/artwork-dislike.ajax.php', {aid:artworkResponseData.ID}, function(dislikerDataresponse) {
+										
+											if(dislikerDataresponse !== 'not-disliked') {
+
+												artworkLoad(url);
+
+											}
+
+										});
+
+										$("#json-liker-box").html('<button class="btn btn-sm exart-like" title="disliker" id="ajax-liker"><i class="far fa-lg fa-heart"></i></button>');
+
+										artworktasteLikecounter.html((artworkResponseData.likes - 1) + ' <i class="fas fa-sm fa-heart text-expozart-pink"></i>');
+
+									});	
+
 
 
 
 									$("#json-image").attr('src', artworkResponseData.newfileroad);
 
 									$("#json-post-content").html(artworkResponseData.artcontent);
+
+
 
 
 									if(artworkResponseData.next) {
@@ -292,6 +369,9 @@ $(document).ready(function() {
 										$("#next").attr('href', rootlink + 'art/' + artworkResponseData.next.arthash);
 
 									} else { $("#next").hide(); }
+
+
+
 
 									if(artworkResponseData.prev) {
 

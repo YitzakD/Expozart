@@ -695,79 +695,41 @@ if(!function_exists('ex_nextElement')) {
 
 
 /**
- *  ex_settime($created, $lg)
- *  $created => date; $lg => string (Langue: EN_en => Anglais; FR_fr => Français)
+ *  ex_getTimeAgo($time)
+ *  $created => time (heure ou date convertie en heure)
  *  permet afficher le temps écoulé
  */
-if(!function_exists('ex_settime')) {
+if(!function_exists('ex_getTimeAgo')) {
 
-    function ex_settime($created, $lg = "")
+    function ex_getTimeAgo($time)
     {
 
-        date('j/n/Y ', strtotime($created));
+        $time_difference = time() - $time;
+     
+        if( $time_difference < 1 ) { return 'il y a un instant'; }
 
-        $session_time = strtotime($created);
+        $condition = array( 12 * 30 * 24 * 60 * 60 =>  'an',
+                    30 * 24 * 60 * 60       =>  'mois',
+                    24 * 60 * 60            =>  'jour',
+                    60 * 60                 =>  'heure',
+                    60                      =>  'minute',
+                    1                       =>  'seconde'
+        );
+     
+        foreach($condition as $secs => $str) {
+        
+            $d = $time_difference / $secs;
+     
+            if( $d >= 1 ) {
 
-        $time_difference = time() - $session_time;
-
-        $seconds = $time_difference;
-
-        $minutes = round($time_difference / 60 );
-
-        $hours = round($time_difference / 3600 );
-
-        $days = round($time_difference / 86400 );
-
-        $weeks = round($time_difference / 604800 );
-
-        $months = round($time_difference / 2419200 );
-
-        $years = round($time_difference / 29030400 );
-
-        if($seconds <= 60) {
-
-            if($lg == "EN_en") { echo "$seconds s ago"; }
-
-            echo "Il y a $seconds s";
-
-        } elseif($minutes <= 60) {
-
-            if($lg == "EN_en") { echo "$minutes mn ago"; } 
-
-            echo "Il y a $minutes mn";
-
-        } elseif($hours <=  24) {
-
-            if($lg == "EN_en") { echo "$hours h ago"; }
-
-            echo "Il y a $hours h";
-
-        } elseif($days <= 7) {
-
-            if($lg == "EN_en") { echo "$days d ago"; }
-
-            echo "Il y a $days jr";
-
-        } elseif($weeks <= 4) {
-
-            if($lg == "EN_en") { echo "$weeks w ago"; }
-
-            echo "il y a $weeks sem";
-
-        } elseif($months <= 12) {
-
-            if($lg == "EN_en") { echo "$moths mths ago"; }
-
-            echo "Il y a $months mois";
-
-        } else {
+                $t = round( $d );
+                
+                return 'il y a ' . $t . ' ' . ($str != 'mois' ? $str  . ($t > 1 ? 's' : '') : $str);
             
-            if($lg == "EN_en") { echo "$years yr ago"; }
-
-            echo "Il y a $years année";
+            }
 
         }
 
     }
-
+   
 }

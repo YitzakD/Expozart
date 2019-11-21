@@ -78,7 +78,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 						<!-- Menu -->
 						<div class="btn-group exart-artwork-menu">
 		
-							<button class="btn btn-sm exart-menu open-artwork-ajax" title="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-lg fa-ellipsis-h"></i></button>
+							<button class="btn btn-sm exart-menu" title="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-lg fa-ellipsis-h"></i></button>
 
 							<div class="dropdown-menu dropdown-menu-right">
 
@@ -144,9 +144,9 @@ if(isset($_POST['getUserArtworksTastes'])) {
 
 								<div class="info-place">
 									
-									<span class="small mr-1"><?= ex_settime($item->created) ?></span>
+									<span class="small mr-1"><?= ex_getTimeAgo(strtotime($item->created)) ?></span>
 
-									<span class="small"><?= $tastelikes ?> <i class="far fa-sm fa-heart"></i></span>
+									<span class="small" id="ajax-likes-counter"><?= $tastelikes ?> <i class="fas fa-sm fa-heart text-expozart-pink"></i></span>
 
 								</div>
 

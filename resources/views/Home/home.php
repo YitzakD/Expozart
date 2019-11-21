@@ -36,7 +36,27 @@
 
 						<div class="d-block art-comment">
 						
-							<div class="info-simulate">
+							<div class="info-simulate border-bottom">
+
+								<div class="btn-group artwork-menu">
+				
+									<button class="btn btn-sm exart-menu" title="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-lg fa-ellipsis-h"></i></button>
+
+									<div class="dropdown-menu dropdown-menu-right">
+
+										<form method="POSt" action="" class="m-0 p-0 dropdown-item" id="json-menu-artwork-access"><input type="submit" value="Acceder à l'artwork" ></form>
+
+										<button class="dropdown-item text-danger" type="button">Signaler l'artwork</button>
+
+										<button class="dropdown-item text-danger" type="button">Se désabonner de ce thême</button>
+
+										<div class="dropdown-divider"></div>
+
+										<button class="dropdown-item" type="button">Annuler</button>
+
+									</div>
+
+								</div>
 			
 								<span class="avatar rounded-circle">
 									
@@ -70,13 +90,22 @@
 
 							</div>
 							
-							<div class="d-block">
+							<div class="art-work-content">
 
-								<p class="p-2" id="json-post-content"></p>
+								<div class="d-block" id="json-liker-box"></div>
+
+								<div>
+
+									<a href="" class="content-link" id="json-post-username" title=""></a>
+
+									<span class="content-self" id="json-post-content"></span>
+
+								</div>
 
 							</div>	
 
-							<div class="strong m-0 text-center">Commentaires</div>
+							<div class="mb-1">Afficher un compteur de commetaires</div>
+							<div class="">Afficher les 2 derniers commetaires</div>
 
 						</div>
 

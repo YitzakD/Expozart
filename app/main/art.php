@@ -41,11 +41,19 @@ if(isset($CON) && ($CON == $ID)) {
 		 */
 		$exVar_artwork = ex_findone("ex_arts", "arthash", $ID);
 
-		$created = $exVar_artwork->created;
+
+
+		$createdtime = strtotime($exVar_artwork->created);
+
+		$created = ex_getTimeAgo($createdtime);
+
+
 
 		$artworkmedia = ex_findone("ex_media", "salt", $exVar_artwork->ID, "AND fileusability='1'");
 
 		if(!$artworkmedia) { $fileroad = ""; } else { $fileroad = $artworkmedia->fileroad_sm; }
+
+
 
 		$artworkowner = ex_findone("ex_users", "ID", $exVar_artwork->uID);
 
@@ -59,7 +67,11 @@ if(isset($CON) && ($CON == $ID)) {
 
 		else { $avatar = true; $useravatar = $artworkownerAvatar->fileroad_sm; }
 
+
+
 		$artworklikes = ex_cellcount("ex_likes", "aID", $exVar_artwork->ID, "AND lTYPE='1'");
+
+		$logeduseralreadyliked = ex_cellcount("ex_likes", "aID", $exVar_artwork->ID, "AND uID=" . exAuth_getsession("userid") . " AND lTYPE='1'");
 
 		
 		$q = $db->prepare("
@@ -100,6 +112,7 @@ if(isset($CON) && ($CON == $ID)) {
 				"username" => ucfirst($exUsername),
 				"avatar" => $avatar,
 				"useravatar" => $useravatar,
+				"userliked" => $logeduseralreadyliked,
 				"likes" => $artworklikes,
 				"next" => $next,
 				"prev" => $prev
