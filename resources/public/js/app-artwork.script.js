@@ -83,6 +83,14 @@ $(document).ready(function() {
 
 	artworkDisplaypOverlay = $('.exart-display-overlay');
 
+	function exSetModal() {
+
+		$('body').addClass('locked-body');
+
+		$(artworkDisplayer).addClass('ex-dp-block');
+
+	}
+
 	function extoggleModal() {
 
 		$('body').toggleClass('locked-body');
@@ -233,15 +241,49 @@ $(document).ready(function() {
 						/** artworkLoad:   application du système d'overlay quand on clique sur une tuile   */
 						function artworkLoad(url) {
 
-							extoggleModal();
+							exSetModal();
 
 							$.get(url, {}, function(artworkResponseData) {
 
 								$(".exart-display").imagesLoaded(function() {
 
-									$("#json-image").attr('src', artworkResponseData.fileroad_sm);
+									$("#json-avatar-link").attr('title', artworkResponseData.username);
+
+									$("#json-avatar-link").attr('href', rootlink + artworkResponseData.username);
+
+									if(artworkResponseData.avatar == true) {
+										
+										$("#json-avatar").attr('src', artworkResponseData.useravatar);
+
+										$("#json-avatar-name").hide();
+
+									} else {
+
+										$("#json-avatar-name").text(artworkResponseData.useravatar);
+
+										$("#json-avatar").hide();
+
+									}
+
+
+									$("#json-username").attr('href', rootlink + artworkResponseData.username);
+
+									$("#json-username").attr('title', artworkResponseData.username);
+
+									$("#json-username").text(artworkResponseData.username);
+
+
+
+									/*$("#json-post-ago").html(artworkResponseData.created);*/
+									
+									$("#json-post-likes").html(artworkResponseData.likes + ' <i class="far fa-sm fa-heart"></i>');
+
+
+
+									$("#json-image").attr('src', artworkResponseData.newfileroad);
 
 									$("#json-post-content").html(artworkResponseData.artcontent);
+
 
 									if(artworkResponseData.next) {
 

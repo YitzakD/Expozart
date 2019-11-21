@@ -39,20 +39,45 @@ if(isset($CON) && ($CON == $ID)) {
 		 *  exVar_artwork
 		 *  permet de récupérer à la volée un artwork
 		 */
-		
-		#	$exVar_artwork = ex_findone("ex_arts", "arthash", $ID);
-		
-		$q = $db->prepare("SELECT ex_arts.ID, ex_arts.uID, ex_arts.cID, ex_arts.tID, ex_arts.artcontent, ex_arts.arthash, ex_arts.created, ex_media.fileroad_sm FROM ex_arts INNER JOIN ex_media ON ex_arts.ID = ex_media.salt WHERE (ex_arts.arthash=?) AND ex_media.fileusability='1'");
-	    	
-		$q->execute([$ID]);
-		
-		$data = $q->fetch(PDO::FETCH_OBJ);
-		
-		$q->closeCursor();
+		$exVar_artwork = ex_findone("ex_arts", "arthash", $ID);
 
-		$exVar_artwork = $data;
+		$created = $exVar_artwork->created;
 
-		$counter = ex_findall("ex_arts", "WHERE cID IN(SELECT cID FROM ex_usercategories WHERE uID=" . exAuth_getsession("userid") . ") ORDER BY ex_arts.ID DESC");
+		$artworkmedia = ex_findone("ex_media", "salt", $exVar_artwork->ID, "AND fileusability='1'");
+
+		if(!$artworkmedia) { $fileroad = ""; } else { $fileroad = $artworkmedia->fileroad_sm; }
+
+		$artworkowner = ex_findone("ex_users", "ID", $exVar_artwork->uID);
+
+		if(!$artworkowner) { $exUsername = "Expozart"; } else { $exUsername = $artworkowner->username; }
+
+		$in =  explode(" ", $exUsername);
+
+		$artworkownerAvatar = ex_findone("ex_media", "uID", $exVar_artwork->uID, "AND salt='$exVar_artwork->uID' AND fileusability='0'");
+
+		if(!$artworkownerAvatar) { $avatar = false; $useravatar = $avatarname = $in[0][0]; }
+
+		else { $avatar = true; $useravatar = $artworkownerAvatar->fileroad_sm; }
+
+		$artworklikes = ex_cellcount("ex_likes", "aID", $exVar_artwork->ID, "AND lTYPE='1'");
+
+		
+		$q = $db->prepare("
+			SELECT 
+			ex_arts.*, 
+			ex_media.fileroad_sm AS newfileroad
+			FROM ex_arts 
+			INNER JOIN ex_media 
+			ON ex_arts.ID = ex_media.salt 
+			WHERE cID IN(SELECT cID FROM ex_usertopics WHERE uID=:userid) 
+			AND ex_media.fileusability='1' ORDER BY ex_arts.ID DESC
+		");
+
+        $q->execute(['userid' => exAuth_getsession("userid")]);
+
+        $data = $q->fetchAll(PDO::FETCH_OBJ);
+
+       	$counter = $data;
 
 		$currentKey = array_search($exVar_artwork->ID, array_column($counter, 'ID'));
 
@@ -70,8 +95,12 @@ if(isset($CON) && ($CON == $ID)) {
 				"cID" => $exVar_artwork->cID,
 				"tID" => $exVar_artwork->tID,
 				"artcontent" => $exVar_artwork->artcontent,
-				"fileroad_sm" => $exVar_artwork->fileroad_sm,
-				"created" => $exVar_artwork->created,
+				"newfileroad" => $fileroad,
+				"created" => $created,
+				"username" => ucfirst($exUsername),
+				"avatar" => $avatar,
+				"useravatar" => $useravatar,
+				"likes" => $artworklikes,
 				"next" => $next,
 				"prev" => $prev
 			);
@@ -82,13 +111,22 @@ if(isset($CON) && ($CON == $ID)) {
 
 			$artwork = $exVar_artwork;
 
-			ob_start();
+			$artworkmedia = ex_findone("ex_media", "salt", $exVar_artwork->ID, "AND fileusability='1'");
 
-			#	$artworkmedia = ex_findone("ex_media", "salt", $artwork->ID, "AND fileusability='1'");
+			if(!$artworkmedia) { $fileroad = ""; } else { $fileroad = $artworkmedia->fileroad_sm; }
+
+			$artworkowner = ex_findone("ex_users", "ID", $exVar_artwork->uID);
+
+			$artworklikes = ex_cellcount("ex_likes", "aID", $exVar_artwork->ID, "AND lTYPE='1'");
+
+			
+
+			ob_start();
 
 			require $SUBPAGE . '/artwork.main.php';
 
 			$__artwork = ob_get_clean();
+
 
 			#   Template
 			require VIEWS . '/' . ucfirst($MOD) . '/' . $MOD . '.php';

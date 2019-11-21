@@ -50,7 +50,7 @@
 
 				<a class="nav-link ex-nav-link" href="#">
 
-					<span>Expos</span><i class="fas fa-sm fa-compass nav-h-ico"></i>
+					<span>Expos</span><i class="far fa-sm fa-compass nav-h-ico"></i>
 
 				</a>
 
@@ -60,7 +60,7 @@
 
 				<a class="nav-link ex-nav-link" href="#">
 
-					<span>Profil</span><i class="fas fa-sm fa-user-circle nav-h-ico"></i>
+					<span>Profil</span><i class="far fa-sm fa-user-circle nav-h-ico"></i>
 
 				</a>
 
@@ -68,13 +68,13 @@
 
 			<li class="nav-item">
 
-				<a class="nav-link ex-nav-link" href="#"><i class="fas fa-sm fa-comment-alt"></i></a>
+				<a class="nav-link ex-nav-link" href="#"><i class="far fa-sm fa-comment-alt"></i></a>
 
 			</li>
 
 			<li class="nav-item">
 
-				<a class="nav-link ex-nav-link" href="#"><i class="fas fa-sm fa-bell"></i></a>
+				<a class="nav-link ex-nav-link" href="#"><i class="far fa-sm fa-bell"></i></a>
 
 			</li>
 
@@ -82,7 +82,7 @@
 
 				<a class="nav-link ex-nav-link" id="ex-nav-content-dropdown" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
 
-					<i class="fas fa-sm fa-th-large"></i>
+					<i class="fas fa-sm fa-bars"></i>
 
 				</a>
 
