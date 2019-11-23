@@ -59,6 +59,8 @@ if(isset($_POST['getUserArtworksTastes'])) {
 
 		$tastelikes = ex_cellcount("ex_likes", "aID", $item->ID, "AND lTYPE='1'");
 
+		$logeduseralreadyliked = ex_cellcount("ex_likes", "aID", $item->ID, "AND uID=" . exAuth_getsession("userid") . " AND lTYPE='1'");
+
 		?>
 
 		<div class="exart">
@@ -70,7 +72,11 @@ if(isset($_POST['getUserArtworksTastes'])) {
 					<div class="exart-art" style="/*background-color: #<?= ex_randomcolor() ?>*/">
 
 						<!-- Like -->
-						<button class="btn btn-sm exart-like" title="liker"><i class="far fa-lg fa-heart"></i></button>
+						<span class="<?= $item->ID ?>" id="ajax-liker-box" accesskey="<?= $logeduseralreadyliked ?>">
+
+							<button class="btn btn-sm exart-like" title="liker" id="ajax-like-btn"><i class="far fa-lg fa-heart"></i></button>
+
+						</span>
 
 						<!-- Comment -->
 						<a href="<?= $WURI . '/art/' . $item->arthash; ?>" role="boutton" class="btn btn-sm exart-comment open-artwork-ajax" title="commenter"><i class="far fa-lg fa-paper-plane"></i></a>
@@ -146,7 +152,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 									
 									<span class="small mr-1"><?= ex_getTimeAgo(strtotime($item->created)) ?></span>
 
-									<span class="small" id="ajax-likes-counter"><?= $tastelikes ?> <i class="fas fa-sm fa-heart text-expozart-pink"></i></span>
+									<span class="small" id="ajax-likes-counter" accesskey="<?= $item->ID ?>"><?= $tastelikes ?> <i class="fas fa-sm fa-heart"></i></span>
 
 								</div>
 

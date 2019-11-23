@@ -56,8 +56,6 @@ $(document).ready(function() {
 		$(exArtcontainer).imagesLoaded(function() {
 
 		    $(exArtcontainer).masonry({
-			    		
-				/*columnWidth: 244,*/
 
 				itemSelector: '.exart',
 
@@ -104,8 +102,11 @@ $(document).ready(function() {
 
 		$(artworkDisplaypOverlay).click(function() {
 
-			extoggleModal();
+			$('body').removeClass('locked-body');
 
+			$(artworkDisplayer).removeClass('ex-dp-block');
+
+			
 			history.pushState(null, 'Home', rootlink);
 
 		});
@@ -204,6 +205,93 @@ $(document).ready(function() {
 
 						$(exArtcontainer).append(userArtworksTastesResponseData).masonry('reloadItems').masonry();
 
+						/**/
+
+						$(exArtcontainer).each(function() {
+
+							exartbox = $(this).find("div.exart");
+
+							$(exartbox).each(function() {
+			
+								ajaxLikeBox = $(this).find("#ajax-liker-box");
+
+
+								uLc = $(ajaxLikeBox).attr("accesskey");
+
+
+								haid =  $(ajaxLikeBox).attr("class");
+
+
+								if(uLc !== "1") {
+								
+									$(ajaxLikeBox).html('<button class="btn btn-sm exart-like" title="liker" id="ajax-like-btn" accesskey="' + haid + '"><i class="far fa-lg fa-heart"></i></button>');
+								
+								} else {
+									
+									$(ajaxLikeBox).html('<button class="btn btn-sm exart-like" title="disliker" id="ajax-like-btn" accesskey="' + haid + '"><i class="fas fa-lg fa-heart text-expozart-pink"></i></button>');		
+
+								}
+
+
+								aLb = $(ajaxLikeBox).find("button#ajax-like-btn");
+
+								$(aLb).click(function() {
+
+									_aid_ = $(this).attr("accesskey");
+
+									exartart = $(this).parent().parent();
+
+									hartworktasteLikecounter = $(exartart).find("span#ajax-likes-counter");
+
+
+									if($(this).attr("title") === "liker") {
+
+										$.post(ajaxlink + 'Art/parts/artwork-like.ajax.php', {aid:_aid_}, function(dataLikerresponse) {
+									
+											if(dataLikerresponse !== 'not-liked') {
+
+												console.log('liked');
+		
+												hartworktasteLikecounter.html(dataLikerresponse + ' <i class="fas fa-sm fa-heart"></i>');
+
+											}
+
+										});
+										
+										$(this).attr('title', 'disliker');
+
+										$(this).html('<i class="fas fa-lg fa-heart text-expozart-pink"></i>');
+
+										$(this).parent().attr('accesskey', '1');
+
+									} else {
+
+										$.post(ajaxlink + 'Art/parts/artwork-dislike.ajax.php', {aid:_aid_}, function(dataDislikerresponse) {
+									
+											if(dataDislikerresponse !== 'not-disliked') {
+
+												console.log('disliked');
+
+												hartworktasteLikecounter.html(dataDislikerresponse + ' <i class="fas fa-sm fa-heart"></i>');
+											
+											}
+
+										});
+										
+										$(this).attr('title', 'liker');
+
+										$(this).html('<i class="far fa-lg fa-heart"></i>');
+
+										$(this).parent().attr('accesskey', '0');
+
+									}
+
+								});
+
+							});	
+
+						});
+
 						$('a.open-artwork-ajax').on('click', function(e) {
 
 							e.preventDefault();
@@ -214,9 +302,12 @@ $(document).ready(function() {
 								
 								artworktasteLikecounter = $(par1).find("#ajax-likes-counter");
 
-							url = a.attr('href');
+								cardlikebtn = $(par1).find("#ajax-liker-box");
 
-								console.log(artworktasteLikecounter);
+								ajaxLB = $(cardlikebtn).find("button#ajax-like-btn");
+
+
+							url = a.attr('href');
 
 							if(isHistoryAvailable) {
 								
@@ -282,7 +373,7 @@ $(document).ready(function() {
 
 									$("#json-post-ago").html(artworkResponseData.created);
 									
-									$("#json-post-likes").html(artworkResponseData.likes + ' <i class="far fa-sm fa-heart"></i>');
+									$("#json-post-likes").html(artworkResponseData.likes + ' <i class="fas fa-sm fa-heart"></i>');
 									
 									$("#json-menu-artwork-access").attr('action', rootlink + 'art/' + artworkResponseData.arthash);
 
@@ -319,8 +410,10 @@ $(document).ready(function() {
 										$.post(ajaxlink + 'Art/parts/artwork-like.ajax.php', {aid:artworkResponseData.ID}, function(likerDataresponse) {
 										
 											if(likerDataresponse !== 'not-liked') {
-
+												
 												artworkLoad(url);
+												
+												artworktasteLikecounter.html(likerDataresponse + ' <i class="fas fa-sm fa-heart"></i>');
 
 											}
 
@@ -328,7 +421,11 @@ $(document).ready(function() {
 
 										$("#json-liker-box").html('<button class="btn btn-sm exart-like" title="liker" id="ajax-disliker"><i class="fas fa-lg fa-heart text-expozart-pink"></i></button>');
 
-										artworktasteLikecounter.html((artworkResponseData.likes + 1) + ' <i class="fas fa-sm fa-heart text-expozart-pink"></i>');
+										$(cardlikebtn).attr('accesskey', '1');
+										
+										$(ajaxLB).attr('title', 'disliker');
+
+										$(ajaxLB).html('<i class="fas fa-lg fa-heart text-expozart-pink"></i>');
 
 									});
 
@@ -342,13 +439,19 @@ $(document).ready(function() {
 
 												artworkLoad(url);
 
+												artworktasteLikecounter.html(dislikerDataresponse + ' <i class="fas fa-sm fa-heart"></i>');
+
 											}
 
 										});
 
 										$("#json-liker-box").html('<button class="btn btn-sm exart-like" title="disliker" id="ajax-liker"><i class="far fa-lg fa-heart"></i></button>');
+										
+										$(cardlikebtn).attr('accesskey', '0');
+										
+										$(ajaxLB).attr('title', 'liker');
 
-										artworktasteLikecounter.html((artworkResponseData.likes - 1) + ' <i class="fas fa-sm fa-heart text-expozart-pink"></i>');
+										$(ajaxLB).html('<i class="far fa-lg fa-heart"></i>');
 
 									});	
 

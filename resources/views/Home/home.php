@@ -24,7 +24,7 @@
 					
 					<div class="col-sx-12 col-md-12 col-lg-12 col-xl-8">
 
-						<div class="d-block art-content">
+						<div class="d-flex art-content">
 							
 							<img src="" id="json-image" alt="" />
 

@@ -43,7 +43,13 @@ if(isset($_POST["aid"]) && is_numeric($_POST["aid"])) {
 	        'created' => date('Y-m-d H:i:s')
 	    ]);
 
-    	if($q) { exit('liked'); } else { exit('not-liked'); }
+    	if($q) {
+
+    		$newcount = ex_cellcount("ex_likes", "aID", $aid, "AND lTYPE='1'");
+
+    		echo $newcount; 
+
+    	} else { exit('not-liked'); }
 	
 	}
 

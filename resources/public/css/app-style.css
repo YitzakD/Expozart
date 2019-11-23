@@ -983,7 +983,7 @@ button.ex-alert-close {
     text-decoration: none;
 }
 .exart-art:hover .exart-info { box-shadow: 0 15px 10px -15px var(--ex-color-grey-ea); }
-
+.exart-self .info .info-place { color: var(--ex-color-grey-ea); }
 
 
 
@@ -1047,6 +1047,8 @@ button.ex-alert-close {
     width: 100%;
     border-radius: 1rem 0 0 1rem;
     padding: .5rem;
+    flex-direction: column;
+    justify-content: center;
 }
 .exart-self .art-comment {
     width: 100%;
@@ -1134,7 +1136,6 @@ button.ex-alert-close {
 .exart-self .art-content img {
     width: 100%;
     transition-property: color;
-    clear: right;
     border-radius: 1rem;
 }
 .art-work-content { padding: .5rem 0; }
