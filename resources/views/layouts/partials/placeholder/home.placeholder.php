@@ -1,4 +1,4 @@
-<div class="placeholder-art art-h-200">
+<div class="masonry-taste-art-placeholder art-h-200">
 
 	<div class="info-simulate">
 		
@@ -16,7 +16,7 @@
 
 </div>
 
-<div class="placeholder-art art-h-500">
+<div class="masonry-taste-art-placeholder art-h-500">
 
 	<div class="info-simulate">
 		
@@ -34,7 +34,7 @@
 
 </div>
 
-<div class="placeholder-art art-h-300">
+<div class="masonry-taste-art-placeholder art-h-300">
 
 	<div class="info-simulate">
 		
@@ -52,7 +52,7 @@
 
 </div>
 
-<div class="placeholder-art art-h-550">
+<div class="masonry-taste-art-placeholder art-h-550">
 
 	<div class="info-simulate">
 		
@@ -70,7 +70,7 @@
 
 </div>
 
-<div class="placeholder-art art-h-200">
+<div class="masonry-taste-art-placeholder art-h-200">
 
 	<div class="info-simulate">
 		
@@ -88,7 +88,7 @@
 
 </div>
 
-<div class="placeholder-art art-h-400">
+<div class="masonry-taste-art-placeholder art-h-400">
 
 	<div class="info-simulate">
 		
@@ -106,7 +106,7 @@
 
 </div>
 
-<div class="placeholder-art art-h-350">
+<div class="masonry-taste-art-placeholder art-h-350">
 
 	<div class="info-simulate">
 		
@@ -124,7 +124,7 @@
 
 </div>
 
-<div class="placeholder-art">
+<div class="masonry-taste-art-placeholder">
 
 	<div class="info-simulate">
 		
@@ -142,7 +142,7 @@
 
 </div>
 
-<div class="placeholder-art art-h-500">
+<div class="masonry-taste-art-placeholder art-h-500">
 
 	<div class="info-simulate">
 		
@@ -160,7 +160,7 @@
 
 </div>
 
-<div class="placeholder-art art-h-250">
+<div class="masonry-taste-art-placeholder art-h-250">
 
 	<div class="info-simulate">
 		
@@ -178,7 +178,7 @@
 
 </div>
 
-<div class="placeholder-art art-h-400">
+<div class="masonry-taste-art-placeholder art-h-400">
 
 	<div class="info-simulate">
 		
@@ -196,7 +196,7 @@
 
 </div>
 
-<div class="placeholder-art">
+<div class="masonry-taste-art-placeholder">
 
 	<div class="info-simulate">
 		
@@ -214,7 +214,7 @@
 
 </div>
 
-<div class="placeholder-art art-h-550">
+<div class="masonry-taste-art-placeholder art-h-550">
 
 	<div class="info-simulate">
 		
@@ -232,7 +232,7 @@
 
 </div>
 
-<div class="placeholder-art art-h-400">
+<div class="masonry-taste-art-placeholder art-h-400">
 
 	<div class="info-simulate">
 		
@@ -250,7 +250,7 @@
 
 </div>
 
-<div class="placeholder-art art-h-200">
+<div class="masonry-taste-art-placeholder art-h-200">
 
 	<div class="info-simulate">
 		
@@ -268,7 +268,7 @@
 
 </div>
 
-<div class="placeholder-art">
+<div class="masonry-taste-art-placeholder">
 
 	<div class="info-simulate">
 		
@@ -286,7 +286,7 @@
 
 </div>
 
-<div class="placeholder-art art-h-300">
+<div class="masonry-taste-art-placeholder art-h-300">
 
 	<div class="info-simulate">
 		
@@ -304,7 +304,7 @@
 
 </div>
 
-<div class="placeholder-art art-h-250">
+<div class="masonry-taste-art-placeholder art-h-250">
 
 	<div class="info-simulate">
 		

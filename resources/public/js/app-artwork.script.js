@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 		isAnimated: true,
 
-		itemSelector: '.placeholder-art',
+		itemSelector: '.masonry-taste-art-placeholder',
 
         isFitWidth: true
 
@@ -40,7 +40,7 @@ $(document).ready(function() {
 
 	function exArtworkplaceholder() {
 
-		$(".exart-display-placeholder").hide();
+		$(".exart-placeholder-display").hide();
 
 		$("#artwork-content").show();
 	}
@@ -205,7 +205,7 @@ $(document).ready(function() {
 
 						$(exArtcontainer).append(userArtworksTastesResponseData).masonry('reloadItems').masonry();
 
-						/**/
+
 
 						$(exArtcontainer).each(function() {
 
@@ -224,11 +224,11 @@ $(document).ready(function() {
 
 								if(uLc !== "1") {
 								
-									$(ajaxLikeBox).html('<button class="btn btn-sm exart-like" title="liker" id="ajax-like-btn" accesskey="' + haid + '"><i class="far fa-lg fa-heart"></i></button>');
+									$(ajaxLikeBox).html('<button class="btn btn-sm exart-like-btn" title="liker" id="ajax-like-btn" accesskey="' + haid + '"><i class="far fa-lg fa-heart"></i></button>');
 								
 								} else {
 									
-									$(ajaxLikeBox).html('<button class="btn btn-sm exart-like" title="disliker" id="ajax-like-btn" accesskey="' + haid + '"><i class="fas fa-lg fa-heart text-expozart-pink"></i></button>');		
+									$(ajaxLikeBox).html('<button class="btn btn-sm exart-like-btn" title="disliker" id="ajax-like-btn" accesskey="' + haid + '"><i class="fas fa-lg fa-heart text-expozart-pink"></i></button>');		
 
 								}
 
@@ -252,7 +252,7 @@ $(document).ready(function() {
 
 												console.log('liked');
 		
-												hartworktasteLikecounter.html(dataLikerresponse + ' <i class="fas fa-sm fa-heart"></i>');
+												hartworktasteLikecounter.html('<i class="far fa-sm fa-heart"></i> ' + dataLikerresponse);
 
 											}
 
@@ -272,7 +272,7 @@ $(document).ready(function() {
 
 												console.log('disliked');
 
-												hartworktasteLikecounter.html(dataDislikerresponse + ' <i class="fas fa-sm fa-heart"></i>');
+												hartworktasteLikecounter.html('<i class="far fa-sm fa-heart"></i> ' + dataDislikerresponse);
 											
 											}
 
@@ -306,6 +306,8 @@ $(document).ready(function() {
 
 								ajaxLB = $(cardlikebtn).find("button#ajax-like-btn");
 
+							$("#ajax-post-critics").html("");
+
 
 							url = a.attr('href');
 
@@ -317,7 +319,9 @@ $(document).ready(function() {
 							
 							artworkLoad(url);
 
-							setTimeout(exArtworkplaceholder, 3000);
+							setTimeout(exArtworkplaceholder, 60000);
+
+							$("#ajax-comment-box").focus();
 
 						});
 
@@ -342,7 +346,12 @@ $(document).ready(function() {
 
 							$.get(url, {}, function(artworkResponseData) {
 
-								$(".exart-display").imagesLoaded(function() {
+								$(".artwork-display").imagesLoaded(function() {
+
+									$("#ajax-comment-box").focus();
+
+
+
 
 									$("#json-avatar-link").attr('title', artworkResponseData.username);
 
@@ -373,7 +382,7 @@ $(document).ready(function() {
 
 									$("#json-post-ago").html(artworkResponseData.created);
 									
-									$("#json-post-likes").html(artworkResponseData.likes + ' <i class="fas fa-sm fa-heart"></i>');
+									$("#json-post-likes").html('<i class="far fa-sm fa-heart"></i> ' + artworkResponseData.likes);
 									
 									$("#json-menu-artwork-access").attr('action', rootlink + 'art/' + artworkResponseData.arthash);
 
@@ -391,13 +400,40 @@ $(document).ready(function() {
 
 
 
-									if(artworkResponseData.userliked == 0) {
+									if(artworkResponseData.critics > 1) {
 									
-										$("#json-liker-box").html('<button class="btn btn-sm exart-like" title="liker" id="ajax-liker"><i class="far fa-lg fa-heart"></i></button>');
+										$("#json-post-critics-counter").html(artworkResponseData.critics + ' critiques');
 
 									} else {
 
-										$("#json-liker-box").html('<button class="btn btn-sm exart-like" title="disliker" id="ajax-disliker"><i class="fas fa-lg fa-heart text-expozart-pink"></i></button>');
+										$("#json-post-critics-counter").html(artworkResponseData.critics + ' critique');
+
+									}
+
+									if(artworkResponseData.ID) {
+
+										if(artworkResponseData.critics > 0) {
+											
+											$.post(ajaxlink + 'Art/parts/artwork-critics.ajax.php', {aid:artworkResponseData.ID}, function(lastcriticsDataresponse) {
+
+												if(lastcriticsDataresponse !== "nothing's found") { $("#ajax-post-critics").html(lastcriticsDataresponse); }
+											
+											});
+
+										}
+
+									}
+
+
+
+
+									if(artworkResponseData.userliked == 0) {
+									
+										$("#json-liker-box").html('<button class="btn btn-sm exart-like-btn" title="liker" id="ajax-liker"><i class="far fa-lg fa-heart"></i></button>');
+
+									} else {
+
+										$("#json-liker-box").html('<button class="btn btn-sm exart-like-btn" title="disliker" id="ajax-disliker"><i class="fas fa-lg fa-heart text-expozart-pink"></i></button>');
 
 									}
 
@@ -413,13 +449,13 @@ $(document).ready(function() {
 												
 												artworkLoad(url);
 												
-												artworktasteLikecounter.html(likerDataresponse + ' <i class="fas fa-sm fa-heart"></i>');
+												artworktasteLikecounter.html('<i class="far fa-sm fa-heart"></i> ' + likerDataresponse);
 
 											}
 
 										});
 
-										$("#json-liker-box").html('<button class="btn btn-sm exart-like" title="liker" id="ajax-disliker"><i class="fas fa-lg fa-heart text-expozart-pink"></i></button>');
+										$("#json-liker-box").html('<button class="btn btn-sm exart-like-btn" title="liker" id="ajax-disliker"><i class="fas fa-lg fa-heart text-expozart-pink"></i></button>');
 
 										$(cardlikebtn).attr('accesskey', '1');
 										
@@ -439,13 +475,13 @@ $(document).ready(function() {
 
 												artworkLoad(url);
 
-												artworktasteLikecounter.html(dislikerDataresponse + ' <i class="fas fa-sm fa-heart"></i>');
+												artworktasteLikecounter.html('<i class="far fa-sm fa-heart"></i> ' + dislikerDataresponse);
 
 											}
 
 										});
 
-										$("#json-liker-box").html('<button class="btn btn-sm exart-like" title="disliker" id="ajax-liker"><i class="far fa-lg fa-heart"></i></button>');
+										$("#json-liker-box").html('<button class="btn btn-sm exart-like-btn" title="disliker" id="ajax-liker"><i class="far fa-lg fa-heart"></i></button>');
 										
 										$(cardlikebtn).attr('accesskey', '0');
 										

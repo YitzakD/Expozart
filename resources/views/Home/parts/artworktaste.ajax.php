@@ -74,12 +74,12 @@ if(isset($_POST['getUserArtworksTastes'])) {
 						<!-- Like -->
 						<span class="<?= $item->ID ?>" id="ajax-liker-box" accesskey="<?= $logeduseralreadyliked ?>">
 
-							<button class="btn btn-sm exart-like" title="liker" id="ajax-like-btn"><i class="far fa-lg fa-heart"></i></button>
+							<button class="btn btn-sm exart-like-btn" title="liker" id="ajax-like-btn"><i class="far fa-lg fa-heart"></i></button>
 
 						</span>
 
 						<!-- Comment -->
-						<a href="<?= $WURI . '/art/' . $item->arthash; ?>" role="boutton" class="btn btn-sm exart-comment open-artwork-ajax" title="commenter"><i class="far fa-lg fa-paper-plane"></i></a>
+						<a href="<?= $WURI . '/art/' . $item->arthash; ?>" role="boutton" class="btn btn-sm exart-comment-btn open-artwork-ajax" title="commenter"><i class="far fa-lg fa-paper-plane"></i></a>
 
 						<!-- Menu -->
 						<div class="btn-group exart-artwork-menu">
@@ -152,7 +152,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 									
 									<span class="small mr-1"><?= ex_getTimeAgo(strtotime($item->created)) ?></span>
 
-									<span class="small" id="ajax-likes-counter" accesskey="<?= $item->ID ?>"><?= $tastelikes ?> <i class="fas fa-sm fa-heart"></i></span>
+									<span class="small" id="ajax-likes-counter" accesskey="<?= $item->ID ?>"><i class="far fa-sm fa-heart"></i> <?= $tastelikes ?></span>
 
 								</div>
 

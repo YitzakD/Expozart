@@ -71,8 +71,11 @@ if(isset($CON) && ($CON == $ID)) {
 
 		$artworklikes = ex_cellcount("ex_likes", "aID", $exVar_artwork->ID, "AND lTYPE='1'");
 
-		$logeduseralreadyliked = ex_cellcount("ex_likes", "aID", $exVar_artwork->ID, "AND uID=" . exAuth_getsession("userid") . " AND lTYPE='1'");
+		$artworkcritics = ex_cellcount("ex_comments", "aID", $exVar_artwork->ID, "AND cTYPE='1'");
 
+
+
+		$logeduseralreadyliked = ex_cellcount("ex_likes", "aID", $exVar_artwork->ID, "AND uID=" . exAuth_getsession("userid") . " AND lTYPE='1'");
 		
 		$q = $db->prepare("
 			SELECT 
@@ -114,6 +117,7 @@ if(isset($CON) && ($CON == $ID)) {
 				"useravatar" => $useravatar,
 				"userliked" => $logeduseralreadyliked,
 				"likes" => $artworklikes,
+				"critics" => $artworkcritics,
 				"next" => $next,
 				"prev" => $prev
 			);

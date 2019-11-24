@@ -19,25 +19,6 @@
 
 
 
-
-/* 
- * Device = Tablets, Ipads (portrait)
- *  Screen = B/w 768px to 1024px
- */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-    /** Auth style */    
-    .ex-auth-slide-box,
-    .ex-auth-form-box { width: 100%; }
-    .ex-hidden { display: none; }
-
-    /** Header style */
-    .ex-inner-header-left .search-box-contenor { width: 260px; }
-}
-  
-
-
-
-
 /* 
  *  Device = Tablets, Ipads (landscape)
  *  Screen = B/w 768px to 1024px
@@ -49,38 +30,184 @@
     .ex-auth-form-box { padding: 2.25rem 0; }
     .ex-auth-form-title-1 { margin-bottom: 1rem; }
 
+
+
     /** Header style */
     .ex-inner-header-left .search-box-contenor { width: 250px; }
+
+
 
     /** category style */
     .ex-card { width: 47%!important; }
 
+
+
     /** All placeholder */
-    .placeholder-exart-self { width: 650px; }
-    .placeholder-exart-self .exrow { width: 650px; }
-    .placeholder-exart-self .art-comment {  border-radius: 0 0 1rem 1rem;  }
-    .placeholder-exart-self .info-simulate {
+    .artwork-placeholder-exart-self { width: 650px!important; }
+    .artwork-placeholder-exart-self .exrow { width: 650px!important; }
+    .artwork-placeholder-exart-self .art-placeholder-comment {  border-radius: 0 0 1rem 1rem!important;  }
+    .artwork-placeholder-exart-self .art-placeholder-comment .info-simulate {
         width: 100%!important;
         height: 60px;
         padding: .5rem 1rem;
     }
-    .placeholder-exart-self .exrow .col-sx-12.col-md-12.col-lg-12.col-xl-4 { border-radius: 0 0 1rem 1rem!important; }
-    .info-artwotk-form .info-simulate { padding: .5rem 0; }
-    .info-artwotk-form .input-group {
-        position: absolute;
-        width: 564px;
-        border-radius: 2rem;
-        transition: all .3s;
-        margin-top: .35rem;
+    .artwork-placeholder-exart-self .exrow .col-sx-12.col-md-12.col-lg-12.col-xl-4 { border-radius: 0 0 1rem 1rem!important; }
+    .artwork-placeholder-exart-self .art-placeholder-comment .info-artwotk-form .info-simulate .placeholder-form .input-group {
+        width: 581px;
     }
+    
 
     /** Artwork displayer */
     .exart-display-overlay {
-        width: 98%;
-        right: 2%;
+        width: 98%!important;
+        right: 2%!important;
     }
-    .exart-self { width: 650px; }
-    .art-work-content { padding: .5rem 1rem; }
+    .self-artwork { width: 650px!important; }
+    .self-artwork .artwork-form .critic-info .critics-form .input-group { width: 566px; }
+    .self-artwork .artwork-form .critic-info { margin-left: .75rem 0;  }
+    .self-artwork .art-comment .artwork-content { padding: .5rem 1rem; }
+    .self-artwork .artwork-form {
+        position: relative;
+        padding: .5rem 1rem;
+    }
+}
+  
+
+
+
+
+
+/* 
+ * Device = Tablets, Ipads (portrait)
+ *  Screen = B/w 768px to 1024px
+ */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    /** Auth style */    
+    .ex-auth-slide-box,
+    .ex-auth-form-box { width: 100%; }
+    .ex-hidden { display: none; }
+
+
+
+    /** Header style */
+    .ex-inner-header-left .search-box-contenor { width: 255px; }
+
+
+
+    /** All placeholder */
+    .artwork-placeholder-exart-self { width: 550px!important; }
+    .artwork-placeholder-exart-self .exrow { width: 550px!important; }
+    .artwork-placeholder-exart-self .art-placeholder-comment {  border-radius: 0 0 1rem 1rem!important;  }
+    .artwork-placeholder-exart-self .art-placeholder-comment .info-simulate {
+        width: 100%!important;
+        height: 60px;
+        padding: .5rem 1rem;
+    }
+    .artwork-placeholder-exart-self .exrow .col-sx-12.col-md-12.col-lg-12.col-xl-4 { border-radius: 0 0 1rem 1rem!important; }
+    .artwork-placeholder-exart-self .art-placeholder-comment .info-artwotk-form .info-simulate .placeholder-form .input-group {
+        width: 186px+15px;
+    }
+    .artwork-placeholder-exart-self .art-placeholder-comment .info-artwork-post, .artwork-placeholder-exart-self .art-placeholder-comment .info-artwork-comment, .artwork-placeholder-exart-self .art-placeholder-comment .info-artwotk-form {
+        padding: .5rem 1rem;
+    }
+
+
+
+    /** Artwork displayer */
+    .exart-display-overlay {
+        width: 96%;
+        right: 4%;
+    }
+    .artwork-display .self-artwork {
+        width: 550px!important;
+        min-height: 350px;
+    }
+    .self-artwork .art-comment { padding: 0 1.5rem; }
+    .self-artwork .artwork-form {
+        position: relative;
+        padding: .5rem 1.5rem;
+    }
+    .self-artwork .artwork-form .critic-info .critics-form .input-group { width: 186px; }
+
+    .exart-closer { right: 7%; }
+    #prev { left: 7%; }
+    #next{ right: 7%; }
+}
+ 
+
+
+
+
+
+/**
+ *  Device = Low Resolution Tablets, Mobiles (Landscape)
+ *  Screen = B/w 481px to 767px
+ */
+@media (min-width: 481px) and (max-width: 767px) {
+    /** Auth style */
+    .ex-auth-slide-box,
+    .ex-auth-form-box { width: 100%; }
+    .ex-hidden { display: none; }
+    .ex-auth-form-box { padding: 2rem 0; }
+    .ex-title-special img { 
+        width: 42px;
+        height: 42px;
+    }
+
+
+
+    /** Header style */
+    .ex-inner-header { width: calc(100% - 2rem); }
+    .ex-inner-header-left { width: 30% }
+    .ex-inner-header-right { width: 70%; }
+    .ex-inner-header-left {
+        padding: 0!important;
+        margin-top: -4px;
+    }
+    .ex-inner-header-left .search-box-contenor {
+        width: 40px;
+        height: 40px;
+    }
+    .search-box-contenor a { display: block; }
+    .ex-inner-header-left .search-box-contenor .input-group { display: none; }
+    .ex-inner-header-right .nav li .ex-nav-link {
+        width: 40px;
+        height: 40px;
+    }
+    .ex-inner-header-right .nav li .ex-nav-link .nav-h-ico { display: block; }
+    .ex-inner-header-right .nav li .ex-nav-link span { display: none; }
+    .ex-inner-header-right .nav li:first-child .ex-nav-link { display: none }
+    
+
+
+    /** category style */
+    .ex-card { width: 100%!important; }
+
+
+
+    /** All placeholder */
+    .masonry-taste-art-placeholder { width: 212px; }
+
+    .artwork-placeholder-exart-self { width: 350px!important; }
+    .artwork-placeholder-exart-self .exrow { width: 350px!important; }
+    .artwork-placeholder-exart-self .exrow .col-sx-12.col-md-12.col-lg-12.col-xl-4 { border-radius: 0 0 1rem 1rem!important; }
+    .artwork-placeholder-exart-self .art-placeholder-content { border-radius: 1rem 1rem 0 0!important; }
+    .artwork-placeholder-exart-self .art-placeholder-comment { border-radius: 0 0 1rem 1rem!important; }
+    ./*info-artwotk-form .input-group { width: 265px; }*/
+
+
+
+    /** mansory artwork */
+    .ex-home-page { width: 450px!important; }
+    .exart { width: 225px; }
+    .exart-art .exart-hover { width: 209px; }
+
+
+
+    /** Artwork displayer */
+    .self-artwork { width: 350px; }
+    .self-artwork .artwork-form { position: relative; }
+    .self-artwork .artwork-form .critic-info .critics-form .input-group { width: 500px; }
 }
   
 
@@ -98,6 +225,8 @@
     .ex-hidden { display: none; }
     .ex-auth-form-box { padding: 2.25rem 0; }
     .ex-auth-form-title-1 { margin-bottom: 1rem; }
+
+
 
     /** Header style */
     .ex-inner-header { width: calc(100% - 2rem); }
@@ -128,132 +257,106 @@
     .ex-inner-header-right .nav li .ex-nav-link span { display: none; }
     .ex-inner-header-right .nav li:first-child .ex-nav-link { display: none }
 
+
+
     /** category style */
     .ex-card { width: 100%!important; }
 
+
+
     /** All placeholder */
-    .placeholder-art { width: 155px; }
-    .placeholder-art .info-simulate { 
+    .masonry-taste-art-placeholder { width: 155px; }
+    .masonry-taste-art-placeholder .info-simulate { 
         height: 50px;
         padding: .5rem;
     }
-    .info-simulate .avatar,
-    .exart-self .avatar,
-    .exart-info .avatar {
+    .masonry-taste-art-placeholder .info-simulate .avatar {
         width: 33px;
         height: 33px;
     }
-    .info-simulate .info,
-    .exart-info .info {
-        position: absolute;
-        margin-left: .5rem;
+    .masonry-taste-art-placeholder .info-simulate .info { margin-left: .2rem; }
+
+    .artwork-placeholder-exart-self { width: 280px!important; }
+    .artwork-placeholder-exart-self .exrow { width: 280px!important; }
+    .artwork-placeholder-exart-self .exrow .col-sx-12.col-md-12.col-lg-12.col-xl-4 { border-radius: 0 0 1rem 1rem!important; }
+    .artwork-placeholder-exart-self .art-placehoder-content { border-radius: 1rem 1rem 0 0!important; }
+    .artwork-placeholder-exart-self .art-placehoder-comment { border-radius: 0 0 1rem 1rem!important; }
+    .artwork-placeholder-exart-self .art-placeholder-comment .info-simulate .avatar {
+        width: 33px;
+        height: 33px;
     }
-    .info .info-place,
-    .info .info-name { height: 9px; }
-    .info .info-place .small:first-child { display: none; }
-    .placeholder-exart-self { width: 280px; }
-    .placeholder-exart-self .exrow { width: 280px; }
-    .placeholder-exart-self .exrow .col-sx-12.col-md-12.col-lg-12.col-xl-4 { border-radius: 0 0 1rem 1rem!important; }
-    .placeholder-exart-self .art-content { border-radius: 1rem 1rem 0 0; }
-    .placeholder-exart-self .art-comment { border-radius: 0 0 1rem 1rem; }
-    .info-artwotk-form .input-group {
-        width: 205px;
+    .artwork-placeholder-exart-self .art-placeholder-comment .info-simulate .info {
+        margin-left: .5rem;
+        margin-top: .25rem;
+    }
+    .artwork-placeholder-exart-self .art-placeholder-comment .info-simulate .info .info-place,
+    .artwork-placeholder-exart-self .art-placeholder-comment .info-simulate .info .info-name {
+        margin: .15rem 0;
+    }
+    .artwork-placeholder-exart-self .art-placeholder-comment .info-artwotk-form { bottom: .05rem; }
+    .artwork-placeholder-exart-self .art-placeholder-comment .info-artwotk-form .info-simulate .avatar {
+        width: 33px;
+        height: 33px;
+    }
+    .artwork-placeholder-exart-self .art-placeholder-comment .info-artwotk-form .info-simulate .placeholder-form .input-group {
+        width: 218px;
         margin-top: .1rem;
     }
 
-    /** mansory artwork */
+
+
+    /** masonry artwork */
     .ex-home-page { width: 357px!important; }
     .exart { width: 178.5px; }
-    .exart-hover { width: 162.5px; }
+    .exart-art .exart-hover { width: 162.5px; }
+    .exart-art .exart-info .avatar {
+        width: 33px;
+        height: 33px;
+    }
+    .exart-art .exart-info .info {
+        position: absolute;
+        margin-left: .5rem;
+    }
+    .exart-art .exart-info .info .info-place,
+    .exart-art .exart-info .info .info-name { height: 17px; }
+    .exart-art .exart-info .info .info-place .small:first-child { display: none; }
+    
 
     /** Artwork displayer */
-    .exart-display-overlay {
-        width: 96%;
-        right: 4%;
+    .self-artwork { width: 280px!important; }
+    .self-artwork .art-comment { padding: 0 1rem; }
+    .self-artwork .art-comment .artwork-info .info {
+        margin-left: .35rem;
+        margin-top: -5px;
     }
-    .exart-self { width: 280px; }
-    .exart-self .art-content img {
-        width: 100%;
-        transition-property: color;
-        clear: right;
-        border-radius: 1rem 1rem 0 0;
+    .self-artwork .artwork-form {
+        position: relative; 
+        padding: .5rem 1rem;
     }
-    .art-work-content { padding: .5rem 1rem; }
+    .self-artwork .artwork-form .critic-info .critics-form .input-group {
+        width: 208px;
+        margin: 0; 
+    }
+    .self-artwork .art-comment .artwork-info .avatar {
+        width: 33px;
+        height: 33px;
+    }
+    .self-artwork .artwork-form .critic-info .avatar {
+        width: 33px;
+        height: 33px;
+    }
+
     .exart-closer { right: 7%; }
     #prev { left: 7%; }
     #next{ right: 7%; }
+
+
+
 
     .ex-avatarname {
         height: 33px;
         width: 33px;
     }
-}
- 
-
-
-
-
-
-/**
- *  Device = Low Resolution Tablets, Mobiles (Landscape)
- *  Screen = B/w 481px to 767px
- */
-@media (min-width: 481px) and (max-width: 767px) {
-    /** Auth style */
-    .ex-auth-slide-box,
-    .ex-auth-form-box { width: 100%; }
-    .ex-hidden { display: none; }
-    .ex-auth-form-box { padding: 2rem 0; }
-    .ex-title-special img { 
-        width: 42px;
-        height: 42px;
-    }
-
-    /** Header style */
-    .ex-inner-header { width: calc(100% - 2rem); }
-    .ex-inner-header-left { width: 30% }
-    .ex-inner-header-right { width: 70%; }
-    .ex-inner-header-left {
-        padding: 0!important;
-        margin-top: -4px;
-    }
-    .ex-inner-header-left .search-box-contenor {
-        width: 40px;
-        height: 40px;
-    }
-    .search-box-contenor a { display: block; }
-    .ex-inner-header-left .search-box-contenor .input-group { display: none; }
-    .ex-inner-header-right .nav li .ex-nav-link {
-        width: 40px;
-        height: 40px;
-    }
-    .ex-inner-header-right .nav li .ex-nav-link .nav-h-ico { display: block; }
-    .ex-inner-header-right .nav li .ex-nav-link span { display: none; }
-    .ex-inner-header-right .nav li:first-child .ex-nav-link { display: none }
-    
-    /** category style */
-    .ex-card { width: 100%!important; }
-
-    /** All placeholder */
-    .placeholder-art { width: 212px; }
-    .placeholder-exart-self { width: 350px; }
-    .placeholder-exart-self .exrow { width: 350px; }
-    .placeholder-exart-self .exrow .col-sx-12.col-md-12.col-lg-12.col-xl-4 { border-radius: 0 0 1rem 1rem!important; }
-    .placeholder-exart-self .art-content { border-radius: 1rem 1rem 0 0; }
-    .placeholder-exart-self .art-comment { border-radius: 0 0 1rem 1rem; }
-    .info-artwotk-form .input-group { width: 265px; }
-
-    /** mansory artwork */
-    .ex-home-page { width: 450px!important; }
-    .exart { width: 225px; }
-    .exart-hover { width: 209px; }
-
-    /** Artwork displayer */
-    .exart-self { width: 350px; }
-    .art-work-content { padding: .5rem 1rem; }
-    .exart-closer { right: 7%; }
-    #prev { left: 7%; }
-    #next{ right: 7%; }
 }
  
 
@@ -314,41 +417,53 @@
     }
 
     /** All placeholder */
-    .placeholder-art { width: 135px; }
-    .placeholder-art .info-simulate { 
+    .masonry-taste-art-placeholder { width: 135px; }
+    .masonry-taste-art-placeholder .info-simulate { 
         height: 50px;
         padding: .5rem;
     }
-    .info-simulate .avatar {
+    .masonry-taste-art-placeholder .info-simulate .avatar {
         width: 33px;
         height: 33px;
     }
-    .info-simulate .info {
+    .masonry-taste-art-placeholder .info-simulate .info {
         position: absolute;
-        margin-left: .5rem;
+        margin-left: .2rem;
     }
-    .info .info-place,
-    .info .info-name {
-        height: 9px;
-        width: 75px
+    .masonry-taste-art-placeholder .info .info-place,
+    .masonry-taste-art-placeholder .info .info-name {
+        height: 9px!important;
+        width: 65px!important;
     }
-    .info .info-place { width: 45px; }
-    .exart-info .info .info-name { display: none; }
-    .placeholder-exart-self { width: 230px; }
-    .placeholder-exart-self .exrow { width: 230px; }
-    .placeholder-exart-self .exrow .col-sx-12.col-md-12.col-lg-12.col-xl-4 { border-radius: 0 0 1rem 1rem!important; }
-    .placeholder-exart-self .art-content { border-radius: 1rem 1rem 0 0; }
-    .placeholder-exart-self .art-comment { border-radius: 0 0 1rem 1rem; }
-    .info-artwotk-form .input-group {
-        width: 153px;
-        margin-top: .1rem;
+    .masonry-taste-art-placeholder .info .info-place { width: 45px!important; }
+
+    .artwork-placeholder-exart-self { width: 230px!important; }
+    .artwork-placeholder-exart-self .exrow { width: 230px!important; }
+    .artwork-placeholder-exart-self .exrow .col-sx-12.col-md-12.col-lg-12.col-xl-4 { border-radius: 0 0 1rem 1rem!important; }
+    .artwork-placeholder-exart-self .art-placeholder-content { border-radius: 1rem 1rem 0 0!important; }
+    .artwork-placeholder-exart-self .art-placeholder-comment { border-radius: 0 0 1rem 1rem!important; }
+    .artwork-placeholder-exart-self .art-placeholder-comment .info-artwotk-form .info-simulate .placeholder-form .input-group {
+        width: 170px;
     }
+
+
 
     /** mansory artwork */
     .ex-home-page { width: 302px!important; }
     .exart { width: 151px; }
-    .exart-hover { width: 135px; }
+    .exart-art .exart-hover { width: 135px; }
+    .exart-art .exart-info { 
+        height: 50px;
+        padding: .5rem;
+    }
+
+
 
     /** Artwork displayer */
-    .exart-self { width: 230px; }
+    .self-artwork { width: 230px!important; }
+    .self-artwork .artwork-form .critic-info .critics-form .input-group { width: 156px; }
+
+    .exart-closer { right: 8%; }
+    #prev { left: 8%; }
+    #next{ right: 8%; }
 }

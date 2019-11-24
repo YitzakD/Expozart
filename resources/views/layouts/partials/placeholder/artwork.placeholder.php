@@ -1,20 +1,20 @@
-<div class="placeholder-artwork">
+<div class="artwork-placeholder">
 
-	<div class="placeholder-exart-self">
+	<div class="artwork-placeholder-exart-self">
 
 		<div class="row no-gutters exrow">
 			
 			<div class="col-sx-12 col-md-12 col-lg-12 col-xl-8">
 
-				<div class="d-block art-content p-3"></div>
+				<div class="d-block art-placeholder-content p-3"></div>
 
 			</div>
 
 			<div class="col-sx-12 col-md-12 col-lg-12 col-xl-4" style="background-color: white; border-radius: 0 1rem 1rem 0;">
 
-				<div class="d-block art-comment">
+				<div class="d-block art-placeholder-comment">
 						
-					<div class="info-simulate">
+					<div class="info-simulate mb-4">
 	
 						<span class="avatar rounded-circle"></span>
 
@@ -28,7 +28,7 @@
 
 					</div>
 
-					<div class="info-artwork-post mb-3">
+					<div class="info-artwork-post mb-3 mt-4">
 						
 						<div class="info-artwork-line art-w-80"></div>
 

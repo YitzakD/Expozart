@@ -12,13 +12,13 @@
 		
 		<div class="exart-display-overlay"></div>
 
-		<div class="exart-display-placeholder"><?php include_once PARTIALS . '/placeholder/artwork.placeholder.php'; ?></div>
+		<div class="exart-placeholder-display"><?php include_once PARTIALS . '/placeholder/artwork.placeholder.php'; ?></div>
 
-		<div class="exart-display" id="artwork-content">
+		<div class="artwork-display" id="artwork-content">
 
 			<a href="#" class="exart-closer" id="close"><i class="fas fa-lg fa-times"></i></a>
 			
-			<div class="exart-self">
+			<div class="self-artwork">
 
 				<div class="row no-gutters exrow">
 					
@@ -36,11 +36,11 @@
 
 						<div class="d-block art-comment">
 						
-							<div class="info-simulate border-bottom">
+							<div class="artwork-info border-bottom">
 
 								<div class="btn-group artwork-menu">
 				
-									<button class="btn btn-sm exart-menu" title="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-lg fa-ellipsis-h"></i></button>
+									<button class="btn btn-sm ex-artwork-menu" title="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-lg fa-ellipsis-h"></i></button>
 
 									<div class="dropdown-menu dropdown-menu-right">
 
@@ -90,7 +90,7 @@
 
 							</div>
 							
-							<div class="art-work-content">
+							<div class="artwork-content">
 
 								<div class="d-block" id="json-liker-box"></div>
 
@@ -102,10 +102,55 @@
 
 								</div>
 
-							</div>	
+								<div class="content-critics-counter mt-4" id="json-post-critics-counter"></div>
+								
+								<div class="content-last-critics" id="ajax-post-critics"></div>
+	
+							</div>
 
-							<div class="mb-1">Afficher un compteur de commetaires</div>
-							<div class="">Afficher les 2 derniers commetaires</div>
+						</div>
+
+						<div class="artwork-form">
+							
+							<div class="critic-info border-top">
+			
+								<span class="avatar rounded-circle">
+									
+									<a href="" title="<?= exAuth_getsession("username") ?>"  id="json-critic-avatar-link">
+
+										<?php if($userAvatar): ?>
+									
+											<img src="<?= $tasteownerAvatar->fileroad_sm ?>">
+
+										<?php else: ?>
+
+											<span class="ex-avatarname bg-expozart-violet" title="<?= exAuth_getsession("username") ?>" title="<?= exAuth_getsession("username") ?>" id="json-critic-avatar-name" accesskey="<?= exAuth_getsession("userhash") ?>">
+												<?= isset($in[1][0]) ? $avatarname = $in[0][0].$in[1][0] : $avatarname = $in[0][0]; ?>
+											</span>
+
+										<?php endif; ?>
+
+									</a>
+
+								</span>
+								
+								<span class="critics-form">
+									
+									<div class="input-group">
+										
+										<input type="text" class="form-control critics-form-control" id="ajax-comment-box" placeholder="ajouter un commentaire">
+				
+										<div class="input-group-append">
+
+											<div class="input-group-text"><i class="far fa-sm fa-paper-plane"></i></div>
+
+										</div>
+
+									</div>
+
+								</span>
+
+							</div>
 
 						</div>
 

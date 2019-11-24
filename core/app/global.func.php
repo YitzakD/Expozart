@@ -459,6 +459,28 @@ if(!function_exists('ex_findone')) {
 
     }
 
+    #   récup-re le dernier enregistrement d'un 
+    if(!function_exists('ex_findlastofthings')) {
+
+        function ex_findlastofthings($table, $field, $key, $LIMIT)
+        {
+
+            global $db;
+
+            $q = $db->prepare("SELECT * FROM $table WHERE $field = ? $LIMIT");
+
+            $q->execute([$key]);
+
+            $data = $q->fetch(PDO::FETCH_OBJ);
+
+            $q->closeCursor();
+
+            return $data;
+
+        }
+
+    }
+
 }
 
 
