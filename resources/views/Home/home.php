@@ -102,9 +102,9 @@
 
 								</div>
 
-								<div class="content-critics-counter mt-4" id="json-post-critics-counter"></div>
+								<div class="d-block text-center"><div class="content-critics-counter mt-4" id="json-post-critics-counter"></div></div>
 								
-								<div class="content-last-critics" id="ajax-post-critics"></div>
+								<span class="content-last-critics" id="ajax-post-critics"></span>
 	
 							</div>
 
@@ -116,7 +116,7 @@
 			
 								<span class="avatar rounded-circle">
 									
-									<a href="" title="<?= exAuth_getsession("username") ?>"  id="json-critic-avatar-link">
+									<a href="<?= WURI . '/' . strtolower(exAuth_getsession("username")) ?>" title="<?= exAuth_getsession("username") ?>"  id="json-critic-avatar-link">
 
 										<?php if($userAvatar): ?>
 									

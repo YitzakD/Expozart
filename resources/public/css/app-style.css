@@ -1212,11 +1212,16 @@ button.ex-alert-close {
 .self-artwork .art-comment .artwork-content div .content-self,
 .self-artwork .art-comment .artwork-content .content-critics-counter { font-weight: normal; }
 .self-artwork .art-comment .artwork-content .content-critics-counter {
-    display: block;
-    width: 100%;
-    line-height: 1.5rem;
-    margin: 1rem 0;
+    width: 100px;
+    line-height: 1rem;
+    margin: .5rem auto;
     text-align: center;
+    font-size: .73rem;
+    color var(--ex-color-grey-ea);
+    font-weight: 700;
+    background-color: var(--ex-color-grey-hover-ea);
+    padding: .5rem .7rem;
+    border-radius: 2rem;
 }
 .self-artwork .art-comment .artwork-content .content-last-critics {
     margin: .5rem 0;

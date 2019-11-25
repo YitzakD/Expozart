@@ -207,6 +207,37 @@ $(document).ready(function() {
 
 
 
+					    setInterval(getLikeCount, 5000);
+					    function getLikeCount() {
+
+					    	exArtwork = $(".exart");
+
+					    	exArtwork.each(function() {
+
+					    		__hartworktasteLikecounter = $(this).find("span#ajax-likes-counter");
+
+					    		__hartworktasteLikecounter.each(function() {
+
+					    			__haid = $(this).attr("accesskey");
+
+					    			//	console.log(__haid);
+
+					    			__hartworktasteLikecounter.load(ajaxlink + 'Art/parts/artworkTaste-like.count.php', {aid:__haid});
+
+					    			/*$.post(ajaxlink + 'Art/parts/artworkTaste-like.count.php', {aid:__haid}, function(artworkDataLikerresponse) {
+										
+										__hartworktasteLikecounter.html('<i class="far fa-sm fa-heart"></i> ' + artworkDataLikerresponse);
+										
+										console.log(artworkDataLikerresponse);
+
+									});*/
+
+					    		});
+
+					    	});
+
+					    }
+
 						$(exArtcontainer).each(function() {
 
 							exartbox = $(this).find("div.exart");
@@ -215,11 +246,12 @@ $(document).ready(function() {
 			
 								ajaxLikeBox = $(this).find("#ajax-liker-box");
 
-
 								uLc = $(ajaxLikeBox).attr("accesskey");
 
-
 								haid =  $(ajaxLikeBox).attr("class");
+
+
+
 
 
 								if(uLc !== "1") {
@@ -319,7 +351,7 @@ $(document).ready(function() {
 							
 							artworkLoad(url);
 
-							setTimeout(exArtworkplaceholder, 60000);
+							setTimeout(exArtworkplaceholder, 3000);
 
 							$("#ajax-comment-box").focus();
 
