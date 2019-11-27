@@ -1,7 +1,7 @@
 <?php
 /**
  *	Expozart
- *	artwork-like ajax app:	gère les likes
+ *	artwork-info-like ajax app:	gère les likes
  *	Code:	yitzakD
  */
 
@@ -34,6 +34,10 @@ if(isset($_POST["aid"]) && is_numeric($_POST["aid"])) {
 
 	$newcount = ex_cellcount("ex_likes", "aID", $aid, "AND lTYPE='1'");
 
-	echo '<i class="far fa-sm fa-heart"></i> ' .$newcount;
+	if($newcount > 0) {
+		
+		echo '<i class="far fa-sm fa-heart"></i> ' .$newcount;
+
+	}
 
 }

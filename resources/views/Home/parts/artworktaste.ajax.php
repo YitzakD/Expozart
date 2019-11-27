@@ -74,7 +74,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 						<!-- Like -->
 						<span class="<?= $item->ID ?>" id="ajax-liker-box" accesskey="<?= $logeduseralreadyliked ?>">
 
-							<button class="btn btn-sm exart-like-btn" title="liker" id="ajax-like-btn"><i class="far fa-lg fa-heart"></i></button>
+							<button class="btn btn-sm exart-like-btn text-center" title="liker" id="ajax-like-btn"><i class="far fa-lg fa-heart text-center"></i></button>
 
 						</span>
 
@@ -152,7 +152,15 @@ if(isset($_POST['getUserArtworksTastes'])) {
 									
 									<span class="small mr-1"><?= ex_getTimeAgo(strtotime($item->created)) ?></span>
 
-									<span class="small" id="ajax-likes-counter" accesskey="<?= $item->ID ?>"><i class="far fa-sm fa-heart"></i> <?= $tastelikes ?></span>
+									<span class="small" id="ajax-likes-counter" accesskey="<?= $item->ID ?>">
+
+										<?php if($tastelikes > 0): ?>
+
+											<i class="far fa-sm fa-heart"></i> <?= $tastelikes ?>
+
+										<?php endif; ?>
+
+									</span>
 
 								</div>
 

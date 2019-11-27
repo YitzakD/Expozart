@@ -935,6 +935,7 @@ button.ex-alert-close {
 .exart-art .exart-like-btn:hover,
 .exart-art .exart-comment-btn:hover,
 .exart-art .exart-menu:hover { color: rgba(225, 225, 225, 1);  }
+.exart-art .exart-like-btn:active { font-size: .9rem;  }
 .exart-art a.exart-art-item { color: var(--ex-color-black-ea); } 
 .exart-art a.exart-art-item:hover {
     text-decoration: none;
@@ -961,6 +962,7 @@ button.ex-alert-close {
 }
 .exart-art .exart-art-item:hover .exart-hover,
 .exart-art:hover .exart-hover { opacity: .35; }
+.exart-art:hover .exart-info { box-shadow: 0 .15rem .15rem rgba(0,0,0,.3); }
 .exart-art:hover .exart-like-btn,
 .exart-art:hover .exart-comment-btn,
 .exart-art:hover .exart-artwork-menu { opacity: 1; }
@@ -1277,6 +1279,7 @@ button.ex-alert-close {
     color: var(--ex-color-violet-ea);
     border-color: var(--ex-color-grey-hover-ea);
     border-left: 0px;
+    cursor: pointer;
 }
 .self-artwork .artwork-form .critic-info .critics-form .input-group .critics-form-control {
     border-top-left-radius: 2rem;

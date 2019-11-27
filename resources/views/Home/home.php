@@ -125,7 +125,7 @@
 										<?php else: ?>
 
 											<span class="ex-avatarname bg-expozart-violet" title="<?= exAuth_getsession("username") ?>" title="<?= exAuth_getsession("username") ?>" id="json-critic-avatar-name" accesskey="<?= exAuth_getsession("userhash") ?>">
-												<?= isset($in[1][0]) ? $avatarname = $in[0][0].$in[1][0] : $avatarname = $in[0][0]; ?>
+												<?= isset($in[1][0]) ? ucfirst($avatarname = $in[0][0].$in[1][0]) : ucfirst($avatarname = $in[0][0]); ?>
 											</span>
 
 										<?php endif; ?>
@@ -142,7 +142,7 @@
 				
 										<div class="input-group-append">
 
-											<div class="input-group-text"><i class="far fa-sm fa-paper-plane"></i></div>
+											<div class="input-group-text" title="Appuyez Entrer pour valider votre critique"><i class="far fa-sm fa-paper-plane"></i></div>
 
 										</div>
 

@@ -55,7 +55,7 @@ if(isset($_POST["aid"]) && is_numeric($_POST["aid"])) {
     	if($q) {
 
     		$lastCritics = $data;
-
+        
     		foreach ($lastCritics as $item) {
     			
     			$userinfo = ex_findone("ex_users", "ID", $item->uID);
@@ -73,6 +73,22 @@ if(isset($_POST["aid"]) && is_numeric($_POST["aid"])) {
     		<?php
 
     		}
+
+            if(ex_cellcount("ex_comments", "aID", $aid, "AND cTYPE='1'") > 2) {
+                
+                $artworkinfo = ex_findone("ex_arts", "ID", $aid);
+
+                ?>
+                
+                <div class="d-block mt-2 pt-2 border-top text-center">
+                    
+                    <a href="<?= $WURI . '/art/' . $artworkinfo->arthash ?>">Voir plus...</a>
+
+                </div>
+
+                <?php
+
+            }
 
     	} else { exit("nothing's found"); }
 	

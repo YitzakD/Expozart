@@ -220,17 +220,7 @@ $(document).ready(function() {
 
 					    			__haid = $(this).attr("accesskey");
 
-					    			//	console.log(__haid);
-
 					    			__hartworktasteLikecounter.load(ajaxlink + 'Art/parts/artworkTaste-like.count.php', {aid:__haid});
-
-					    			/*$.post(ajaxlink + 'Art/parts/artworkTaste-like.count.php', {aid:__haid}, function(artworkDataLikerresponse) {
-										
-										__hartworktasteLikecounter.html('<i class="far fa-sm fa-heart"></i> ' + artworkDataLikerresponse);
-										
-										console.log(artworkDataLikerresponse);
-
-									});*/
 
 					    		});
 
@@ -249,9 +239,6 @@ $(document).ready(function() {
 								uLc = $(ajaxLikeBox).attr("accesskey");
 
 								haid =  $(ajaxLikeBox).attr("class");
-
-
-
 
 
 								if(uLc !== "1") {
@@ -343,6 +330,8 @@ $(document).ready(function() {
 
 							url = a.attr('href');
 
+
+
 							if(isHistoryAvailable) {
 								
 								history.pushState({key: 'value'}, 'Artwork', url);
@@ -351,9 +340,9 @@ $(document).ready(function() {
 							
 							artworkLoad(url);
 
-							setTimeout(exArtworkplaceholder, 3000);
+							//	$("#ajax-comment-box").focus();
 
-							$("#ajax-comment-box").focus();
+							setTimeout(exArtworkplaceholder, 3000);
 
 						});
 
@@ -381,6 +370,22 @@ $(document).ready(function() {
 								$(".artwork-display").imagesLoaded(function() {
 
 									$("#ajax-comment-box").focus();
+
+									$("#ajax-comment-box").keyup(function(e) {
+
+										crticMsg = $(this).val();
+										
+										crticMsg = $.trim(crticMsg);
+
+										if(e.keyCode === 13 && crticMsg !== "") {
+
+											criticsender();
+													
+											getCritics();
+
+										}
+
+									});
 
 
 
@@ -413,8 +418,12 @@ $(document).ready(function() {
 									$("#json-username").text(artworkResponseData.username);
 
 									$("#json-post-ago").html(artworkResponseData.created);
-									
-									$("#json-post-likes").html('<i class="far fa-sm fa-heart"></i> ' + artworkResponseData.likes);
+
+									if(artworkResponseData.likes > 0) {
+										
+										$("#json-post-likes").html('<i class="far fa-sm fa-heart"></i> ' + artworkResponseData.likes);
+
+									} else { $("#json-post-likes").html('<i class="far fa-sm fa-heart"></i>'); }
 									
 									$("#json-menu-artwork-access").attr('action', rootlink + 'art/' + artworkResponseData.arthash);
 
@@ -445,11 +454,30 @@ $(document).ready(function() {
 									if(artworkResponseData.ID) {
 
 										if(artworkResponseData.critics > 0) {
-											
-											$.post(ajaxlink + 'Art/parts/artwork-critics.ajax.php', {aid:artworkResponseData.ID}, function(lastcriticsDataresponse) {
 
-												if(lastcriticsDataresponse !== "nothing's found") { $("#ajax-post-critics").html(lastcriticsDataresponse); }
-											
+											getCritics();
+											function getCritics() {
+
+												$.post(ajaxlink + 'Art/parts/artwork-critics.ajax.php', {aid:artworkResponseData.ID}, function(lastcriticsDataresponse) {
+
+													if(lastcriticsDataresponse !== "nothing's found") { $("#ajax-post-critics").html(lastcriticsDataresponse); }
+												
+												});
+
+											};
+
+										}
+
+										function criticsender() {
+
+											$.post(ajaxlink + 'Art/parts/artwork-critic-sender.ajax.php',{msg:crticMsg,artworkid:artworkResponseData.ID},function(criticsenderData) {
+												
+												if(criticsenderData !== "critic-not-send") {
+													
+													$("#ajax-comment-box").val("");
+
+												}
+
 											});
 
 										}
