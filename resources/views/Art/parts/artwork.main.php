@@ -1,25 +1,173 @@
-<div class="exart-self">
+<div class="self-artwork">
 
 	<div class="row no-gutters exrow">
 		
-		<div class="col-sx-12 col-md-12 col-lg-12 col-xl-8">
+		<div class="col-sx-12 col-md-12 col-lg-12 col-xl-12">
 
-			<div class="d-block art-content">
+			<div class="d-flex art-content">
 
-				<img src="<?= $fileroad ?>" id="json-image" alt="" />
+				<img src="<?= $fileroad ?>" alt="" />
 
 			</div>
 
 		</div>
 
-		<div class="col-sx-12 col-md-12 col-lg-12 col-xl-4">
+		<div class="col-sx-12 col-md-12 col-lg-12 col-xl-12">
 
 			<div class="d-block art-comment">
-				
-				<p class="p-2" id="json-post-content"><?= $artwork->artcontent ?></p>
 
-				<div class="strong m-0 text-center">Commentaires</div>
+				<div class="artwork-info border-bottom">
+
+					<div class="btn-group artwork-menu">
+	
+						<button class="btn btn-sm ex-artwork-menu" title="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-lg fa-ellipsis-h"></i></button>
+
+						<div class="dropdown-menu dropdown-menu-right">
+
+							<form method="POST" action="<?= $router->generate('artwork', ['arthash' => $artwork->arthash]) ?>" class="m-0 p-0 dropdown-item" id="json-menu-artwork-access"><input type="submit" value="Acceder à l'artwork" ></form>
+
+							<button class="dropdown-item text-danger" type="button">Signaler l'artwork</button>
+
+							<button class="dropdown-item text-danger" type="button">Se désabonner de ce thême</button>
+
+							<div class="dropdown-divider"></div>
+
+							<button class="dropdown-item" type="button">Annuler</button>
+
+						</div>
+
+					</div>
+
+					<span class="avatar rounded-circle">
+						
+						<a href="<?= $router->generate('profil', ['username' => strtolower($exUsername)]) ?>"  id="json-avatar-link">
+
+							<?php if($avatar == true): ?>
+
+							<img src="<?= $useravatar ?>" id="json-avatar">
+
+							<?php else: ?>
+
+							<span class="ex-avatarname bg-expozart-violet" title="<?= ucfirst($exUsername) ?>" id="json-avatar-name"><?= $useravatar ?></span>
+
+							<?php endif; ?>
+
+						</a>
+
+					</span>
+
+					<span class="info">
+						
+						<div class="info-name">
+							
+							<a href="<?= $router->generate('profil', ['username' => strtolower($exUsername)]) ?>" id="json-username" title="<?= ucfirst($exUsername) ?>"><?= ucfirst($exUsername) ?></a>
+
+						</div>
+
+						<div class="info-place">
+							
+							<span class="small mr-3" id="json-post-ago"><?= $created ?></span>
+
+							<?php if($artworklikes > 0): ?>
+
+							<span class="small" id="json-post-likes"><i class="far fa-sm fa-heart"></i> <?= $artworklikes ?></span>
+
+							<?php else: ?>
+
+							<span class="small" id="json-post-likes"><i class="far fa-sm fa-heart"></i></span>
+							
+							<?php endif; ?>
+
+						</div>
+
+					</span>
+
+				</div>
+							
+				<div class="artwork-content">
+
+					<?php if($logeduseralreadyliked == 0): ?>
+
+					<div class="d-block" id="json-liker-box"><button class="btn btn-sm exart-like-btn" title="liker" id="ajax-liker"><i class="far fa-lg fa-heart"></i></button></div>
+
+					<?php else: ?>
+
+					<div class="d-block" id="json-liker-box"><button class="btn btn-sm exart-like-btn" title="disliker" id="ajax-disliker"><i class="fas fa-lg fa-heart text-expozart-pink"></i></button></div>
+					
+					<?php endif; ?>	
+
+					<div>
+
+						<a href="<?= $router->generate('profil', ['username' => strtolower($exUsername)]) ?>" class="content-link" id="json-post-username" title="<?= ucfirst($exUsername) ?>"><?= ucfirst($exUsername) ?></a>
+
+						<span class="content-self" id="json-post-content"><?= $artwork->artcontent ?></span>
+
+					</div>
+
+					<?php if($artworkcritics > 1): ?>
+
+					<div class="d-block text-center"><div class="content-critics-counter mt-4" id="json-post-critics-counter"><?= $artworkcritics ?> critiques</div></div>
+
+					<?php else: ?>
+
+					<div class="d-block text-center"><div class="content-critics-counter mt-4" id="json-post-critics-counter"><?= $artworkcritics ?> critique</div></div>
+
+					<?php endif; ?>
+					
+					<span class="content-last-critics" id="ajax-post-critics"></span>
+
+				</div>
 			
+			</div>
+
+			<div class="artwork-form">
+							
+				<div class="critic-info border-top">
+
+					<span class="avatar rounded-circle">
+						
+						<a href="<?= $router->generate('profil', ['username' => strtolower(exAuth_getsession("username"))]) ?>" title="<?= exAuth_getsession("username") ?>"  id="json-critic-avatar-link">
+
+							<?php if($userAvatar): ?>
+						
+								<img src="<?= $userAvatar->fileroad_sm ?>">
+
+							<?php else: ?>
+
+								<?php
+
+									$_in = explode(" ", exAuth_getsession("username"));
+
+								?>
+
+								<span class="ex-avatarname bg-expozart-violet" title="<?= exAuth_getsession("username") ?>" title="<?= exAuth_getsession("username") ?>" id="json-critic-avatar-name" accesskey="<?= exAuth_getsession("userhash") ?>">
+									<?= isset($_in[1][0]) ? ucfirst($userAvatarName = $_in[0][0].$_in[1][0]) : ucfirst($userAvatarName = $_in[0][0]); ?>
+								</span>
+
+							<?php endif; ?>
+
+						</a>
+
+					</span>
+					
+					<span class="critics-form">
+						
+						<div class="input-group">
+							
+							<input type="text" class="form-control critics-form-control" id="ajax-comment-box" placeholder="ajouter un commentaire">
+	
+							<div class="input-group-append">
+
+								<div class="input-group-text" title="Appuyez Entrer pour valider votre critique"><i class="far fa-sm fa-paper-plane"></i></div>
+
+							</div>
+
+						</div>
+
+					</span>
+
+				</div>
+
 			</div>
 
 		</div>

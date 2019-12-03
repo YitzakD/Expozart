@@ -128,13 +128,45 @@ if(isset($CON) && ($CON == $ID)) {
 
 			$artwork = $exVar_artwork;
 
-			$artworkmedia = ex_findone("ex_media", "salt", $exVar_artwork->ID, "AND fileusability='1'");
+
+
+			$createdtime = strtotime($artwork->created);
+
+			$created = ex_getTimeAgo($createdtime);
+
+
+
+			$artworkmedia = ex_findone("ex_media", "salt", $artwork->ID, "AND fileusability='1'");
 
 			if(!$artworkmedia) { $fileroad = ""; } else { $fileroad = $artworkmedia->fileroad_sm; }
 
-			$artworkowner = ex_findone("ex_users", "ID", $exVar_artwork->uID);
+			
 
-			$artworklikes = ex_cellcount("ex_likes", "aID", $exVar_artwork->ID, "AND lTYPE='1'");
+			$artworkowner = ex_findone("ex_users", "ID", $artwork->uID);
+
+			if(!$artworkowner) { $exUsername = "Expozart"; } else { $exUsername = $artworkowner->username; }
+
+			$in =  explode(" ", $exUsername);
+
+			
+
+			$artworkownerAvatar = ex_findone("ex_media", "uID", $artwork->uID, "AND salt='$artwork->uID' AND fileusability='0'");
+
+			if(!$artworkownerAvatar) { $avatar = false; $useravatar = $avatarname = $in[0][0]; }
+
+			else { $avatar = true; $useravatar = $artworkownerAvatar->fileroad_sm; }
+
+			
+			$artworklikes = ex_cellcount("ex_likes", "aID", $artwork->ID, "AND lTYPE='1'");
+
+			$artworkcritics = ex_cellcount("ex_comments", "aID", $artwork->ID, "AND cTYPE='1'");
+
+
+
+			$logeduseralreadyliked = ex_cellcount("ex_likes", "aID", $exVar_artwork->ID, "AND uID=" . exAuth_getsession("userid") . " AND lTYPE='1'");
+
+
+			$userAvatar = ex_findone("ex_media", "uID", exAuth_getsession("username"), "AND salt='" . exAuth_getsession("username") . "' AND fileusability='0'");
 
 			
 

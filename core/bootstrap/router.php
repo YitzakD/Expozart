@@ -104,6 +104,15 @@ $router->map('GET|POST', '/art/[i:arthash]', function() {
 
 
 
+$router->map('GET|POST', '/[*:username]', function() {
+
+	require ACCOUNT . '/profil.php';
+
+}, 'profil');
+
+
+
+
 $router->map('GET|POST', '/logout/[*:hashedid]', function() {
 
 	require AUTH . '/logout.php';

@@ -142,37 +142,4 @@ class CasterTest extends TestCase
                 ['public', 'empty'],
             ],
             [
-                Caster::EXCLUDE_VERBOSE | Caster::EXCLUDE_EMPTY | Caster::EXCLUDE_STRICT,
-                [
-                    'empty' => false,
-                ],
-                ['public', 'empty'],
-            ],
-        ];
-    }
-
-    public function testAnonymousClass()
-    {
-        $c = eval('return new class extends stdClass { private $foo = "foo"; };');
-
-        $this->assertDumpMatchesFormat(
-            <<<'EOTXT'
-stdClass@anonymous {
-  -foo: "foo"
-}
-EOTXT
-            , $c
-        );
-
-        $c = eval('return new class { private $foo = "foo"; };');
-
-        $this->assertDumpMatchesFormat(
-            <<<'EOTXT'
-@anonymous {
-  -foo: "foo"
-}
-EOTXT
-            , $c
-        );
-    }
-}
+                Caster::EXCLUDE_VERBOSE | Caster::EXCLUD

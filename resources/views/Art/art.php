@@ -1,8 +1,8 @@
-<div class="ex-artwork-container">
+<div class="ex-artwork-display-container">
 		
-	<div class="exart-artwork-overlay"></div>
+	<!-- <div class="ex-artwork-display-overlay"></div> -->
 
-	<div class="exart-display">
+	<div class="ex-artwork-display">
 
 		<?= $__artwork ?>
 

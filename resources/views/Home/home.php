@@ -44,7 +44,7 @@
 
 									<div class="dropdown-menu dropdown-menu-right">
 
-										<form method="POSt" action="" class="m-0 p-0 dropdown-item" id="json-menu-artwork-access"><input type="submit" value="Acceder à l'artwork" ></form>
+										<form method="POST" action="" class="m-0 p-0 dropdown-item" id="json-menu-artwork-access"><input type="submit" value="Acceder à l'artwork" ></form>
 
 										<button class="dropdown-item text-danger" type="button">Signaler l'artwork</button>
 

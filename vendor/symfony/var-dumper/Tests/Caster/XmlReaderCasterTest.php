@@ -229,20 +229,4 @@ XMLReader {
   +nodeType: SIGNIFICANT_WHITESPACE
   +depth: 1
   +value: "\n"
-  +baseURI: "%sxml_reader.xml"
-   …9
-}
-EODUMP
-            ],
-            [22, <<<'EODUMP'
-XMLReader {
-  +localName: "foo"
-  +nodeType: END_ELEMENT
-  +baseURI: "%sxml_reader.xml"
-   …11
-}
-EODUMP
-            ],
-        ];
-    }
-}
+  +bas
