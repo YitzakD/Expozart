@@ -104,7 +104,7 @@ $router->map('GET|POST', '/art/[i:arthash]', function() {
 
 
 
-$router->map('GET|POST', '/[*:username]', function() {
+$router->map('GET|POST', '/profil/[*:username]', function() {
 
 	require ACCOUNT . '/profil.php';
 

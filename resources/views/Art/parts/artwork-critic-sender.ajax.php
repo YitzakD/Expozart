@@ -46,6 +46,12 @@ if(isset($_POST["artworkid"]) && is_numeric($_POST["artworkid"])) {
 
 		exit('critic-not-send');  
 
+	} else {
+
+		$artworkcritics = ex_cellcount("ex_comments", "aID", $artworkid, "AND cTYPE='1'");
+
+		echo $artworkcritics;
+
 	}
 
 }

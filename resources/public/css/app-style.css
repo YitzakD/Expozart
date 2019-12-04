@@ -1267,7 +1267,7 @@ button.ex-alert-close {
 }
 .self-artwork .artwork-form .critic-info .critics-form .input-group {
     position: absolute;
-    width: 230px;
+    width: calc(100% - 4.5rem);
     border-radius: 2rem;
     transition: all .3s;
     margin-top: .35rem;
@@ -1301,7 +1301,7 @@ button.ex-alert-close {
     position: fixed;
     top: 50%; 
 }
-#prev { left: 3%; }
+#prev { left: 1%; }
 #next{ right: 3%; }
 
 
@@ -1359,10 +1359,40 @@ button.ex-alert-close {
 }
 .ex-artwork-display .self-artwork {
     display: block;
-    width: 900px;
+    width: 720px;
     height: auto;
     margin: 0 auto;
     border-radius: 1rem;
     background-color: var(--ex-color-light-ea);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.ex-artwork-display .self-artwork .art-comment .artwork-content .exart-like-btn {
+    background-color: transparent;
+    position: relative;
+    left: 0;
+    color: var(--ex-color-grey-ea);
+}
+.ex-artwork-display .self-artwork .art-comment .artwork-content .content-last-critics {
+    height: auto;
+    min-height: 150px;
+    margin: .5rem 0 1rem;
+    font-size: .78rem;
+    color: var(--ex-color-grey-ea);
+}
+.ex-artwork-display .self-artwork .artwork-form {
+    width: 100%!important;
+    position: relative;
+    height: 60px;
+    padding: .5rem;
+    bottom: .5rem;
+    left: 0;
+    margin-top: 1.5rem;
+    border-radius: 0 0 1rem 0;
+}
+.ex-artwork-display .self-artwork .artwork-form .critic-info .critics-form .input-group {
+    position: absolute;
+    width: calc(100% - 4.4375rem);
+    border-radius: 2rem;
+    transition: all .3s;
+    margin-top: .35rem;
 }

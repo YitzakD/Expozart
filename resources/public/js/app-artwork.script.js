@@ -207,7 +207,7 @@ $(document).ready(function() {
 
 
 
-					    setInterval(getLikeCount, 5000);
+					    getLikeCount();
 					    function getLikeCount() {
 
 					    	exArtwork = $(".exart");
@@ -618,6 +618,5 @@ $(document).ready(function() {
 	    
 
     }
-
 
 });

@@ -1,22 +1,12 @@
-<div class="self-artwork">
+<div class="self-artwork" accesskey="<?= $ID ?>">
 
 	<div class="row no-gutters exrow">
 		
 		<div class="col-sx-12 col-md-12 col-lg-12 col-xl-12">
 
-			<div class="d-flex art-content">
-
-				<img src="<?= $fileroad ?>" alt="" />
-
-			</div>
-
-		</div>
-
-		<div class="col-sx-12 col-md-12 col-lg-12 col-xl-12">
-
 			<div class="d-block art-comment">
 
-				<div class="artwork-info border-bottom">
+				<div class="artwork-info">
 
 					<div class="btn-group artwork-menu">
 	
@@ -71,10 +61,6 @@
 							<?php if($artworklikes > 0): ?>
 
 							<span class="small" id="json-post-likes"><i class="far fa-sm fa-heart"></i> <?= $artworklikes ?></span>
-
-							<?php else: ?>
-
-							<span class="small" id="json-post-likes"><i class="far fa-sm fa-heart"></i></span>
 							
 							<?php endif; ?>
 
@@ -83,20 +69,36 @@
 					</span>
 
 				</div>
+
+			</div>
+
+		</div>
+		
+		<div class="col-sx-12 col-md-12 col-lg-12 col-xl-12">
+
+			<div class="d-flex art-content">
+
+				<img src="<?= $fileroad ?>" alt="" />
+
+			</div>
+
+		</div>
+
+		<div class="col-sx-12 col-md-12 col-lg-12 col-xl-12">
+
+			<div class="d-block art-comment mt-2">
 							
 				<div class="artwork-content">
 
-					<?php if($logeduseralreadyliked == 0): ?>
-
-					<div class="d-block" id="json-liker-box"><button class="btn btn-sm exart-like-btn" title="liker" id="ajax-liker"><i class="far fa-lg fa-heart"></i></button></div>
-
-					<?php else: ?>
-
-					<div class="d-block" id="json-liker-box"><button class="btn btn-sm exart-like-btn" title="disliker" id="ajax-disliker"><i class="fas fa-lg fa-heart text-expozart-pink"></i></button></div>
-					
-					<?php endif; ?>	
-
 					<div>
+
+						<span class="<?= $artwork->ID ?>" id="json-liker-box" accesskey="<?= $logeduseralreadyliked ?>"></span>
+
+						<a class="btn btn-sm exart-like-btn" href="#ajax-comment-box" title="critiquer"><i class="far fa-lg fa-comment-alt"></i></a>
+
+					</div>
+
+					<div class="mt-4">
 
 						<a href="<?= $router->generate('profil', ['username' => strtolower($exUsername)]) ?>" class="content-link" id="json-post-username" title="<?= ucfirst($exUsername) ?>"><?= ucfirst($exUsername) ?></a>
 

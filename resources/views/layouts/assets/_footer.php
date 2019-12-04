@@ -21,6 +21,8 @@
 
 	<script src="<?= $JS . '/app-artwork.script.js'; ?>" type="text/javascript"></script>
 
+	<script src="<?= $JS . '/app-self-artwork.script.js'; ?>" type="text/javascript"></script>
+
 	<?php endif; ?>
 
 </body>

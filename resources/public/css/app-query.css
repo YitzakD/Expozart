@@ -63,7 +63,7 @@
         right: 2%!important;
     }
     .self-artwork { width: 650px!important; }
-    .self-artwork .artwork-form .critic-info .critics-form .input-group { width: 566px; }
+    .self-artwork .artwork-form .critic-info .critics-form .input-group { width: calc(100% - 5.4rem); }
     .self-artwork .artwork-form .critic-info { margin-left: .75rem 0;  }
     .self-artwork .art-comment .artwork-content { padding: .5rem 1rem; }
     .self-artwork .artwork-form {
@@ -115,8 +115,8 @@
 
     /** Artwork displayer */
     .exart-display-overlay {
-        width: 96%;
-        right: 4%;
+        width: 96%!important;
+        right: 4%!important;
     }
     .artwork-display .self-artwork {
         width: 550px!important;
@@ -276,7 +276,7 @@
     }
     .masonry-taste-art-placeholder .info-simulate .info { margin-left: .2rem; }
 
-    .artwork-placeholder-exart-self { width: 280px!important; }
+    .artwork-placeholder-exart-self { width: 300px!important; }
     .artwork-placeholder-exart-self .exrow { width: 280px!important; }
     .artwork-placeholder-exart-self .exrow .col-sx-12.col-md-12.col-lg-12.col-xl-4 { border-radius: 0 0 1rem 1rem!important; }
     .artwork-placeholder-exart-self .art-placehoder-content { border-radius: 1rem 1rem 0 0!important; }
@@ -306,6 +306,10 @@
 
 
     /** masonry artwork */
+    .exart-display-overlay {
+        width: 96%!important;
+        right: 4%!important;
+    }
     .ex-home-page { width: 357px!important; }
     .exart { width: 178.5px; }
     .exart-art .exart-hover { width: 162.5px; }
@@ -323,7 +327,7 @@
     
 
     /** Artwork displayer */
-    .self-artwork { width: 280px!important; }
+    .self-artwork { width: 300px!important; }
     .self-artwork .art-comment { padding: 0 1rem; }
     .self-artwork .art-comment .artwork-info .info {
         margin-left: .35rem;
@@ -334,7 +338,7 @@
         padding: .5rem 1rem;
     }
     .self-artwork .artwork-form .critic-info .critics-form .input-group {
-        width: 208px;
+        width: calc(100% - 4.75rem);
         margin: 0; 
     }
     .self-artwork .art-comment .artwork-info .avatar {
@@ -347,7 +351,7 @@
     }
 
     .exart-closer { right: 7%; }
-    #prev { left: 7%; }
+    #prev { left: 2%; }
     #next{ right: 7%; }
 
 
@@ -356,6 +360,15 @@
     .ex-avatarname {
         height: 33px;
         width: 33px;
+    }
+
+
+
+
+
+    .ex-artwork-display .self-artwork .artwork-form .critic-info .critics-form .input-group {
+        margin: 0;
+        width: calc(100% - 3.75rem);
     }
 }
  
@@ -461,9 +474,7 @@
 
     /** Artwork displayer */
     .self-artwork { width: 230px!important; }
-    .self-artwork .artwork-form .critic-info .critics-form .input-group { width: 156px; }
 
     .exart-closer { right: 8%; }
-    #prev { left: 8%; }
     #next{ right: 8%; }
 }
