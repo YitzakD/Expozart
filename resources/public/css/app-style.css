@@ -1238,6 +1238,33 @@ button.ex-alert-close {
     color: var(--ex-color-black-ea);
     text-decoration: none;
 }
+.self-artwork .art-comment .artwork-content .content-last-critics .critics-self { position: relative; }
+.self-artwork .art-comment .artwork-content .content-last-critics .critics-self .critic-edit-box {
+    position: relative;
+    top: 0;
+    width: calc(100% - .5rem);
+    border-radius: 2rem;
+    height: 32px;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    border-color: var(--ex-color-grey-hover-ea);
+    font-size: .75rem;
+}
+.self-artwork .art-comment .artwork-content .content-last-critics .critics-self .critic-counter {
+    position: relative;
+    top: 0;
+    width: calc(100% - .5rem);
+    color: var(--ex-color-grey-ea);
+    font-size: .7rem;
+}
+.self-artwork .art-comment .artwork-content .content-last-critics .critics-self .critic-close {
+    display: none;
+    cursor: pointer;
+    transition: all .3s;
+}
+.self-artwork .art-comment .artwork-content .content-last-critics .critics-self:hover .critic-close,
+.self-artwork .art-comment .artwork-content .content-last-critics .critics-self:focus .critic-close { display: inline-block; }
+.self-artwork .art-comment .artwork-content .content-last-critics .critics-self .critic-close:hover .critic-close-btn { color: var(--ex-color-violet-hover-ea); }
 .self-artwork .artwork-form {
     width: 100%!important;
     position: absolute;

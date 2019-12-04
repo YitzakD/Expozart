@@ -121,7 +121,126 @@ $(document).ready(function() {
 
 		$.post(ajaxlink + 'Art/parts/self-artwork-critics.ajax.php', {aid:haid}, function(lastcriticsDataresponse) {
 
-			if(lastcriticsDataresponse !== "nothing's found") { $("#ajax-post-critics").html(lastcriticsDataresponse); }
+			if(lastcriticsDataresponse !== "nothing's found") {
+
+				$("#ajax-post-critics").html(lastcriticsDataresponse);
+
+				mycritic = $("#ajax-post-critics").find("span#ajax-critic");
+
+				mycriticCloser = $("#ajax-post-critics").find("span#ajax-critic-close");
+				
+				thiscritic = $(mycritic);
+
+				thiscloser = $(mycriticCloser);
+
+				function criticClicked() {
+
+				    divHtml = $(this).html();
+
+				    divAccesskey = $(this).attr("accesskey");
+
+				    editableText = $("<input />").attr("type", "text").attr("accesskey", divAccesskey).attr("class", "form-control critic-edit-box").attr("data-length", "102");
+
+				    spanCounter = $("<span>").attr("id", "ajax-critic-counter").attr("class", "critic-counter");
+
+
+
+
+				    editableText.val(divHtml);
+
+				    $(this).replaceWith(editableText);
+
+				    editableText.keyup(function(evnt) { checkTextAreaMaxLength(this, evnt); });
+					
+					function checkTextAreaMaxLength(textBox, e) { 
+					    
+					    var maxLength = parseInt($(textBox).data("length"));
+					    
+					  
+					    if (!checkSpecialKeys(e)) {
+
+					        if (textBox.value.length > maxLength - 1) {
+
+					        	textBox.value = textBox.value.substring(0, maxLength);
+			   				 	
+			   				 	$(spanCounter).insertAfter(editableText);
+
+			   				 	$(spanCounter).html("Vous êtes à la limite de saisi de texte");
+
+					        } else {
+
+							    $(spanCounter).remove();
+
+					        }
+					   	}
+					    
+					    return true;
+					    
+					}
+					function checkSpecialKeys(e) { 
+					    if (e.keyCode != 8 && e.keyCode != 46 && e.keyCode != 37 && e.keyCode != 38 && e.keyCode != 39 && e.keyCode != 40) 
+					        return false; 
+					    else 
+					        return true; 
+					}
+
+				    editableText.focus();
+				    // setup the blur event for this new textarea
+				    editableText.blur(editableTextBlurred);
+
+				}
+
+				function editableTextBlurred() {
+
+				    html = $(this).val();
+
+				    htmlAccesskey = $(this).attr("accesskey");
+
+				    $.post(ajaxlink + 'Art/parts/artwork-critic-updater.ajax.php',{aid:htmlAccesskey,commentbody:html},function(dataUpdateresponse) {
+		
+						if(dataUpdateresponse !== 'not-updated') {
+
+							console.log('updated');
+
+						}
+
+					});
+
+				    viewableText = $("<span>").attr("id", "ajax-critic").attr("accesskey", htmlAccesskey).attr("title", "cliquer ppour modifier");
+
+				    spanCounter = $("#ajax-critic-counter");
+				    
+				    viewableText.html(html);
+
+				    $(this).replaceWith(viewableText);
+				    spanCounter.remove();
+
+				    // setup the click event for this new div
+				    $(viewableText).click(criticClicked);
+
+				}
+			
+				thiscritic.click(criticClicked);
+
+				thiscloser.click(function() {
+
+					haid = $(this).attr("accesskey");
+
+					$(this).parent().fadeOut(1000).remove();
+
+					$.post(ajaxlink + 'Art/parts/artwork-critic-remove.ajax.php', {aid:haid}, function(dataRemoveCriticRresponse) {
+		
+						if(dataRemoveCriticRresponse !== 'not-removed') {
+
+							console.log('removed');
+						
+						}
+
+					});
+
+				});
+
+			}
 		
 		});
 

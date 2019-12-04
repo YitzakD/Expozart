@@ -66,7 +66,19 @@ if(isset($_POST["aid"]) && is_numeric($_POST["aid"])) {
     	
     		<div class="critics-self">
     		
-    			<a href="<?= $WURI . '/' . strtolower($criticname) ?>"><?= ucfirst($criticname) ?></a>&nbsp;<span><?= $item->commentbody ?></span>
+    			<a href="<?= $WURI . '/' . strtolower($criticname) ?>"><?= ucfirst($criticname) ?></a>&nbsp;
+
+            <?php if($item->uID === exAuth_getsession("userid")): ?>
+            
+                <span id="ajax-critic" accesskey="<?= $item->ID ?>" title="cliquer pour modifier"><?= $item->commentbody ?></span>
+
+                <span class="critic-close" id="ajax-critic-close" accesskey="<?= $item->ID ?>" title="supprimer"><i class="fas fa-sm fa-times ml-1 critic-close-btn"></i></span>
+
+            <?php else: ?>
+
+               <span><?= $item->commentbody ?></span>
+            
+            <?php endif; ?>
 
     		</div>
 

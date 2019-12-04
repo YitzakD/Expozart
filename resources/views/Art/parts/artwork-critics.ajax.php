@@ -66,7 +66,9 @@ if(isset($_POST["aid"]) && is_numeric($_POST["aid"])) {
     	
     		<div class="critics-self">
     		
-    			<a href="<?= $WURI . '/' . strtolower($criticname) ?>"><?= ucfirst($criticname) ?></a>&nbsp;<span><?= $item->commentbody ?></span>
+    			<a href="<?= $WURI . '/' . strtolower($criticname) ?>"><?= ucfirst($criticname) ?></a>&nbsp;
+
+                <span><?= $item->commentbody ?></span>
 
     		</div>
 
