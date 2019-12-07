@@ -66,7 +66,7 @@ if(isset($_POST["aid"]) && is_numeric($_POST["aid"])) {
     	
     		<div class="critics-self">
     		
-    			<a href="<?= $WURI . '/' . strtolower($criticname) ?>"><?= ucfirst($criticname) ?></a>&nbsp;
+    			<a href="<?= $WURI . '/profil/' . strtolower($criticname) ?>" title="<?= ucfirst($criticname) ?>"><?= ucfirst($criticname) ?></a>&nbsp;
 
             <?php if($item->uID === exAuth_getsession("userid")): ?>
             

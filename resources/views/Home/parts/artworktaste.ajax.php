@@ -63,7 +63,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 
 		?>
 
-		<div class="exart">
+		<div class="exart" accesskey="<?= $item->ID ?>">
 
 			<div class="exart-inner">					
 
@@ -90,9 +90,17 @@ if(isset($_POST['getUserArtworksTastes'])) {
 
 								<form method="POSt" action="<?= $WURI . '/art/' . $item->arthash; ?>" class="m-0 p-0 dropdown-item"><input type="submit" value="Acceder à l'artwork" ></form>
 
+								<?php if($item->uID !== exAuth_getsession("userid")): ?>
+
 								<button class="dropdown-item text-danger" type="button">Signaler l'artwork</button>
 
 								<button class="dropdown-item text-danger" type="button">Se désabonner de ce thême</button>
+
+								<?php else: ?>
+
+								<button class="dropdown-item text-danger" type="button">Supprimer cet artwork</button>
+
+								<?php endif; ?>
 
 								<div class="dropdown-divider"></div>
 
@@ -124,7 +132,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 							
 							<span class="avatar rounded-circle">
 
-								<a href="<?= $WURI . '/' . strtolower($exUsername) ?>" title="<?= $exUsername  ?>">
+								<a href="<?= $WURI . '/profil/' . strtolower($exUsername) ?>" title="<?= $exUsername  ?>">
 
 									<?php if($tasteownerAvatar): ?>
 
@@ -145,7 +153,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 							<span class="info">
 								
 								<div class="info-name" title="<?= $exUsername  ?>">
-									<a href="<?= $WURI . '/' . strtolower($exUsername) ?>" title="<?= $exUsername  ?>"><?= $exUsername; ?></a>
+									<a href="<?= $WURI . '/profil/' . strtolower($exUsername) ?>" title="<?= $exUsername  ?>"><?= $exUsername; ?></a>
 								</div>
 
 								<div class="info-place">

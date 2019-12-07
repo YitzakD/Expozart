@@ -104,7 +104,7 @@
 
 								<div class="d-block text-center"><div class="content-critics-counter mt-4" id="json-post-critics-counter"></div></div>
 								
-								<span class="content-last-critics" id="ajax-post-critics"></span>
+								<span class="content-last-critics" id="json-ajax-post-critics"></span>
 	
 							</div>
 
@@ -116,7 +116,7 @@
 			
 								<span class="avatar rounded-circle">
 									
-									<a href="<?= WURI . '/' . strtolower(exAuth_getsession("username")) ?>" title="<?= exAuth_getsession("username") ?>"  id="json-critic-avatar-link">
+									<a href="<?= WURI . '/profil/' . strtolower(exAuth_getsession("username")) ?>" title="<?= exAuth_getsession("username") ?>"  id="json-critic-avatar-link">
 
 										<?php if($userAvatar): ?>
 									
@@ -138,7 +138,7 @@
 									
 									<div class="input-group">
 										
-										<input type="text" class="form-control critics-form-control" id="ajax-comment-box" placeholder="ajouter un commentaire">
+										<input type="text" class="form-control critics-form-control" id="json-comment-box" placeholder="ajouter un commentaire" accesskey="">
 				
 										<div class="input-group-append">
 

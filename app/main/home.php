@@ -33,8 +33,6 @@ $SUBPAGE = VIEWS . '/' . ucfirst('home') . '/parts/';
 
 $userAvatar = ex_findone("ex_media", "uID", exAuth_getsession("userrid"), "AND salt='" . exAuth_getsession("userrid") . "' AND fileusability='0'");
 
-$in =  explode(" ", exAuth_getsession("username"));
-
 #   Template
 require VIEWS . '/' . ucfirst('home') . '/home.php';
 

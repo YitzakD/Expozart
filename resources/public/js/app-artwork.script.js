@@ -106,36 +106,13 @@ $(document).ready(function() {
 
 			$(artworkDisplayer).removeClass('ex-dp-block');
 
+			getUserArtworksTastes();
 			
 			history.pushState(null, 'Home', rootlink);
 
 		});
 
 	}
-
-    /*function appArtMasonry() {
-
-		$(artDpSimili).imagesLoaded(function() {
-
-		    $(artDpSimili).masonry({
-			    		
-				columnWidth: 244,
-
-				itemSelector: '.exart',
-
-				isAnimated: false,
-
-				animateed: false,
-
-		        isFitWidth: true,
-
-		        transitionDuration: 0
-
-			});
-
-		});
-
-    }*/
 
 
 
@@ -145,9 +122,6 @@ $(document).ready(function() {
 
     artworkLimit = 18;
 
-    /*exNewstart = 0;
-
-    exNewlimit = 50;*/
 
     artworksReachedMax = false;
 
@@ -205,9 +179,8 @@ $(document).ready(function() {
 
 						$(exArtcontainer).append(userArtworksTastesResponseData).masonry('reloadItems').masonry();
 
-
-
-					    getLikeCount();
+						/** On home */
+						getLikeCount();
 					    function getLikeCount() {
 
 					    	exArtwork = $(".exart");
@@ -268,8 +241,6 @@ $(document).ready(function() {
 										$.post(ajaxlink + 'Art/parts/artwork-like.ajax.php', {aid:_aid_}, function(dataLikerresponse) {
 									
 											if(dataLikerresponse !== 'not-liked') {
-
-												console.log('liked');
 		
 												hartworktasteLikecounter.html('<i class="far fa-sm fa-heart"></i> ' + dataLikerresponse);
 
@@ -289,10 +260,16 @@ $(document).ready(function() {
 									
 											if(dataDislikerresponse !== 'not-disliked') {
 
-												console.log('disliked');
+												if(dataDislikerresponse < 1) {
 
-												hartworktasteLikecounter.html('<i class="far fa-sm fa-heart"></i> ' + dataDislikerresponse);
-											
+													hartworktasteLikecounter.html("");
+
+												} else {
+													
+													hartworktasteLikecounter.html('<i class="far fa-sm fa-heart"></i> ' + dataDislikerresponse);
+
+												}
+
 											}
 
 										});
@@ -311,170 +288,320 @@ $(document).ready(function() {
 
 						});
 
+
+						/** On selected artwork */
 						$('a.open-artwork-ajax').on('click', function(e) {
 
 							e.preventDefault();
 
 							a = $(this);
 
-							par1 = $(a).parent();
-								
-								artworktasteLikecounter = $(par1).find("#ajax-likes-counter");
-
-								cardlikebtn = $(par1).find("#ajax-liker-box");
-
-								ajaxLB = $(cardlikebtn).find("button#ajax-like-btn");
-
-							$("#ajax-post-critics").html("");
-
-
 							url = a.attr('href');
-
-
 
 							if(isHistoryAvailable) {
 								
 								history.pushState({key: 'value'}, 'Artwork', url);
 
 							}
-							
-							artworkLoad(url);
 
-							//	$("#ajax-comment-box").focus();
+							getParent = $(a).parent();
 
-							setTimeout(exArtworkplaceholder, 3000);
 
-						});
+							function getArtwork(url) {
 
-						$("#close").click(function(e) {
+								exSetModal();
 
-							e.preventDefault();
+								setTimeout(exArtworkplaceholder, 3000);
+								
+								artworktasteLikecounter = $(getParent).find("#ajax-likes-counter");
 
-							$('body').removeClass('locked-body');
+								cardlikebtn = $(getParent).find("#ajax-liker-box");
 
-							$(artworkDisplayer).removeClass('ex-dp-block');
+								ajaxLB = $(cardlikebtn).find("button#ajax-like-btn");
 
-							getUserArtworksTastes();
 
-							history.pushState(null, 'Home', rootlink);
+								$.get(ajaxlink + 'Art/parts/artwork-main.ajax.php', {uri:url}, function(artworkResponse) {
 
-						});
-
-						/** artworkLoad:   application du système d'overlay quand on clique sur une tuile   */
-						function artworkLoad(url) {
-
-							exSetModal();
-
-							$.get(url, {}, function(artworkResponseData) {
-
-								$(".artwork-display").imagesLoaded(function() {
-
-									$("#ajax-comment-box").focus();
-
-									$("#ajax-comment-box").keyup(function(e) {
-
-										crticMsg = $(this).val();
+									if(artworkResponse !== 'not-founded') {
 										
-										crticMsg = $.trim(crticMsg);
+										$("#artwork-content").html(artworkResponse);
 
-										if(e.keyCode === 13 && crticMsg !== "") {
+										/** Next & Prev btn */
+										npB = $("#artwork-content").find("a.open-artwork-ajax");
 
-											criticsender();
-													
-											getCritics();
+										/** Close btn */
+										closeB = $("#artwork-content").find("a#close");
+
+
+										/** Like & Dislike sytmem */
+										jsonLikerBox = $("#json-liker-box");
+
+										uLc = $(jsonLikerBox).attr("accesskey");
+
+										haid =  $(jsonLikerBox).attr("class");
+
+										$("#json-set-on-comment-box").click(function() { $("#json-comment-box").focus(); });
+
+										if(uLc !== "1") {
+								
+											$(jsonLikerBox).html('<button class="btn btn-sm exart-like-btn" title="liker" id="ajax-like-btn" accesskey="' + haid + '"><i class="far fa-lg fa-heart"></i></button>');
+										
+										} else {
+											
+											$(jsonLikerBox).html('<button class="btn btn-sm exart-like-btn" title="disliker" id="ajax-like-btn" accesskey="' + haid + '"><i class="fas fa-lg fa-heart text-expozart-pink"></i></button>');		
 
 										}
 
-									});
+										aLb = $(jsonLikerBox).find("button#ajax-like-btn");
+
+										$(aLb).click(function() {
+
+											_aid_ = $(this).attr("accesskey");
+
+											hartworktasteLikecounter = $("#artwork-content").find("span#json-post-likes");
 
 
+											if($(this).attr("title") === "liker") {
 
+												$.post(ajaxlink + 'Art/parts/artwork-like.ajax.php', {aid:_aid_}, function(dataLikerresponse) {
+											
+													if(dataLikerresponse !== 'not-liked') {
 
-									$("#json-avatar-link").attr('title', artworkResponseData.username);
+														hartworktasteLikecounter.html('<i class="far fa-sm fa-heart"></i> ' + dataLikerresponse);
 
-									$("#json-avatar-link").attr('href', rootlink + artworkResponseData.username);
+														artworktasteLikecounter.html('<i class="far fa-sm fa-heart"></i> ' + dataLikerresponse);
 
-									if(artworkResponseData.avatar == true) {
-										
-										$("#json-avatar").attr('src', artworkResponseData.useravatar);
+														getArtwork(url);
 
-										$("#json-avatar-name").hide();
+													}
 
-									} else {
-
-										$("#json-avatar-name").text(artworkResponseData.useravatar);
-
-										$("#json-avatar").hide();
-
-									}
-
-
-
-
-									$("#json-username").attr('href', rootlink + artworkResponseData.username);
-
-									$("#json-username").attr('title', artworkResponseData.username);
-
-									$("#json-username").text(artworkResponseData.username);
-
-									$("#json-post-ago").html(artworkResponseData.created);
-
-									if(artworkResponseData.likes > 0) {
-										
-										$("#json-post-likes").html('<i class="far fa-sm fa-heart"></i> ' + artworkResponseData.likes);
-
-									} else { $("#json-post-likes").html('<i class="far fa-sm fa-heart"></i>'); }
-									
-									$("#json-menu-artwork-access").attr('action', rootlink + 'art/' + artworkResponseData.arthash);
-
-
-
-
-									$("#json-post-username").html(artworkResponseData.username);
-
-									$("#json-post-username").attr('title', artworkResponseData.username);
-
-									$("#json-post-username").attr('href', rootlink + artworkResponseData.username);
-
-									$("#json-post-content").html(artworkResponseData.artcontent);
-
-
-
-
-									if(artworkResponseData.critics > 1) {
-									
-										$("#json-post-critics-counter").html(artworkResponseData.critics + ' critiques');
-
-									} else {
-
-										$("#json-post-critics-counter").html(artworkResponseData.critics + ' critique');
-
-									}
-
-									if(artworkResponseData.ID) {
-
-										if(artworkResponseData.critics > 0) {
-
-											getCritics();
-											function getCritics() {
-
-												$.post(ajaxlink + 'Art/parts/artwork-critics.ajax.php', {aid:artworkResponseData.ID}, function(lastcriticsDataresponse) {
-
-													if(lastcriticsDataresponse !== "nothing's found") { $("#ajax-post-critics").html(lastcriticsDataresponse); }
-												
 												});
+												
+												$(this).attr('title', 'disliker');
 
-											};
+												$(this).html('<i class="fas fa-lg fa-heart text-expozart-pink"></i>');
+
+												$(this).parent().attr('accesskey', '1');
+
+
+												$(cardlikebtn).attr('accesskey', '1');
+												
+												$(ajaxLB).attr('title', 'disliker');
+
+												$(ajaxLB).html('<i class="fas fa-lg fa-heart text-expozart-pink"></i>');
+
+											} else {
+
+												$.post(ajaxlink + 'Art/parts/artwork-dislike.ajax.php', {aid:_aid_}, function(dataDislikerresponse) {
+											
+													if(dataDislikerresponse !== 'not-disliked') {
+
+														if(dataDislikerresponse < 1) {
+
+															hartworktasteLikecounter.html("");
+															
+															artworktasteLikecounter.html("");
+
+														} else {
+															
+															hartworktasteLikecounter.html('<i class="far fa-sm fa-heart"></i> ' + dataDislikerresponse);
+
+															artworktasteLikecounter.html('<i class="far fa-sm fa-heart"></i> ' + dataDislikerresponse);
+
+														}
+
+														getArtwork(url);
+													
+													}
+
+												});
+												
+												$(this).attr('title', 'liker');
+
+												$(this).html('<i class="far fa-lg fa-heart"></i>');
+
+												$(this).parent().attr('accesskey', '0');
+
+
+												$(cardlikebtn).attr('accesskey', '0');
+										
+												$(ajaxLB).attr('title', 'liker');
+
+												$(ajaxLB).html('<i class="far fa-lg fa-heart"></i>');
+
+											}
+
+										});
+
+										/** When user submit a comment */
+										$("#json-comment-box").keyup(function(e) {
+
+											crticMsg = $(this).val();
+											
+											crticMsg = $.trim(crticMsg);
+
+											if(e.keyCode === 13 && crticMsg !== "") {
+
+												criticsender(haid);
+														
+												getCritics(haid);
+												
+											}
+
+										});
+
+										/** getCritics function */
+										getCritics(haid);
+										function getCritics(thatid) {
+
+											$.post(ajaxlink + 'Art/parts/artwork-critics.ajax.php', {aid:haid}, function(lastcriticsDataresponse) {
+
+												if(lastcriticsDataresponse !== "nothing's found") {
+
+													$("#json-ajax-post-critics").html(lastcriticsDataresponse);
+
+													mycritic = $("#json-ajax-post-critics").find("span#json-critic");
+
+													mycriticCloser = $("#json-ajax-post-critics").find("span#json-critic-close");
+				
+													thiscritic = $(mycritic);
+
+													thiscloser = $(mycriticCloser);
+
+													function criticClicked() {
+
+													    divHtml = $(this).html();
+
+													    divAccesskey = $(this).attr("accesskey");
+
+													    editableText = $("<input />").attr("type", "text").attr("accesskey", divAccesskey).attr("class", "form-control critic-edit-box").attr("data-length", "102");
+
+													    spanCounter = $("<span>").attr("id", "ajax-critic-counter").attr("class", "critic-counter");
+
+
+													    editableText.val(divHtml);
+
+													    $(this).replaceWith(editableText);
+
+													    editableText.keyup(function(evnt) { checkTextAreaMaxLength(this, evnt); });
+														
+														function checkTextAreaMaxLength(textBox, e) { 
+														    
+														    var maxLength = parseInt($(textBox).data("length"));
+														    
+														    if (!checkSpecialKeys(e)) {
+
+														        if (textBox.value.length > maxLength - 1) {
+
+														        	textBox.value = textBox.value.substring(0, maxLength);
+												   				 	
+												   				 	$(spanCounter).insertAfter(editableText);
+
+												   				 	$(spanCounter).html("Vous êtes à la limite de saisi de texte");
+
+														        } else {
+
+																    $(spanCounter).remove();
+
+														        }
+														   	}
+														    
+														    return true;
+														    
+														}
+														function checkSpecialKeys(e) { 
+														    if (e.keyCode != 8 && e.keyCode != 46 && e.keyCode != 37 && e.keyCode != 38 && e.keyCode != 39 && e.keyCode != 40) 
+														        return false; 
+														    else 
+														        return true; 
+														}
+
+													    editableText.focus();
+
+													    editableText.blur(editableTextBlurred);
+
+													}
+
+													function editableTextBlurred() {
+
+													    html = $(this).val();
+
+													    htmlAccesskey = $(this).attr("accesskey");
+
+													    $.post(ajaxlink + 'Art/parts/artwork-critic-updater.ajax.php',{aid:htmlAccesskey,commentbody:html},function(dataUpdateresponse) {
+											
+															if(dataUpdateresponse !== 'not-updated') {
+
+																console.log('updated');
+
+															}
+
+														});
+
+													    viewableText = $("<span>").attr("id", "ajax-critic").attr("accesskey", htmlAccesskey).attr("title", "cliquer ppour modifier");
+
+													    spanCounter = $("#ajax-critic-counter");
+													    
+													    viewableText.html(html);
+
+													    $(this).replaceWith(viewableText);
+													    spanCounter.remove();
+
+													    $(viewableText).click(criticClicked);
+
+													}
+
+													thiscritic.click(criticClicked);
+
+													thiscloser.click(function() {
+
+														haid = $(this).attr("accesskey");
+
+														criticSelf = $(this).parent();
+
+														$(criticSelf).fadeOut(1000);
+
+														$(criticSelf).remove();
+
+
+														$.post(ajaxlink + 'Art/parts/artwork-critic-remove.ajax.php', {aid:haid}, function(dataRemoveCriticRresponse) {
+											
+															if(dataRemoveCriticRresponse !== 'not-removed') {
+
+																$("#json-post-critics-counter").html(dataRemoveCriticRresponse);
+
+																getArtwork(url);
+															
+															}
+
+														});
+														
+													});
+												
+												}
+											
+											});
 
 										}
 
-										function criticsender() {
+										/** sendCritics function */
+										function criticsender(getid) {
 
-											$.post(ajaxlink + 'Art/parts/artwork-critic-sender.ajax.php',{msg:crticMsg,artworkid:artworkResponseData.ID},function(criticsenderData) {
+											$.post(ajaxlink + 'Art/parts/artwork-critic-sender.ajax.php',{msg:crticMsg,artworkid:haid},function(criticsenderData) {
 												
 												if(criticsenderData !== "critic-not-send") {
-													
-													$("#ajax-comment-box").val("");
+				
+													$("#json-comment-box").val("");
+
+													if(criticsenderData > 1) {
+										
+														$("#json-post-critics-counter").html(criticsenderData + ' critiques');
+
+													} else {
+
+														$("#json-post-critics-counter").html(criticsenderData + ' critique');
+
+													}
 
 												}
 
@@ -482,132 +609,88 @@ $(document).ready(function() {
 
 										}
 
-									}
+										
+										/** When user click on Next or Prev btn */
+										npB.on('click', function(e) {
+
+											e.preventDefault();
+
+											a = $(this);
+
+											url = a.attr('href');
+
+											nhaid = $(this).attr("accesskey");
+
+											if(isHistoryAvailable) {
+												
+												history.pushState({key: 'value'}, 'Artwork', url);
+
+											}
 
 
+											var _getParent = document.getElementsByClassName("exart");
+
+											if($(_getParent).attr("accesskey", nhaid)) {
+
+												var getParent = $(_getParent);
+
+											}
 
 
-									if(artworkResponseData.userliked == 0) {
-									
-										$("#json-liker-box").html('<button class="btn btn-sm exart-like-btn" title="liker" id="ajax-liker"><i class="far fa-lg fa-heart"></i></button>');
+											getArtwork(url);
+
+										});
+
+										/** When user click on close btn */
+										$(closeB).click(function(e) {
+
+											e.preventDefault();
+
+											$('body').removeClass('locked-body');
+
+											$(artworkDisplayer).removeClass('ex-dp-block');
+
+											getUserArtworksTastes();
+
+											history.pushState(null, 'Home', rootlink);
+
+										});
 
 									} else {
 
-										$("#json-liker-box").html('<button class="btn btn-sm exart-like-btn" title="disliker" id="ajax-disliker"><i class="fas fa-lg fa-heart text-expozart-pink"></i></button>');
+										// Rédirection javascript
 
 									}
 
-									$("#ajax-liker").click(function(e) {
-
-										e.preventDefault();
-
-										console.log("Liker");
-
-										$.post(ajaxlink + 'Art/parts/artwork-like.ajax.php', {aid:artworkResponseData.ID}, function(likerDataresponse) {
-										
-											if(likerDataresponse !== 'not-liked') {
-												
-												artworkLoad(url);
-												
-												artworktasteLikecounter.html('<i class="far fa-sm fa-heart"></i> ' + likerDataresponse);
-
-											}
-
-										});
-
-										$("#json-liker-box").html('<button class="btn btn-sm exart-like-btn" title="liker" id="ajax-disliker"><i class="fas fa-lg fa-heart text-expozart-pink"></i></button>');
-
-										$(cardlikebtn).attr('accesskey', '1');
-										
-										$(ajaxLB).attr('title', 'disliker');
-
-										$(ajaxLB).html('<i class="fas fa-lg fa-heart text-expozart-pink"></i>');
-
-									});
-
-									$("#ajax-disliker").click(function(e) {
-
-										console.log("Disliker");
-
-										$.post(ajaxlink + 'Art/parts/artwork-dislike.ajax.php', {aid:artworkResponseData.ID}, function(dislikerDataresponse) {
-										
-											if(dislikerDataresponse !== 'not-disliked') {
-
-												artworkLoad(url);
-
-												artworktasteLikecounter.html('<i class="far fa-sm fa-heart"></i> ' + dislikerDataresponse);
-
-											}
-
-										});
-
-										$("#json-liker-box").html('<button class="btn btn-sm exart-like-btn" title="disliker" id="ajax-liker"><i class="far fa-lg fa-heart"></i></button>');
-										
-										$(cardlikebtn).attr('accesskey', '0');
-										
-										$(ajaxLB).attr('title', 'liker');
-
-										$(ajaxLB).html('<i class="far fa-lg fa-heart"></i>');
-
-									});	
-
-
-
-
-									$("#json-image").attr('src', artworkResponseData.newfileroad);
-
-									$("#json-post-content").html(artworkResponseData.artcontent);
-
-
-
-
-									if(artworkResponseData.next) {
-
-										$("#next").show();
-
-										$("#next").attr('href', rootlink + 'art/' + artworkResponseData.next.arthash);
-
-									} else { $("#next").hide(); }
-
-
-
-
-									if(artworkResponseData.prev) {
-
-										$("#prev").show();
-
-										$("#prev").attr('href', rootlink + 'art/' + artworkResponseData.prev.arthash);
-
-									} else { $("#prev").hide(); }
-
-					    		});
-
-							});
-
-						}
-
-						/** Historique:   gère l'historique   */
-						window.addEventListener('popstate', function(e) {
-
-					    	if(e.state == null) {
-
-								$('body').removeClass('locked-body');
-
-								$(artworkDisplayer).removeClass('ex-dp-block');
-
-								getUserArtworksTastes();
-
-					    	} else {
+								});
 							
-					    		artworkLoad(window.location.href);
+							}
+							getArtwork(url);
 
-								setTimeout(exArtworkplaceholder, 3000);
+							/** History:   gère l'historique   */
+							window.addEventListener('popstate', function(e) {
 
-								if(window.location.href == rootlink) { getUserArtworksTastes(); }
+						    	if(e.state == null) {
 
-					    	}
+									$('body').removeClass('locked-body');
 
-					    });
+									$(artworkDisplayer).removeClass('ex-dp-block');
+
+									getUserArtworksTastes();
+
+						    	} else {
+								
+						    		getArtwork(window.location.href);
+
+									setTimeout(exArtworkplaceholder, 3000);
+
+									if(window.location.href == rootlink) { getUserArtworksTastes(); }
+
+						    	}
+
+						    });
+
+						});
 
     				}
 

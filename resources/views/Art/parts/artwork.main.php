@@ -15,10 +15,18 @@
 						<div class="dropdown-menu dropdown-menu-right">
 
 							<form method="POST" action="<?= $router->generate('artwork', ['arthash' => $artwork->arthash]) ?>" class="m-0 p-0 dropdown-item" id="json-menu-artwork-access"><input type="submit" value="Acceder à l'artwork" ></form>
-
+							
+							<?php if($artwork->uID !== exAuth_getsession("userid")): ?>
+							
 							<button class="dropdown-item text-danger" type="button">Signaler l'artwork</button>
 
 							<button class="dropdown-item text-danger" type="button">Se désabonner de ce thême</button>
+							
+							<?php else: ?>
+
+							<button class="dropdown-item text-danger" type="button">Supprimer cet artwork</button>
+
+							<?php endif; ?>
 
 							<div class="dropdown-divider"></div>
 
@@ -94,7 +102,7 @@
 
 						<span class="<?= $artwork->ID ?>" id="json-liker-box" accesskey="<?= $logeduseralreadyliked ?>"></span>
 
-						<a class="btn btn-sm exart-like-btn" href="#ajax-comment-box" title="critiquer"><i class="far fa-lg fa-comment-alt"></i></a>
+						<span class="btn btn-sm exart-like-btn" id="ajax-set-on-comment-box" title="critiquer"><i class="far fa-lg fa-comment-alt"></i></span>
 
 					</div>
 
@@ -106,15 +114,19 @@
 
 					</div>
 
-					<?php if($artworkcritics > 1): ?>
+					<div class="d-block text-center"><div class="content-critics-counter mt-4" id="json-post-critics-counter">
 
-					<div class="d-block text-center"><div class="content-critics-counter mt-4" id="json-post-critics-counter"><?= $artworkcritics ?> critiques</div></div>
+						<?php if($artworkcritics > 1): ?>
 
-					<?php else: ?>
+							<?= $artworkcritics ?> critiques
 
-					<div class="d-block text-center"><div class="content-critics-counter mt-4" id="json-post-critics-counter"><?= $artworkcritics ?> critique</div></div>
+						<?php else: ?>
 
-					<?php endif; ?>
+							<?= $artworkcritics ?> critique
+
+						<?php endif; ?>
+
+					</div></div>
 					
 					<span class="content-last-critics" id="ajax-post-critics"></span>
 
@@ -136,11 +148,7 @@
 
 							<?php else: ?>
 
-								<?php
-
-									$_in = explode(" ", exAuth_getsession("username"));
-
-								?>
+								<?php $_in = explode(" ", exAuth_getsession("username")) ?>
 
 								<span class="ex-avatarname bg-expozart-violet" title="<?= exAuth_getsession("username") ?>" title="<?= exAuth_getsession("username") ?>" id="json-critic-avatar-name" accesskey="<?= exAuth_getsession("userhash") ?>">
 									<?= isset($_in[1][0]) ? ucfirst($userAvatarName = $_in[0][0].$_in[1][0]) : ucfirst($userAvatarName = $_in[0][0]); ?>

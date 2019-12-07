@@ -96,6 +96,8 @@ $(document).ready(function() {
 
 	});
 
+	$("#ajax-set-on-comment-box").click(function() { $("#ajax-comment-box").focus(); });
+
 
 
 
@@ -109,8 +111,6 @@ $(document).ready(function() {
 		if(e.keyCode === 13 && crticMsg !== "") {
 
 			criticsender();
-					
-			getCritics();
 			
 		}
 
@@ -226,13 +226,20 @@ $(document).ready(function() {
 
 					haid = $(this).attr("accesskey");
 
-					$(this).parent().fadeOut(1000).remove();
+					criticSelf = $(this).parent();
+
+					$(criticSelf).fadeOut(1000);
+
+					$(criticSelf).remove();
+
 
 					$.post(ajaxlink + 'Art/parts/artwork-critic-remove.ajax.php', {aid:haid}, function(dataRemoveCriticRresponse) {
 		
 						if(dataRemoveCriticRresponse !== 'not-removed') {
 
-							console.log('removed');
+							$("#json-post-critics-counter").html(dataRemoveCriticRresponse);
+					
+							getCritics();
 						
 						}
 

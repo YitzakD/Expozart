@@ -44,7 +44,16 @@ if(isset($_POST["aid"]) && is_numeric($_POST["aid"])) {
 
 	if(!$q) { exit('not-removed'); } else {
 
-		echo $artworkcritics;
+		if($artworkcritics > 1) {
+			
+			echo $artworkcritics . " critiques";
+
+		} else {
+
+			echo $artworkcritics . " critique";
+
+		}
+
 
 	}
 
