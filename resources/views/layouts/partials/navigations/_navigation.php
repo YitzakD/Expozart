@@ -38,7 +38,7 @@
 
 			<li class="nav-item">
 
-				<a class="nav-link ex-nav-link active" href="<?= $router->generate('accueil'); ?>">
+				<a class="nav-link ex-nav-link <?= isset($match['name']) && $match['name'] === 'accueil'  ? 'active' : ''  ?>" href="<?= $router->generate('accueil'); ?>">
 
 					<span>Accueil</span>
 
@@ -48,7 +48,7 @@
 
 			<li class="nav-item">
 
-				<a class="nav-link ex-nav-link" href="#">
+				<a class="nav-link ex-nav-link <?= isset($match['name']) && $match['name'] === 'explorer'  ? 'active' : ''  ?>" href="#">
 
 					<span>Expos</span><i class="far fa-sm fa-compass nav-h-ico"></i>
 
@@ -58,9 +58,9 @@
 
 			<li class="nav-item">
 
-				<a class="nav-link ex-nav-link" href="#">
+				<a class="nav-link ex-nav-link <?= isset($match['name']) && $match['name'] === 'profile'  ? 'active' : ''  ?>" href="<?= ex_gotoprofile(exAuth_getsession('username')) ?>">
 
-					<span>Profil</span><i class="far fa-sm fa-user-circle nav-h-ico"></i>
+					<span><?= exAuth_getsession("username") ?></span><i class="far fa-sm fa-user-circle nav-h-ico"></i>
 
 				</a>
 
@@ -68,13 +68,13 @@
 
 			<li class="nav-item">
 
-				<a class="nav-link ex-nav-link" href="#"><i class="far fa-sm fa-comment-alt"></i></a>
+				<a class="nav-link ex-nav-link <?= isset($match['name']) && $match['name'] === 'messenger'  ? 'active' : ''  ?>" href="#"><i class="far fa-sm fa-comment-alt"></i></a>
 
 			</li>
 
 			<li class="nav-item">
 
-				<a class="nav-link ex-nav-link" href="#"><i class="far fa-sm fa-bell"></i></a>
+				<a class="nav-link ex-nav-link <?= isset($match['name']) && $match['name'] === 'notificator'  ? 'active' : ''  ?>" href="#"><i class="far fa-sm fa-bell"></i></a>
 
 			</li>
 
@@ -100,7 +100,7 @@
 
 					<form action="<?= $router->generate('deconnexion', ['hashedid' => exAuth_getsession("userhash")]) ?>" method="POST" class="p-0 m-0">
 						
-						<button type="submit" class="btn dropdown-item">Se déconecter</button>
+						<button type="submit" class="btn dropdown-item text-danger">Se déconecter</button>
 
 					</form>
 

@@ -86,6 +86,15 @@ $router->map('GET|POST', '/activate/[*:userhash]/[*:token]', function() {
 
 
 
+$router->map('GET|POST', '/logout/[*:hashedid]', function() {
+
+	require AUTH . '/logout.php';
+
+}, 'deconnexion');
+
+
+
+
 $router->map('GET|POST', '/categories', function() {
 
 	require EXPOZART . '/categories.php';
@@ -104,20 +113,11 @@ $router->map('GET|POST', '/art/[i:arthash]', function() {
 
 
 
-$router->map('GET|POST', '/profil/[*:username]', function() {
+$router->map('GET|POST', '/[*:username]', function() {
 
-	require ACCOUNT . '/profil.php';
+	require ACCOUNT . '/profile.php';
 
-}, 'profil');
-
-
-
-
-$router->map('GET|POST', '/logout/[*:hashedid]', function() {
-
-	require AUTH . '/logout.php';
-
-}, 'deconnexion');
+}, 'profile');
 
 
 

@@ -38,7 +38,7 @@
 
 					<span class="avatar rounded-circle">
 						
-						<a href="<?= $router->generate('profil', ['username' => strtolower($exUsername)]) ?>"  id="json-avatar-link">
+						<a href="<?= ex_gotoprofile($exUsername) ?>"  id="json-avatar-link">
 
 							<?php if($avatar == true): ?>
 
@@ -58,7 +58,7 @@
 						
 						<div class="info-name">
 							
-							<a href="<?= $router->generate('profil', ['username' => strtolower($exUsername)]) ?>" id="json-username" title="<?= ucfirst($exUsername) ?>"><?= ucfirst($exUsername) ?></a>
+							<a href="<?= ex_gotoprofile($exUsername) ?>" id="json-username" title="<?= ucfirst($exUsername) ?>"><?= ucfirst($exUsername) ?></a>
 
 						</div>
 
@@ -108,7 +108,7 @@
 
 					<div class="mt-4">
 
-						<a href="<?= $router->generate('profil', ['username' => strtolower($exUsername)]) ?>" class="content-link" id="json-post-username" title="<?= ucfirst($exUsername) ?>"><?= ucfirst($exUsername) ?></a>
+						<a href="<?= ex_gotoprofile($exUsername) ?>" class="content-link" id="json-post-username" title="<?= ucfirst($exUsername) ?>"><?= ucfirst($exUsername) ?></a>
 
 						<span class="content-self" id="json-post-content"><?= $artwork->artcontent ?></span>
 
@@ -140,7 +140,7 @@
 
 					<span class="avatar rounded-circle">
 						
-						<a href="<?= $router->generate('profil', ['username' => strtolower(exAuth_getsession("username"))]) ?>" title="<?= exAuth_getsession("username") ?>"  id="json-critic-avatar-link">
+						<a href="<?= ex_gotoprofile(exAuth_getsession("username")) ?>" title="<?= exAuth_getsession("username") ?>"  id="json-critic-avatar-link">
 
 							<?php if($userAvatar): ?>
 						

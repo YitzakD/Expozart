@@ -45,6 +45,8 @@ else {
 
 	require $SUBPAGE . $MOD . '.main.php';
 
+	#	require $SUBPAGE . $MOD . '.choice.php';
+
 }
 
 

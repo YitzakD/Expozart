@@ -164,7 +164,7 @@ if(isset($_GET['uri'])) {
 
 					<span class="avatar rounded-circle">
 						
-						<a href="<?= $WURI . '/profil/' . strtolower($exUsername) ?>" title="<?= $exUsername ?>"  id="json-avatar-link">
+						<a href="<?= $WURI . '/' . strtolower($exUsername) ?>" title="<?= $exUsername ?>"  id="json-avatar-link">
 
 							<?php if($avatar ==  true): ?>
 
@@ -184,7 +184,7 @@ if(isset($_GET['uri'])) {
 						
 						<div class="info-name">
 							
-							<a href="<?= $WURI . '/profil/' . strtolower($exUsername) ?>" title="<?= $exUsername ?>" id="json-username"><?= $exUsername ?></a>
+							<a href="<?= $WURI . '/' . strtolower($exUsername) ?>" title="<?= $exUsername ?>" id="json-username"><?= $exUsername ?></a>
 
 						</div>
 
@@ -214,7 +214,7 @@ if(isset($_GET['uri'])) {
 
 					<div>
 
-						<a href="<?= $WURI . '/profil/' . strtolower($exUsername) ?>" class="content-link" id="json-post-username" title="<?= $exUsername ?>"><?= $exUsername ?></a>
+						<a href="<?= $WURI . '/' . strtolower($exUsername) ?>" class="content-link" id="json-post-username" title="<?= $exUsername ?>"><?= $exUsername ?></a>
 
 						<span class="content-self" id="json-post-content"><?= $artwork->artcontent ?></span>
 
@@ -247,7 +247,7 @@ if(isset($_GET['uri'])) {
 
 					<span class="avatar rounded-circle">
 						
-						<a href="<?= $WURI . '/profil/' . strtolower(exAuth_getsession("username")) ?>" title="<?= exAuth_getsession("username") ?>"  id="json-critic-avatar-link">
+						<a href="<?= $WURI . '/' . strtolower(exAuth_getsession("username")) ?>" title="<?= exAuth_getsession("username") ?>"  id="json-critic-avatar-link">
 
 							<?php if($userAvatar): ?>
 						

@@ -132,7 +132,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 							
 							<span class="avatar rounded-circle">
 
-								<a href="<?= $WURI . '/profil/' . strtolower($exUsername) ?>" title="<?= $exUsername  ?>">
+								<a href="<?= $WURI . '/' . strtolower($exUsername) ?>" title="<?= $exUsername  ?>">
 
 									<?php if($tasteownerAvatar): ?>
 
@@ -153,7 +153,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 							<span class="info">
 								
 								<div class="info-name" title="<?= $exUsername  ?>">
-									<a href="<?= $WURI . '/profil/' . strtolower($exUsername) ?>" title="<?= $exUsername  ?>"><?= $exUsername; ?></a>
+									<a href="<?= $WURI . '/' . strtolower($exUsername) ?>" title="<?= $exUsername  ?>"><?= $exUsername; ?></a>
 								</div>
 
 								<div class="info-place">

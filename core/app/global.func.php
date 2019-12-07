@@ -202,6 +202,28 @@ if(!function_exists('ex_redirect')) {
 
 
 /**
+ *  ex_gotoprofile($username)
+ *  $username => username
+ *  permet de faire une redirection vers la page de profile
+ *  redirige vers le profile de $username
+ */
+if(!function_exists('ex_gotoprofile')) {
+
+    function ex_gotoprofile($username)
+    {
+
+        global $router;
+
+        return $router->generate('profile', ['username' => strtolower($username)]);
+
+    }
+
+}
+
+
+
+
+/**
  *  ex_getinput($key)
  *  $key => string
  *  permet de retourner la valeur de la clé sauver dans en SESSION en cas d'erreurs
