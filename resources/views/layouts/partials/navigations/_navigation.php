@@ -58,7 +58,7 @@
 
 			<li class="nav-item">
 
-				<a class="nav-link ex-nav-link <?= isset($match['name']) && $match['name'] === 'profile'  ? 'active' : ''  ?>" href="<?= ex_gotoprofile(exAuth_getsession('username')) ?>">
+				<a class="nav-link ex-nav-link <?= isset($match['name']) && ($match['name'] === 'profile') && ($MOD === exAuth_getsession("username"))  ? 'active' : ''  ?>" href="<?= ex_gotoprofile(exAuth_getsession('username')) ?>">
 
 					<span><?= exAuth_getsession("username") ?></span><i class="far fa-sm fa-user-circle nav-h-ico"></i>
 

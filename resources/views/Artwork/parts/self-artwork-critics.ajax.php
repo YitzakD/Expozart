@@ -1,7 +1,7 @@
 <?php
 /**
  *	Expozart
- *	artwork-last critics ajax app:	gère les commentaires
+ *	artwork-all-critics ajax app:	gère les commentaires
  *	Code:	yitzakD
  */
 
@@ -43,7 +43,7 @@ if(isset($_POST["aid"]) && is_numeric($_POST["aid"])) {
 
 	if(ex_cellcount("ex_comments", "aID", $aid, "AND cTYPE='1'") > 0) {
 
-		$q = $db->prepare("SELECT * FROM ex_comments WHERE aID=:aID AND cTYPE=:cTYPE ORDER BY ID DESC LIMIT 0,3");
+		$q = $db->prepare("SELECT * FROM ex_comments WHERE aID=:aID AND cTYPE=:cTYPE ORDER BY ID DESC");
 
 		$q->execute([
 	        'aID' => $aid,
@@ -66,17 +66,17 @@ if(isset($_POST["aid"]) && is_numeric($_POST["aid"])) {
     	
     		<div class="critics-self">
     		
-    			<a href="<?= $WURI . '/' . strtolower($criticname) ?>"><?= ucfirst($criticname) ?></a>&nbsp;
+    			<a href="<?= $WURI . '/' . $criticname ?>" title="<?= ucfirst($criticname) ?>"><?= ucfirst($criticname) ?></a>&nbsp;
 
             <?php if($item->uID === exAuth_getsession("userid")): ?>
+            
+                <span id="ajax-critic" accesskey="<?= $item->ID ?>" title="cliquer pour modifier"><?= $item->commentbody ?></span>
 
-                <span id="json-critic" accesskey="<?= $item->ID ?>" title="cliquer pour modifier"><?= $item->commentbody ?></span>
+                <span class="critic-close" id="ajax-critic-close" accesskey="<?= $item->ID ?>" title="supprimer"><i class="fas fa-sm fa-times ml-1 critic-close-btn"></i></span>
 
-                <span class="critic-close" id="json-critic-close" accesskey="<?= $item->ID ?>" title="supprimer"><i class="fas fa-sm fa-times ml-1 critic-close-btn"></i></span>
+            <?php else: ?>
 
-             <?php else: ?>
-
-                <span><?= $item->commentbody ?></span>
+               <span><?= $item->commentbody ?></span>
             
             <?php endif; ?>
 
@@ -85,22 +85,6 @@ if(isset($_POST["aid"]) && is_numeric($_POST["aid"])) {
     		<?php
 
     		}
-
-            if(ex_cellcount("ex_comments", "aID", $aid, "AND cTYPE='1'") > 3) {
-                
-                $artworkinfo = ex_findone("ex_arts", "ID", $aid);
-
-                ?>
-                
-                <div class="d-block mt-2 pt-2 border-top text-center">
-                    
-                    <a href="<?= $WURI . '/art/' . $artworkinfo->arthash ?>">Voir plus...</a>
-
-                </div>
-
-                <?php
-
-            }
 
     	} else { exit("nothing's found"); }
 	

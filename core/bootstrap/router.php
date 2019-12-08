@@ -97,18 +97,36 @@ $router->map('GET|POST', '/logout/[*:hashedid]', function() {
 
 $router->map('GET|POST', '/categories', function() {
 
-	require EXPOZART . '/categories.php';
+	require CATEGORY . '/categories.php';
 
 }, 'catégories');
 
 
 
 
-$router->map('GET|POST', '/art/[i:arthash]', function() {
+$router->map('GET|POST', '/a/[i:arthash]', function() {
 
-	require EXPOZART . '/art.php';
+	require ARTWORK . '/artwork.php';
 
 }, 'artwork');
+
+
+
+
+$router->map('GET|POST', '/unfound/[*:type]/[*:value]', function() {
+
+	require ERR . '/unfound.php';
+
+}, 'unfound');
+
+
+
+
+$router->map('GET|POST', '/account/[*:type]', function() {
+
+	require ACCOUNT . '/account.php';
+
+}, 'account');
 
 
 

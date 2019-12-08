@@ -1,7 +1,7 @@
 <?php
 /**
  *	Expozart
- *	artworktaste ajax app:	recupère les artwork en fonction des préférences prédéfinies par l'utilisateur
+ *	artwork-main ajax app:	recupère un artwork en fonction des paramètres dans l'URL
  *	Code:	yitzakD
  */
 
@@ -118,7 +118,7 @@ if(isset($_GET['uri'])) {
 
 	<div class="row no-gutters exrow">
 					
-		<div class="col-sx-12 col-md-12 col-lg-12 col-xl-8">
+		<div class="col-xs-12 col-md-12 col-lg-12 col-xl-8">
 
 			<div class="d-flex art-content">
 				
@@ -128,7 +128,7 @@ if(isset($_GET['uri'])) {
 
 		</div>
 
-		<div class="col-sx-12 col-md-12 col-lg-12 col-xl-4">
+		<div class="col-xs-12 col-md-12 col-lg-12 col-xl-4">
 
 			<div class="d-block art-comment">
 						
@@ -140,7 +140,7 @@ if(isset($_GET['uri'])) {
 
 						<div class="dropdown-menu dropdown-menu-right">
 
-							<form method="POST" action="<?= $WURI . '/art/' . $arthash ?>" class="m-0 p-0 dropdown-item" id="json-menu-artwork-access"><input type="submit" value="Acceder à l'artwork" ></form>
+							<form method="POST" action="<?= $WURI . '/a/' . $arthash ?>" class="m-0 p-0 dropdown-item" id="json-menu-artwork-access"><input type="submit" value="Acceder à l'artwork" ></form>
 
 							<?php if($artwork->uID !== exAuth_getsession("userid")): ?>
 
@@ -164,7 +164,7 @@ if(isset($_GET['uri'])) {
 
 					<span class="avatar rounded-circle">
 						
-						<a href="<?= $WURI . '/' . strtolower($exUsername) ?>" title="<?= $exUsername ?>"  id="json-avatar-link">
+						<a href="<?= $WURI . '/' . $exUsername ?>" title="<?= $exUsername ?>"  id="json-avatar-link">
 
 							<?php if($avatar ==  true): ?>
 
@@ -184,7 +184,7 @@ if(isset($_GET['uri'])) {
 						
 						<div class="info-name">
 							
-							<a href="<?= $WURI . '/' . strtolower($exUsername) ?>" title="<?= $exUsername ?>" id="json-username"><?= $exUsername ?></a>
+							<a href="<?= $WURI . '/' . $exUsername ?>" title="<?= $exUsername ?>" id="json-username"><?= $exUsername ?></a>
 
 						</div>
 
@@ -214,7 +214,7 @@ if(isset($_GET['uri'])) {
 
 					<div>
 
-						<a href="<?= $WURI . '/' . strtolower($exUsername) ?>" class="content-link" id="json-post-username" title="<?= $exUsername ?>"><?= $exUsername ?></a>
+						<a href="<?= $WURI . '/' . $exUsername ?>" class="content-link" id="json-post-username" title="<?= $exUsername ?>"><?= $exUsername ?></a>
 
 						<span class="content-self" id="json-post-content"><?= $artwork->artcontent ?></span>
 
@@ -247,7 +247,7 @@ if(isset($_GET['uri'])) {
 
 					<span class="avatar rounded-circle">
 						
-						<a href="<?= $WURI . '/' . strtolower(exAuth_getsession("username")) ?>" title="<?= exAuth_getsession("username") ?>"  id="json-critic-avatar-link">
+						<a href="<?= $WURI . '/' . exAuth_getsession("username") ?>" title="<?= exAuth_getsession("username") ?>"  id="json-critic-avatar-link">
 
 							<?php if($userAvatar): ?>
 						
@@ -271,7 +271,7 @@ if(isset($_GET['uri'])) {
 						
 						<div class="input-group">
 							
-							<input type="text" class="form-control critics-form-control" id="json-comment-box" placeholder="ajouter un commentaire" accesskey="">
+							<input type="text" class="form-control critics-form-control" id="json-comment-box" placeholder="Ajouter un commentaire..." accesskey="">
 	
 							<div class="input-group-append">
 
@@ -295,7 +295,7 @@ if(isset($_GET['uri'])) {
 
 <?php if($prev): ?>
 
-	<a href="<?= $WURI . '/art/' . $prev->arthash ?>" class="open-artwork-ajax" id="prev" accesskey="<?= $prev->ID ?>">
+	<a href="<?= $WURI . '/a/' . $prev->arthash ?>" class="open-artwork-ajax" id="prev" accesskey="<?= $prev->ID ?>">
 
 		<i class="fas fa-2x fa-angle-left"></i>
 
@@ -307,7 +307,7 @@ if(isset($_GET['uri'])) {
 
 <?php if($next): ?>
 
-	<a href="<?= $WURI . '/art/' . $next->arthash ?>" class="open-artwork-ajax" id="next" accesskey="<?= $next->ID ?>">
+	<a href="<?= $WURI . '/a/' . $next->arthash ?>" class="open-artwork-ajax" id="next" accesskey="<?= $next->ID ?>">
 
 		<i class="fas fa-2x fa-angle-right"></i>
 

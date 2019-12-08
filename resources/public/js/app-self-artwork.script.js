@@ -47,7 +47,7 @@ $(document).ready(function() {
 
 		if($(this).attr("title") === "liker") {
 
-			$.post(ajaxlink + 'Art/parts/artwork-like.ajax.php', {aid:_aid_}, function(dataLikerresponse) {
+			$.post(ajaxlink + 'Artwork/parts/artwork-like.ajax.php', {aid:_aid_}, function(dataLikerresponse) {
 		
 				if(dataLikerresponse !== 'not-liked') {
 
@@ -67,7 +67,7 @@ $(document).ready(function() {
 
 		} else {
 
-			$.post(ajaxlink + 'Art/parts/artwork-dislike.ajax.php', {aid:_aid_}, function(dataDislikerresponse) {
+			$.post(ajaxlink + 'Artwork/parts/artwork-dislike.ajax.php', {aid:_aid_}, function(dataDislikerresponse) {
 		
 				if(dataDislikerresponse !== 'not-disliked') {
 
@@ -119,7 +119,7 @@ $(document).ready(function() {
 	getCritics();
 	function getCritics() {
 
-		$.post(ajaxlink + 'Art/parts/self-artwork-critics.ajax.php', {aid:haid}, function(lastcriticsDataresponse) {
+		$.post(ajaxlink + 'Artwork/parts/self-artwork-critics.ajax.php', {aid:haid}, function(lastcriticsDataresponse) {
 
 			if(lastcriticsDataresponse !== "nothing's found") {
 
@@ -196,7 +196,7 @@ $(document).ready(function() {
 
 				    htmlAccesskey = $(this).attr("accesskey");
 
-				    $.post(ajaxlink + 'Art/parts/artwork-critic-updater.ajax.php',{aid:htmlAccesskey,commentbody:html},function(dataUpdateresponse) {
+				    $.post(ajaxlink + 'Artwork/parts/artwork-critic-updater.ajax.php',{aid:htmlAccesskey,commentbody:html},function(dataUpdateresponse) {
 		
 						if(dataUpdateresponse !== 'not-updated') {
 
@@ -233,7 +233,7 @@ $(document).ready(function() {
 					$(criticSelf).remove();
 
 
-					$.post(ajaxlink + 'Art/parts/artwork-critic-remove.ajax.php', {aid:haid}, function(dataRemoveCriticRresponse) {
+					$.post(ajaxlink + 'Artwork/parts/artwork-critic-remove.ajax.php', {aid:haid}, function(dataRemoveCriticRresponse) {
 		
 						if(dataRemoveCriticRresponse !== 'not-removed') {
 
@@ -254,7 +254,7 @@ $(document).ready(function() {
 	};
 	function criticsender() {
 
-		$.post(ajaxlink + 'Art/parts/artwork-critic-sender.ajax.php',{msg:crticMsg,artworkid:haid},function(criticsenderData) {
+		$.post(ajaxlink + 'Artwork/parts/artwork-critic-sender.ajax.php',{msg:crticMsg,artworkid:haid},function(criticsenderData) {
 			
 			if(criticsenderData !== "critic-not-send") {
 				

@@ -1,7 +1,7 @@
 <?php
 /**
  *	Expozart
- *	register app:	gére les inscriptions des utilisateurs
+ *	home app:	gére la home page
  *	Code:	yitzakD
  */
 

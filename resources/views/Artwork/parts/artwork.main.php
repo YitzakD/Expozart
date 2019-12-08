@@ -2,7 +2,7 @@
 
 	<div class="row no-gutters exrow">
 		
-		<div class="col-sx-12 col-md-12 col-lg-12 col-xl-12">
+		<div class="col-xs-12 col-md-12 col-lg-12 col-xl-12">
 
 			<div class="d-block art-comment">
 
@@ -82,7 +82,7 @@
 
 		</div>
 		
-		<div class="col-sx-12 col-md-12 col-lg-12 col-xl-12">
+		<div class="col-xs-12 col-md-12 col-lg-12 col-xl-12">
 
 			<div class="d-flex art-content">
 
@@ -92,7 +92,7 @@
 
 		</div>
 
-		<div class="col-sx-12 col-md-12 col-lg-12 col-xl-12">
+		<div class="col-xs-12 col-md-12 col-lg-12 col-xl-12">
 
 			<div class="d-block art-comment mt-2">
 							
@@ -164,7 +164,7 @@
 						
 						<div class="input-group">
 							
-							<input type="text" class="form-control critics-form-control" id="ajax-comment-box" placeholder="ajouter un commentaire">
+							<input type="text" class="form-control critics-form-control" id="ajax-comment-box" placeholder="Ajouter un commentaire...">
 	
 							<div class="input-group-append">
 

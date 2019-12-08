@@ -1,7 +1,7 @@
 <?php
 /**
  *	Expozart
- *	artwork-critic-send ajax app:	gère les likes
+ *	artwork-critic-sender ajax app:	gère les enregistrement de commentaires
  *	Code:	yitzakD
  */
 

@@ -164,6 +164,7 @@ div > textarea.form-text-elastic { min-height: 5rem; }
     border-color: var(--ex-color-violet-ea);
     padding: .45rem 2.5rem;
     border-radius: 2rem;
+    color: var(--ex-color-light-ea)!important;
 }
 .ex-btn-primary-outline {
     font-family: var(--ex-font-family-bold);
@@ -180,6 +181,7 @@ div > textarea.form-text-elastic { min-height: 5rem; }
 	background-color: var(--ex-color-violet-hover-ea)!important;
     border-color: var(--ex-color-violet-hover-ea)!important;
     box-shadow: none!important;
+    color: var(--ex-color-light-ea)!important;
 }
 
 
@@ -384,8 +386,6 @@ button.ex-alert-close {
 /** Header style */
 .ex-header { 
     height: 60px;
-    position: sticky;
-    z-index: 700;
     background-color: var(--ex-color-light-ea);
 }
 .ex-inner-header {
@@ -530,10 +530,22 @@ button.ex-alert-close {
     color: var(--ex-color-violet-hover-ea);
     border-color: transparent;
 }
-/*.dropdown-menu .dropdown-item:hover .ex-inner-header-right .nav li a.ex-nav-link {
-    background-color: var(--ex-color-grey-hover-ea);
-    color: var(--ex-color-pink-ea);
-}*/
+
+
+
+
+
+
+
+
+
+/** Main */
+.ex-main { padding-top: 60PX; }
+
+
+
+
+
 
 
 
@@ -643,6 +655,11 @@ button.ex-alert-close {
 
 
 
+
+
+
+
+
 /** all Placehoder */
 /**Home masonry*/
 .ex-home-placeholder {
@@ -702,7 +719,7 @@ button.ex-alert-close {
 .masonry-taste-art-placeholder.art-h-500 { height: 500px; }
 .masonry-taste-art-placeholder.art-h-550 { height: 550px; }
 
-/**Home artwork display*/
+/**Home artwork display placeholder */
 .exart-placeholder-display {
     position: relative;
     width: 100%; 
@@ -829,10 +846,14 @@ button.ex-alert-close {
 .artwork-placeholder-exart-self .art-placeholder-comment .art-w-85 { width: 85% }
 .artwork-placeholder-exart-self .art-placeholder-comment .art-w-100 { width: 100% }
 
+/**Profile-infos placeholder*/
 
 
 
 
+
+
+/** HOME PAGE */
 /** masonry artwork */
 #home-content { display: none; padding-top: 8px; }
 .ex-home-page {
@@ -1023,6 +1044,7 @@ button.ex-alert-close {
 
 
 
+/** ARTWORK PAGE */
 /** Artwork displayer */
 .locked-body { overflow: hidden; }
 .ex-display-container {
@@ -1366,10 +1388,6 @@ button.ex-alert-close {
 
 
 
-
-
-
-
 .ex-artwork-display-container {
     width: 100%;
     height: 100%;
@@ -1422,4 +1440,62 @@ button.ex-alert-close {
     border-radius: 2rem;
     transition: all .3s;
     margin-top: .35rem;
+}
+
+
+
+
+
+
+
+
+
+/* PROFILE PAGE */
+.ex-profile-page {
+    max-width: 1220px;
+    margin: 1rem auto;
+    justify-content: center;
+    -webkit-animation: none;
+    animation: none;
+}
+.ex-profile-page .exprofile-info-header {
+    width: 100%!important;
+    height: auto;
+    text-align: center;
+}
+.ex-profile-page .exprofile-info-header .avatar {
+    margin: 0 auto;
+    width: 90px;
+    height: 90px;
+    padding: 3px;
+    background-color: var(--ex-color-pink-ea);
+}
+.ex-profile-page .exprofile-info-header .avatar .ex-avatarname,
+.ex-profile-page .exprofile-info-header .avatar img {
+    width: 100%;
+    height: 100%;
+    line-height: 90px;
+    font-size: 1.5rem;
+}
+.ex-profile-page .exprofile-info-header .exprofile-info-header-counter .ex-btn-primary-outline:hover {
+    background-color: var(--ex-color-violet-hover-ea)!important;
+    border-color: var(--ex-color-violet-hover-ea)!important;
+    color: var(--ex-color-light-ea)!important;
+}
+.ex-profile-page .exp-info-user {
+    color: var(--ex-color-black-ea);
+    font-weight: 700;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+.ex-profile-page .exp-info-user:hover {
+    color: var(--ex-color-black-ea);
+    text-decoration: none;
+}
+.ex-profile-page .exprofile-info-footer .exprofile-info-footer-btns {
+    width: 100%!important;
+    height: auto;
+    text-align: center;
+    display: none;
 }

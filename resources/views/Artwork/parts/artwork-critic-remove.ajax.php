@@ -1,7 +1,7 @@
 <?php
 /**
  *	Expozart
- *	artwork-dislike ajax app:	gère les dislikes
+ *	artwork-critic-remove ajax app:	gère les commentaires supprimés
  *	Code:	yitzakD
  */
 

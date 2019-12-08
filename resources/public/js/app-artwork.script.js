@@ -193,7 +193,7 @@ $(document).ready(function() {
 
 					    			__haid = $(this).attr("accesskey");
 
-					    			__hartworktasteLikecounter.load(ajaxlink + 'Art/parts/artworkTaste-like.count.php', {aid:__haid});
+					    			__hartworktasteLikecounter.load(ajaxlink + 'Artwork/parts/artworkTaste-like.count.php', {aid:__haid});
 
 					    		});
 
@@ -238,7 +238,7 @@ $(document).ready(function() {
 
 									if($(this).attr("title") === "liker") {
 
-										$.post(ajaxlink + 'Art/parts/artwork-like.ajax.php', {aid:_aid_}, function(dataLikerresponse) {
+										$.post(ajaxlink + 'Artwork/parts/artwork-like.ajax.php', {aid:_aid_}, function(dataLikerresponse) {
 									
 											if(dataLikerresponse !== 'not-liked') {
 		
@@ -256,7 +256,7 @@ $(document).ready(function() {
 
 									} else {
 
-										$.post(ajaxlink + 'Art/parts/artwork-dislike.ajax.php', {aid:_aid_}, function(dataDislikerresponse) {
+										$.post(ajaxlink + 'Artwork/parts/artwork-dislike.ajax.php', {aid:_aid_}, function(dataDislikerresponse) {
 									
 											if(dataDislikerresponse !== 'not-disliked') {
 
@@ -320,7 +320,7 @@ $(document).ready(function() {
 								ajaxLB = $(cardlikebtn).find("button#ajax-like-btn");
 
 
-								$.get(ajaxlink + 'Art/parts/artwork-main.ajax.php', {uri:url}, function(artworkResponse) {
+								$.get(ajaxlink + 'Artwork/parts/artwork-main.ajax.php', {uri:url}, function(artworkResponse) {
 
 									if(artworkResponse !== 'not-founded') {
 										
@@ -363,7 +363,7 @@ $(document).ready(function() {
 
 											if($(this).attr("title") === "liker") {
 
-												$.post(ajaxlink + 'Art/parts/artwork-like.ajax.php', {aid:_aid_}, function(dataLikerresponse) {
+												$.post(ajaxlink + 'Artwork/parts/artwork-like.ajax.php', {aid:_aid_}, function(dataLikerresponse) {
 											
 													if(dataLikerresponse !== 'not-liked') {
 
@@ -392,7 +392,7 @@ $(document).ready(function() {
 
 											} else {
 
-												$.post(ajaxlink + 'Art/parts/artwork-dislike.ajax.php', {aid:_aid_}, function(dataDislikerresponse) {
+												$.post(ajaxlink + 'Artwork/parts/artwork-dislike.ajax.php', {aid:_aid_}, function(dataDislikerresponse) {
 											
 													if(dataDislikerresponse !== 'not-disliked') {
 
@@ -454,7 +454,7 @@ $(document).ready(function() {
 										getCritics(haid);
 										function getCritics(thatid) {
 
-											$.post(ajaxlink + 'Art/parts/artwork-critics.ajax.php', {aid:haid}, function(lastcriticsDataresponse) {
+											$.post(ajaxlink + 'Artwork/parts/artwork-critics.ajax.php', {aid:haid}, function(lastcriticsDataresponse) {
 
 												if(lastcriticsDataresponse !== "nothing's found") {
 
@@ -528,7 +528,7 @@ $(document).ready(function() {
 
 													    htmlAccesskey = $(this).attr("accesskey");
 
-													    $.post(ajaxlink + 'Art/parts/artwork-critic-updater.ajax.php',{aid:htmlAccesskey,commentbody:html},function(dataUpdateresponse) {
+													    $.post(ajaxlink + 'Artwork/parts/artwork-critic-updater.ajax.php',{aid:htmlAccesskey,commentbody:html},function(dataUpdateresponse) {
 											
 															if(dataUpdateresponse !== 'not-updated') {
 
@@ -564,7 +564,7 @@ $(document).ready(function() {
 														$(criticSelf).remove();
 
 
-														$.post(ajaxlink + 'Art/parts/artwork-critic-remove.ajax.php', {aid:haid}, function(dataRemoveCriticRresponse) {
+														$.post(ajaxlink + 'Artwork/parts/artwork-critic-remove.ajax.php', {aid:haid}, function(dataRemoveCriticRresponse) {
 											
 															if(dataRemoveCriticRresponse !== 'not-removed') {
 
@@ -587,7 +587,7 @@ $(document).ready(function() {
 										/** sendCritics function */
 										function criticsender(getid) {
 
-											$.post(ajaxlink + 'Art/parts/artwork-critic-sender.ajax.php',{msg:crticMsg,artworkid:haid},function(criticsenderData) {
+											$.post(ajaxlink + 'Artwork/parts/artwork-critic-sender.ajax.php',{msg:crticMsg,artworkid:haid},function(criticsenderData) {
 												
 												if(criticsenderData !== "critic-not-send") {
 				
@@ -684,7 +684,7 @@ $(document).ready(function() {
 
 									setTimeout(exArtworkplaceholder, 3000);
 
-									if(window.location.href == rootlink) { getUserArtworksTastes(); }
+									if(window.location.href === rootlink) { getUserArtworksTastes(); }
 
 						    	}
 

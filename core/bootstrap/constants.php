@@ -39,6 +39,10 @@ define('APP', ROOT . DS . 'app');
 
 	define('EXPOZART', APP . DS . 'main');
 
+	define('CATEGORY', APP . DS . 'category');
+
+	define('ARTWORK', APP . DS . 'artwork');
+
 
 define('RESOURCES', ROOT . DS . 'resources');
 

@@ -79,7 +79,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 						</span>
 
 						<!-- Comment -->
-						<a href="<?= $WURI . '/art/' . $item->arthash; ?>" role="boutton" class="btn btn-sm exart-comment-btn open-artwork-ajax" title="commenter"><i class="far fa-lg fa-paper-plane"></i></a>
+						<a href="<?= $WURI . '/a/' . $item->arthash; ?>" role="boutton" class="btn btn-sm exart-comment-btn open-artwork-ajax" title="commenter"><i class="far fa-lg fa-paper-plane"></i></a>
 
 						<!-- Menu -->
 						<div class="btn-group exart-artwork-menu">
@@ -88,7 +88,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 
 							<div class="dropdown-menu dropdown-menu-right">
 
-								<form method="POSt" action="<?= $WURI . '/art/' . $item->arthash; ?>" class="m-0 p-0 dropdown-item"><input type="submit" value="Acceder à l'artwork" ></form>
+								<form method="POSt" action="<?= $WURI . '/a/' . $item->arthash; ?>" class="m-0 p-0 dropdown-item"><input type="submit" value="Acceder à l'artwork" ></form>
 
 								<?php if($item->uID !== exAuth_getsession("userid")): ?>
 
@@ -111,7 +111,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 						</div>	
 						
 						<!-- Content -->
-						<a href="<?= $WURI . '/art/' . $item->arthash; ?>" class="exart-art-item relative open-artwork-ajax" accesskey="<?= $item->arthash  ?>">
+						<a href="<?= $WURI . '/a/' . $item->arthash; ?>" class="exart-art-item relative open-artwork-ajax" accesskey="<?= $item->arthash  ?>">
 
 							<div class="exart-hover" accesskey="<?= $item->ID . '-' . $item->uID . '-' . $item->cID . '-' . $item->tID  ?>"></div>
 
@@ -132,7 +132,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 							
 							<span class="avatar rounded-circle">
 
-								<a href="<?= $WURI . '/' . strtolower($exUsername) ?>" title="<?= $exUsername  ?>">
+								<a href="<?= $WURI . '/' . $exUsername ?>" title="<?= $exUsername  ?>">
 
 									<?php if($tasteownerAvatar): ?>
 
@@ -153,7 +153,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 							<span class="info">
 								
 								<div class="info-name" title="<?= $exUsername  ?>">
-									<a href="<?= $WURI . '/' . strtolower($exUsername) ?>" title="<?= $exUsername  ?>"><?= $exUsername; ?></a>
+									<a href="<?= $WURI . '/' . $exUsername ?>" title="<?= $exUsername  ?>"><?= $exUsername; ?></a>
 								</div>
 
 								<div class="info-place">

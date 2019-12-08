@@ -214,7 +214,7 @@ if(!function_exists('ex_gotoprofile')) {
 
         global $router;
 
-        return $router->generate('profile', ['username' => strtolower($username)]);
+        return $router->generate('profile', ['username' => $username]);
 
     }
 
@@ -740,8 +740,8 @@ if(!function_exists('ex_nextElement')) {
 
 /**
  *  ex_getTimeAgo($time)
- *  $created => time (heure ou date convertie en heure)
- *  permet afficher le temps écoulé
+ *  $time => datetime (heure ou date convertie en heure)
+ *  permet ad'fficher le temps écoulé
  */
 if(!function_exists('ex_getTimeAgo')) {
 
@@ -771,6 +771,79 @@ if(!function_exists('ex_getTimeAgo')) {
                 return 'il y a ' . $t . ' ' . ($str != 'mois' ? $str  . ($t > 1 ? 's' : '') : $str);
             
             }
+
+        }
+
+    }
+   
+}
+
+
+
+
+/**
+ *  ex_getRealnumber($num)
+ *  $num => int (un compteur, un nombre)
+ *  permet d'afficher les nombre de façon élégantes
+ */
+if(!function_exists('ex_getRealnumber')) {
+
+    function ex_getRealnumber($num)
+    {
+
+        $ber = number_format($num, 0, '', '.');
+
+        $n = explode(".", $ber);
+        
+        $r = $n[0];
+
+        
+
+        if(count($n) > 1 && count($n) < 3) {
+
+            if($n[1][0] > "0") {
+
+                $d = $n[1][0];
+                
+                return $r . "," . $d . "k"; 
+
+            } else {
+                
+                return $r . "k"; 
+
+            }
+
+        } elseif(count($n) > 2 && count($n) < 4) {
+
+            if($n[1][0] > "0") {
+
+                $d = $n[1][0];
+                
+                return $r . "," . $d . "m"; 
+
+            } else {
+
+                return $r . "m"; 
+
+            }
+
+        } elseif(count($n) > 3 && count($n) < 5) {
+
+            if($n[1][0] > "0") {
+
+                $d = $n[1][0];
+                
+                return $r . "," . $d . "T"; 
+
+            } else {
+
+                return $r . "T";
+
+            }
+
+        } else {
+
+            return $r;
 
         }
 
