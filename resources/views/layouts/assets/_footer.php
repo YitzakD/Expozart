@@ -19,17 +19,21 @@
 
 		<?php if($match['name'] === "artwork"): ?>
 
-		<script src="<?= $JS . '/app-global.script.js'; ?>" type="text/javascript"></script>
-
 		<script src="<?= $JS . '/app-self-artwork.script.js'; ?>" type="text/javascript"></script>
+		
+		<?php elseif($match['name'] === "catégories"): ?>
+
+		<script src="<?= $JS . '/app-category.script.js'; ?>" type="text/javascript"></script>
+
+		<?php elseif($match['name'] === "profile"): ?>
+
+		<script src="<?= $JS . '/app-profile.script.js'; ?>" type="text/javascript"></script>
 
 		<?php else: ?>
 
-		<script src="<?= $JS . '/app-global.script.js'; ?>" type="text/javascript"></script>
-
 		<script src="<?= $JS . '/app-artwork.script.js'; ?>" type="text/javascript"></script>
 
-		<?php endif; ?>	
+		<?php endif; ?>
 		
 	<?php endif; ?>
 

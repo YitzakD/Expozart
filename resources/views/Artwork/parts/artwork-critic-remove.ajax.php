@@ -46,7 +46,7 @@ if(isset($_POST["aid"]) && is_numeric($_POST["aid"])) {
 
 		if($artworkcritics > 1) {
 			
-			echo $artworkcritics . " critiques";
+			echo ex_getRealnumber($artworkcritics) . " critiques";
 
 		} else {
 

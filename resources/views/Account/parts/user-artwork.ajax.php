@@ -1,7 +1,7 @@
 <?php
 /**
  *	Expozart
- *	artwork-main ajax app:	recupère un artwork en fonction des paramètres dans l'URL
+ *	user-artwork ajax app:	recupère un artwork posté en fonction des paramètres dans l'URL
  *	Code:	yitzakD
  */
 
@@ -94,11 +94,14 @@ if(isset($_GET['uri'])) {
 			FROM ex_arts 
 			INNER JOIN ex_media 
 			ON ex_arts.ID = ex_media.salt 
-			WHERE cID IN(SELECT cID FROM ex_usertopics WHERE uID=:userid) 
+			WHERE ex_arts.uID=:uID AND cID IN(SELECT cID FROM ex_usertopics WHERE uID=:userid) 
 			AND ex_media.fileusability='1' ORDER BY ex_arts.ID DESC
 		");
 
-        $q->execute(['userid' => exAuth_getsession("userid")]);
+        $q->execute([
+        	'uID' => $artwork->ID,
+        	'userid' => $artwork->ID
+        ]);
 
         $data = $q->fetchAll(PDO::FETCH_OBJ);
 
@@ -194,7 +197,7 @@ if(isset($_GET['uri'])) {
 
 							<?php if($artworklikes > 0): ?>
 
-							<span class="small" id="json-post-likes"><i class="far fa-sm fa-heart"></i> <?= ex_getRealnumber($artworklikes) ?></span>
+							<span class="small" id="json-post-likes"><i class="far fa-sm fa-heart"></i> <?= $artworklikes ?></span>
 
 							<?php endif; ?>
 
@@ -224,7 +227,7 @@ if(isset($_GET['uri'])) {
 						
 						<?php if($artworkcritics > 1): ?>
 
-							<?= ex_getRealnumber($artworkcritics) ?> critiques
+							<?= $artworkcritics ?> critiques
 
 						<?php else: ?>
 

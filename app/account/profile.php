@@ -58,6 +58,13 @@ if(ex_isalreadyuse("ex_users", "username", $MOD)) {
 
 	$userTopicsregistration = ex_cellcount("ex_usertopics", "uID", $userInfos->ID);
 
+
+	if(ex_isalreadyuse("ex_userinfos", "uID", $userInfos->ID)) {
+
+		$userMoreInfos = ex_findone("ex_userinfos", "uID", $userInfos->ID);
+
+	}
+
 	
 
 

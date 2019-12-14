@@ -554,7 +554,7 @@ button.ex-alert-close {
 .ex-category-page { padding: 7rem 1.5rem; }
 .ex-categories-cards {
     width: 100%;
-    padding-top: 2.5rem;;
+    padding-top: 2.5rem;
     padding-bottom: 2.5rem;
     display: flex;
     display: -webkit-flex;
@@ -562,6 +562,17 @@ button.ex-alert-close {
     -webkit-align-items: center;
     justify-content: center;
     -webkit-justify-content: center;
+    flex-wrap: wrap;
+}
+.exprofile-categories-cards {
+    width: 100%;
+    padding-bottom: 2.5rem;
+    display: flex;
+    display: -webkit-flex;
+    align-items: left;
+    -webkit-align-items: left;
+    justify-content: left;
+    -webkit-justify-content: left;
     flex-wrap: wrap;
 }
 @keyframes zoom {
@@ -649,6 +660,28 @@ button.ex-alert-close {
     top: .75rem;
     color: var(--ex-color-green-ea);
     text-shadow: 0 .5px 1px rgba(0, 0, 0, .45)
+}
+.card-footer-plus {
+    position: relative;
+    top: 75%;
+    display: block;
+    background-color: transparent;
+    border-top: none;
+    text-align: center;
+}
+.card-footer-plus div.js-card-plus {
+    margin: 0 auto;
+    background-color: var(--ex-color-violet-ea);
+    border: 1px solid var(--ex-color-violet-ea);
+    color: var(--ex-color-light-ea);
+    width: 40px!important;
+    height: 40px!important;
+    line-height: 40px;
+}
+.card-footer-plus div.js-card-plus:hover {
+    margin: 0 auto;
+    background-color: var(--ex-color-violet-hover-ea);
+    border: 1px solid var(--ex-color-violet-hover-ea);
 }
 .choice-finished { height: 3rem; }
 
@@ -1498,4 +1531,22 @@ button.ex-alert-close {
     height: auto;
     text-align: center;
     display: none;
+}
+.ex-profile-page .ex-profile-nav-pills { border-bottom: .5px solid var(--ex-color-grey-ea); }
+.ex-profile-page .ex-profile-nav-pills .nav-item .nav-link {
+    text-transform: uppercase;
+    font-size: .75rem;
+    color: var(--ex-color-grey-ea);
+}
+.ex-profile-page .ex-profile-nav-pills .nav-item .nav-link.active {
+    border-bottom: 1.5px solid var(--ex-color-violet-hover-ea);
+    color: var(--ex-color-violet-hover-ea);
+}
+.ex-profile-page .ex-profile-tab-content { width: 100%; }
+.ex-profile-page .ex-profile-tab-content .exprofile-posts {
+    max-width: 915px;
+    margin: 0 auto;
+    justify-content: center;
+    -webkit-animation: none;
+    animation: none;
 }

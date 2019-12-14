@@ -39,7 +39,7 @@ if(exAuth_getsession("userid") && exAuth_getsession("userhash")) {
 
 			$q = $db->prepare("INSERT INTO ex_usercategories(uID, cID) VALUES(:uID, :cID)");
     
-	    	$r = $db->prepare("INSERT INTO ex_usertopics(uID, tID) VALUES(:uID, :tID)");
+	    	$r = $db->prepare("INSERT INTO ex_usertopics(uID, cID, tID) VALUES(:uID, :cID, :tID)");
 
 	    	$q->execute([
 	            'uID' => exAuth_getsession("userid"),
@@ -48,6 +48,7 @@ if(exAuth_getsession("userid") && exAuth_getsession("userhash")) {
 
 	        $r->execute([
 	            'uID' => exAuth_getsession("userid"),
+	            'cID' => $TID,
 	            'tID' => $TID
 	        ]);
 

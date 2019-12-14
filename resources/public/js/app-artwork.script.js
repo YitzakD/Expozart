@@ -180,7 +180,6 @@ $(document).ready(function() {
 						$(exArtcontainer).append(userArtworksTastesResponseData).masonry('reloadItems').masonry();
 
 						/** On home */
-						getLikeCount();
 					    function getLikeCount() {
 
 					    	exArtwork = $(".exart");
@@ -228,6 +227,8 @@ $(document).ready(function() {
 								aLb = $(ajaxLikeBox).find("button#ajax-like-btn");
 
 								$(aLb).click(function() {
+								
+									getLikeCount();
 
 									_aid_ = $(this).attr("accesskey");
 
@@ -527,16 +528,40 @@ $(document).ready(function() {
 													    html = $(this).val();
 
 													    htmlAccesskey = $(this).attr("accesskey");
+													    
 
-													    $.post(ajaxlink + 'Artwork/parts/artwork-critic-updater.ajax.php',{aid:htmlAccesskey,commentbody:html},function(dataUpdateresponse) {
+														if(html !== "") {
+
+														    $.post(ajaxlink + 'Artwork/parts/artwork-critic-updater.ajax.php',{aid:htmlAccesskey,commentbody:html},function(dataUpdateresponse) {
+												
+																if(dataUpdateresponse !== 'not-updated') {
+
+																	console.log('updated');
+
+																}
+
+															});
+															
+														} else {
+
+															criticSelf = $(this).parent();
+
+															$(criticSelf).fadeOut(1000);
+
+															$.post(ajaxlink + 'Artwork/parts/artwork-critic-remove.ajax.php', {aid:htmlAccesskey}, function(dataRemoveCriticRresponse) {
 											
-															if(dataUpdateresponse !== 'not-updated') {
+																if(dataRemoveCriticRresponse !== 'not-removed') {
 
-																console.log('updated');
+																	$("#json-post-critics-counter").html(dataRemoveCriticRresponse);
 
-															}
+																	getArtwork(url);
+																
+																}
 
-														});
+															});
+
+														}
+
 
 													    viewableText = $("<span>").attr("id", "ajax-critic").attr("accesskey", htmlAccesskey).attr("title", "cliquer ppour modifier");
 

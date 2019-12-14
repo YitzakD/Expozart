@@ -50,7 +50,7 @@ if(isset($_POST["artworkid"]) && is_numeric($_POST["artworkid"])) {
 
 		$artworkcritics = ex_cellcount("ex_comments", "aID", $artworkid, "AND cTYPE='1'");
 
-		echo $artworkcritics;
+		echo ex_getRealnumber($artworkcritics);
 
 	}
 

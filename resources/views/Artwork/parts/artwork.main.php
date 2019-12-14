@@ -68,7 +68,7 @@
 
 							<?php if($artworklikes > 0): ?>
 
-							<span class="small" id="json-post-likes"><i class="far fa-sm fa-heart"></i> <?= $artworklikes ?></span>
+							<span class="small" id="json-post-likes"><i class="far fa-sm fa-heart"></i> <?= ex_getRealnumber($artworklikes) ?></span>
 							
 							<?php endif; ?>
 
@@ -118,7 +118,7 @@
 
 						<?php if($artworkcritics > 1): ?>
 
-							<?= $artworkcritics ?> critiques
+							<?= ex_getRealnumber($artworkcritics) ?> critiques
 
 						<?php else: ?>
 

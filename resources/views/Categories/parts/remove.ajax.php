@@ -35,9 +35,13 @@ if(exAuth_getsession("userid") && exAuth_getsession("userhash")) {
 
 		$TID = $cToAffiliate;
 
-		ex_deleteall("ex_usertopics", "tID", $TID, "AND uID=" . exAuth_getsession("userid"));
+		$fut = ex_findone("ex_usertopics", "uID", exAuth_getsession("userid"), "AND tID='$TID'");
 
-		ex_deleteall("ex_usercategories", "cID", $TID, "AND uID=" . exAuth_getsession("userid"));
+		$fuc = ex_findone("ex_usercategories", "uID", exAuth_getsession("userid"), "AND cID='$TID'");
+
+		ex_deleteone("ex_usertopics", "ID", $fut->ID);
+
+		ex_deleteone("ex_usercategories", "ID", $fuc->ID);
 
 	}
 

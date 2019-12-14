@@ -10,8 +10,14 @@
 				
 				<div class="avatar rounded-circle">
 				
-				<?php if($avatar == true): ?><img src="<?= $profileAvatar ?>">
-				<?php else: ?><span class="ex-avatarname bg-expozart-violet"><?= ucfirst($profileAvatar) ?></span>
+				<?php if($avatar == true): ?>
+
+					<img src="<?= $profileAvatar ?>">
+
+				<?php else: ?>
+
+					<span class="ex-avatarname bg-expozart-violet"><?= ucfirst($profileAvatar) ?></span>
+
 				<?php endif; ?>
 
 				</div>
@@ -22,8 +28,18 @@
 
 			<div class="avatar rounded-circle">
 			
-			<?php if($avatar == true): ?><img src="<?= $profileAvatar ?>">
-			<?php else: ?><span class="ex-avatarname bg-expozart-violet" title="<?= $userInfos->username ?>"><?= ucfirst($profileAvatar) ?></span>
+			<?php if($avatar == true): ?>
+
+				<img src="<?= $profileAvatar ?>">
+
+			<?php else: ?>
+
+				<span class="ex-avatarname bg-expozart-violet" title="<?= $userInfos->username ?>">
+
+					<?= ucfirst($profileAvatar) ?>
+						
+				</span>
+
 			<?php endif; ?>
 
 			</div>
@@ -91,7 +107,9 @@
 				
 				<div class="col-12 col-xs-12 col-md-12 col-lg-12 col-xl-12">
 
-					<a href="<?= ex_gotoprofile($userInfos->username) ?>" class="exp-info-user" title="<?= $userInfos->username ?>"><?= $userInfos->username ?></a>
+					<a href="<?= ex_gotoprofile($userInfos->username) ?>" class="exp-info-user" title="<?= $userInfos->username ?>">
+						<?= $userInfos->username ?>
+					</a>
 
 				</div>
 
@@ -144,8 +162,50 @@
 
 				</div>
 
-			</div>	
+			</div>
+
+
 		
+			<div class="row no-gutters mb-4">
+
+				<div class="col-12 col-xs-12 col-md-12 col-lg-12 col-xl-12">
+					
+				<?php if(ex_isalreadyuse("ex_userinfos", "uID", $userInfos->ID)): ?>
+
+					<div class="small text-muted exprofile-info-footer-city">
+
+						<?= $userMoreInfos->city ?> (<?= $userMoreInfos->localisation ?>)
+
+					</div>
+
+					<div class="small exprofile-info-footer-bio mt-3"><?= $userMoreInfos->about ?></div>
+
+					<div class="small exprofile-info-footer-weblink mt-3">
+
+						<a href="<?= $userMoreInfos->weblink ?>"><?= $userMoreInfos->weblink ?></a>
+
+					</div>
+
+				<?php else: ?>
+
+					<div class="small text-muted mt-4">Aucune informations disponibles pour le moment</div>
+
+					<?php if($userInfos->ID === exAuth_getsession("userid")): ?>
+
+					<div class="small">
+						
+						<a href="<?= $router->generate('account', ['type' => 'edit']); ?>">Completez mes informations</a>
+						
+					</div>
+					
+					<?php endif; ?>
+
+				<?php endif; ?>
+
+				</div>
+		
+			</div>
+
 		</div>	
 
 	</div>

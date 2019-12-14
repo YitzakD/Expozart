@@ -1,6 +1,6 @@
 <div class="d-block">
 
-	<h5 class="text-expozart-grey">Aidez-nous à construir votre page d'exposition. Pour cela, vous devez choisir au moins 5 des catégories parmi celles qui vous sont proposées.</h5>
+	<h5 class="text-expozart-grey">Aidez-nous à construire votre page d'exposition. Pour cela, vous devez choisir au moins 5 des catégories parmi celles qui vous sont proposées.</h5>
 	
 	<div class="choices-indicators" id="uc-tooltip"></div>
 
@@ -12,7 +12,7 @@
 			
 			<a hre="#" class="ex-card js-card js-card-checked" data-effect="color" accesskey="<?= $item->ID; ?>">
 
-					<span class="card-checked"><i class="fas fa-check-circle fa-lg"></i></span>
+				<span class="card-checked"><i class="fas fa-check-circle fa-lg"></i></span>
 
 			<?php else: ?>
 

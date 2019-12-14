@@ -1,7 +1,7 @@
 <?php
 /**
  *	Expozart
- *	artwork-main ajax app:	recupère un artwork en fonction des paramètres dans l'URL
+ *	user-like ajax app:	recupère un artwork aimé en fonction des paramètres dans l'URL
  *	Code:	yitzakD
  */
 
@@ -89,16 +89,18 @@ if(isset($_GET['uri'])) {
 
 		$q = $db->prepare("
 			SELECT 
-			ex_arts.*, 
+			ex_arts.*,
+			ex_likes.uID, 
 			ex_media.fileroad_sm AS newfileroad
 			FROM ex_arts 
-			INNER JOIN ex_media 
-			ON ex_arts.ID = ex_media.salt 
-			WHERE cID IN(SELECT cID FROM ex_usertopics WHERE uID=:userid) 
-			AND ex_media.fileusability='1' ORDER BY ex_arts.ID DESC
+			INNER JOIN ex_likes ON ex_arts.ID = ex_likes.aID 
+			INNER JOIN ex_media ON ex_arts.ID = ex_media.salt 
+			WHERE ex_likes.uID=:uID AND ex_likes.lTYPE='1' AND ex_media.fileusability='1' ORDER BY ex_arts.ID DESC
 		");
 
-        $q->execute(['userid' => exAuth_getsession("userid")]);
+        $q->execute([
+        	'uID' => exAuth_getsession("userid"),
+        ]);
 
         $data = $q->fetchAll(PDO::FETCH_OBJ);
 
@@ -194,7 +196,7 @@ if(isset($_GET['uri'])) {
 
 							<?php if($artworklikes > 0): ?>
 
-							<span class="small" id="json-post-likes"><i class="far fa-sm fa-heart"></i> <?= ex_getRealnumber($artworklikes) ?></span>
+							<span class="small" id="json-post-likes"><i class="far fa-sm fa-heart"></i> <?= $artworklikes ?></span>
 
 							<?php endif; ?>
 
@@ -224,7 +226,7 @@ if(isset($_GET['uri'])) {
 						
 						<?php if($artworkcritics > 1): ?>
 
-							<?= ex_getRealnumber($artworkcritics) ?> critiques
+							<?= $artworkcritics ?> critiques
 
 						<?php else: ?>
 
