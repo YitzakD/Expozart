@@ -46,10 +46,23 @@ if(isset($CON) && ($CON == $ID) && (ex_isalreadyuse("ex_arts", "arthash", $ID) >
 	$created = ex_getTimeAgo($createdtime);
 
 
+	$tastMediacount = ex_cellcount("ex_media", "salt", $exVar_artwork->ID, "AND fileusability='1'");
 
-	$artworkmedia = ex_findone("ex_media", "salt", $exVar_artwork->ID, "AND fileusability='1'");
+	if($tastMediacount > 1) {
 
-	if(!$artworkmedia) { $fileroad = ""; } else { $fileroad = $artworkmedia->fileroad_sm; }
+		$artworkmedia = ex_findall("ex_media", "WHERE salt='$exVar_artwork->ID' AND fileusability='1'");
+
+	} else {
+
+		$artworkmedia = ex_findone("ex_media", "salt", $exVar_artwork->ID, "AND fileusability='1'");
+
+		if(!$artworkmedia) { $fileroad = ""; } else { $fileroad = $artworkmedia->fileroad_sm; }
+
+	}
+
+	/*$artworkmedia = ex_findone("ex_media", "salt", $exVar_artwork->ID, "AND fileusability='1'");
+
+	if(!$artworkmedia) { $fileroad = ""; } else { $fileroad = $artworkmedia->fileroad_sm; }*/
 
 
 
@@ -74,55 +87,6 @@ if(isset($CON) && ($CON == $ID) && (ex_isalreadyuse("ex_arts", "arthash", $ID) >
 
 
 	$logeduseralreadyliked = ex_cellcount("ex_likes", "aID", $exVar_artwork->ID, "AND uID=" . exAuth_getsession("userid") . " AND lTYPE='1'");
-	
-	/*$q = $db->prepare("
-		SELECT 
-		ex_arts.*, 
-		ex_media.fileroad_sm AS newfileroad
-		FROM ex_arts 
-		INNER JOIN ex_media 
-		ON ex_arts.ID = ex_media.salt 
-		WHERE cID IN(SELECT cID FROM ex_usertopics WHERE uID=:userid) 
-		AND ex_media.fileusability='1' ORDER BY ex_arts.ID DESC
-	");
-
-    $q->execute(['userid' => exAuth_getsession("userid")]);
-
-    $data = $q->fetchAll(PDO::FETCH_OBJ);
-
-   	$counter = $data;
-
-	$currentKey = array_search($exVar_artwork->ID, array_column($counter, 'ID'));
-
-	$next = ex_nextElement($counter, $currentKey);
-
-	$prev = ex_prevElement($counter, $currentKey);
-
-
-	if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-
-		$artwork = array(
-			"ID" => $exVar_artwork->ID,
-			"arthash" => $ID,
-			"uID" => $exVar_artwork->uID,
-			"cID" => $exVar_artwork->cID,
-			"tID" => $exVar_artwork->tID,
-			"artcontent" => $exVar_artwork->artcontent,
-			"newfileroad" => $fileroad,
-			"created" => $created,
-			"username" => ucfirst($exUsername),
-			"avatar" => $avatar,
-			"useravatar" => $useravatar,
-			"userliked" => $logeduseralreadyliked,
-			"likes" => $artworklikes,
-			"critics" => $artworkcritics,
-			"next" => $next,
-			"prev" => $prev
-		);
-
-		echo json_encode($artwork, JSON_FORCE_OBJECT);
-
-	} else {*/
 
 	$artwork = $exVar_artwork;
 
@@ -145,9 +109,9 @@ if(isset($CON) && ($CON == $ID) && (ex_isalreadyuse("ex_arts", "arthash", $ID) >
 
 } else {
 
-	ex_setflashnotification("Nous n'arrivons à trouver cet artwork, peut-être a t-il été déplacer?" . "&nbsp;<i class='far fa-lg fa-grin-beam-sweat'></i>", "info");
+	ex_setflashnotification("Nous n'arrivons pas à trouver cet artwork, peut-être a t-il été déplacer?" . "&nbsp;<i class='far fa-lg fa-grin-beam-sweat'></i>", "info");
 
-	ex_redirect(WURI . '/unfound/artwork/' . $ID);
+	ex_redirect(WURI . '/unfound/a/' . $ID);
 
 }
 

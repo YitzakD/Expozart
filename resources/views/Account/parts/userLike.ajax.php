@@ -51,7 +51,13 @@ if(isset($_POST['getUlikes']) && isset($_POST['userid']) && is_numeric($_POST['u
 
 		$item = ex_findone("ex_arts", "ID", $likeItem->aID, "AND cID IN(SELECT cID FROM ex_usertopics WHERE uID='$userid')");
 
-		$tasteMedia = ex_findone("ex_media", "salt", $item->ID, "AND fileusability='1'");
+		/*$tasteMedia = ex_findone("ex_media", "salt", $item->ID, "AND fileusability='1'");*/
+
+		$tastMediacount = ex_cellcount("ex_media", "salt", $item->ID, "AND fileusability='1'");
+
+		if($tastMediacount > 1) { $tasteMedia = ex_findall("ex_media", "WHERE salt='$item->ID' AND fileusability='1'"); } 
+		else { $tasteMedia = ex_findone("ex_media", "salt", $item->ID, "AND fileusability='1'"); }
+		
 
 		$tasteowner = ex_findone("ex_users", "ID", $item->uID);
 
@@ -146,13 +152,47 @@ if(isset($_POST['getUlikes']) && isset($_POST['userid']) && is_numeric($_POST['u
 
 							<div class="exart-hover" accesskey="<?= $item->ID . '-' . $item->uID . '-' . $item->cID . '-' . $item->tID  ?>"></div>
 
-							<?php if($tasteMedia): ?>
+							<?php if($tastMediacount > 1): ?>
 
-							<img src="<?= $tasteMedia->fileroad_sm ?>" alt="" />
+							<div id="multiArtworkimg" class="carousel slide" data-ride="carousel">
+								
+								<ol class="carousel-indicators">
+
+								<?php foreach ($tasteMedia as $key => $value): ?>
+
+									<li data-target="#multiArtworkimg" data-slide-to="<?= $key ?>" class="rounded-circle <?= $key === 0 ? 'active' : '' ?>"></li>
+
+								<?php endforeach; ?>
+
+								</ol>
+
+								<div class="carousel-inner">
+
+								<?php foreach ($tasteMedia as $key => $value): ?>
+
+									<div class="carousel-item <?= $key === 0 ? 'active' : '' ?>">
+
+										<img class="d-inline w-100" src="<?= $value->fileroad_sm ?>" alt="First slide" width="100%" height="auto">
+
+									</div>
+
+								<?php endforeach; ?>
+
+								</div>
+
+							</div>
 
 							<?php else: ?>
 
-							<p class="p-2 m-0"><?= $item->artcontent ?></p>
+							<?php if($tasteMedia): ?>
+
+								<img src="<?= $tasteMedia->fileroad_sm ?>" alt="" />
+
+							<?php else: ?>
+
+								<p class="p-2 m-0"><?= $item->artcontent ?></p>
+
+							<?php endif; ?>
 
 							<?php endif; ?>
 

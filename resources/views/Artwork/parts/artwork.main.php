@@ -86,7 +86,63 @@
 
 			<div class="d-flex art-content">
 
+				<?php if($tastMediacount > 1): ?>
+
+				<div id="multiArtworkInimg" class="carousel slide" data-ride="carousel">
+
+					<ol class="carousel-indicators">
+
+					<?php foreach ($artworkmedia as $key => $value): ?>
+
+						<li data-target="#multiArtworkInimg" data-slide-to="<?= $key ?>" class="rounded-circle <?= $key === 0 ? 'active' : '' ?>"></li>
+
+					<?php endforeach; ?>
+
+					</ol>
+
+					<div class="carousel-inner">
+
+						<?php foreach ($artworkmedia as $key => $value): ?>
+
+						<div class="carousel-item <?= $key === 0 ? 'active' : '' ?>">
+
+							<img class="d-inline w-100" src="<?= $value->fileroad_sm ?>" alt="" width="100%" height="auto">
+
+						</div>
+
+						<?php endforeach; ?>
+
+					</div>
+
+					<?php if(count($artworkmedia) > 1): ?>
+
+					<a class="carousel-control-prev" href="#multiArtworkInimg" role="button" data-slide="prev">
+
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+						<span class="sr-only">Previous</span>
+
+					</a>
+
+					<a class="carousel-control-next" href="#multiArtworkInimg" role="button" data-slide="next">
+
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+
+						<span class="sr-only">Next</span>
+
+					</a>
+
+					<?php endif; ?>
+
+				</div>
+
+				<?php else: ?>
+						
 				<img src="<?= $fileroad ?>" alt="" />
+
+				<?php endif; ?>
+
+				<!-- <img src="<?= $fileroad ?>" alt="" /> -->
 
 			</div>
 

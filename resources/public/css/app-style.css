@@ -889,7 +889,8 @@ button.ex-alert-close {
 /** HOME PAGE */
 /** masonry artwork */
 #home-content { display: none; padding-top: 8px; }
-.ex-home-page {
+.ex-home-page,
+.ex-home-page-plus {
     max-width: 1220px;
     margin: 1rem auto;
     justify-content: center;
@@ -1014,6 +1015,11 @@ button.ex-alert-close {
     border-radius: .5rem .5rem 0 0;
     transition-property: color;
 }
+.carousel.slide .carousel-indicators li {
+    width: 6px;
+    height: 6px;
+    border-radius: 2rem;
+}
 .exart-art .exart-art-item:hover .exart-hover,
 .exart-art:hover .exart-hover { opacity: .35; }
 .exart-art:hover .exart-info { box-shadow: 0 .15rem .15rem rgba(0,0,0,.3); }
@@ -1124,12 +1130,14 @@ button.ex-alert-close {
     padding: .5rem;
     flex-direction: column;
     justify-content: center;
+    transition: 1s all!important;
 }
 .self-artwork .art-content img {
     display: block;
     width: 100%;
     transition-property: color;
     border-radius: 1rem;
+    transition: 1s all!important;
 }
 .self-artwork .art-comment {
     display: block;

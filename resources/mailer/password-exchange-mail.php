@@ -112,7 +112,7 @@
 
 			<li>
 				Passez en revue vos numéros de téléphone et adresses électroniques et supprimez ceux qui ne vous appartiennent pas.<br>
-				<small><a href="<?= WURI . '/account/' .  $x->hashedID . '/security'; ?>">Passer en revue</a></small>
+				<small><a href="<?= WURI . '/account/security/' .  $x->hashedID . '/check'; ?>">Passer en revue</a></small>
 			</li>
 
 		</ol>

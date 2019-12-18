@@ -1,7 +1,7 @@
 <?php
 /**
  *	Expozart
- *	userArtwork ajax app:	recupère les artworks postés par l'utilisateur
+ *	artwork-wsameTopics ajax app:	recupère les artwork en fonction d'un artwork parent
  *	Code:	yitzakD
  */
 
@@ -37,23 +37,19 @@ include_once $CORE.$DS.'app/auth.func.php';
 
 include_once $CORE.$DS.'includes/account.var.php';
 
-if(isset($_POST['getUposts']) && isset($_POST['userid']) && is_numeric($_POST['userid'])) {
+if(isset($_POST['getUserArtworksWST'])) {
 
 	extract($_POST);
 
-	$ex_userTastes = ex_findall("ex_arts", "WHERE uID='$userid' AND cID IN(SELECT cID FROM ex_usertopics WHERE uID='$userid') ORDER BY ex_arts.ID DESC LIMIT $artworkPostStart, $artworkLimit");
+	$artwork =  ex_findone("ex_arts", "ID", $awid);
+	
+	$ex_userTastes = ex_findall("ex_arts", "WHERE cID='$artwork->cID' AND ID!='$artwork->ID' ORDER BY ex_arts.ID DESC");
 
 	if(count($ex_userTastes) > 0) {
 
 		foreach ($ex_userTastes as $item) {
 
-		/*$tasteMedia = ex_findone("ex_media", "salt", $item->ID, "AND fileusability='1'");*/
-
-		$tastMediacount = ex_cellcount("ex_media", "salt", $item->ID, "AND fileusability='1'");
-
-		if($tastMediacount > 1) { $tasteMedia = ex_findall("ex_media", "WHERE salt='$item->ID' AND fileusability='1'"); } 
-		else { $tasteMedia = ex_findone("ex_media", "salt", $item->ID, "AND fileusability='1'"); }
-
+		$tasteMedia = ex_findone("ex_media", "salt", $item->ID, "AND fileusability='1'");
 
 		$tasteowner = ex_findone("ex_users", "ID", $item->uID);
 
@@ -78,36 +74,11 @@ if(isset($_POST['getUposts']) && isset($_POST['userid']) && is_numeric($_POST['u
 					<div class="exart-art" style="/*background-color: #<?= ex_randomcolor() ?>*/">
 
 						<!-- Like -->
-						<?php if($tasteowner->username !== exAuth_getsession("username")): ?>
+						<span class="<?= $item->ID ?>" id="ajax-liker-box" accesskey="<?= $logeduseralreadyliked ?>">
 
-							<?php if($logeduseralreadyliked > 0): ?>
+							<button class="btn btn-sm exart-like-btn text-center" title="liker" id="ajax-like-btn"><i class="far fa-lg fa-heart text-center"></i></button>
 
-							<span class="<?= $item->ID ?>" id="ajax-liker-box" accesskey="<?= $logeduseralreadyliked ?>">
-
-								<button class="btn btn-sm exart-like-btn text-center" title="liker" id="ajax-like-btn"><i class="far fa-lg fa-heart text-center"></i></button>
-
-							</span>
-							
-
-							<?php else: ?>
-
-							<span class="<?= $item->ID ?>" id="ajax-liker-box" accesskey="<?= $logeduseralreadyliked ?>">
-
-								<button class="btn btn-sm exart-like-btn text-center" title="liker" id="ajax-like-btn"><i class="far fa-lg fa-heart text-center text-expozart-pink"></i></button>
-
-							</span>
-
-							<?php endif; ?>
-
-						<?php else: ?>
-						
-							<span class="<?= $item->ID ?>" id="ajax-liker-box" accesskey="<?= $logeduseralreadyliked ?>">
-
-								<button class="btn btn-sm exart-like-btn text-center" title="liker" id="ajax-like-btn"><i class="far fa-lg fa-heart text-center"></i></button>
-
-							</span>
-
-						<?php endif; ?>	
+						</span>
 
 						<!-- Comment -->
 						<a href="<?= $WURI . '/a/' . $item->arthash; ?>" role="boutton" class="btn btn-sm exart-comment-btn open-artwork-ajax" title="commenter"><i class="far fa-lg fa-paper-plane"></i></a>
@@ -146,47 +117,13 @@ if(isset($_POST['getUposts']) && isset($_POST['userid']) && is_numeric($_POST['u
 
 							<div class="exart-hover" accesskey="<?= $item->ID . '-' . $item->uID . '-' . $item->cID . '-' . $item->tID  ?>"></div>
 
-							<?php if($tastMediacount > 1): ?>
-
-							<div id="multiArtworkimg" class="carousel slide" data-ride="carousel">
-								
-								<ol class="carousel-indicators">
-
-								<?php foreach ($tasteMedia as $key => $value): ?>
-
-									<li data-target="#multiArtworkimg" data-slide-to="<?= $key ?>" class="rounded-circle <?= $key === 0 ? 'active' : '' ?>"></li>
-
-								<?php endforeach; ?>
-
-								</ol>
-
-								<div class="carousel-inner">
-
-								<?php foreach ($tasteMedia as $key => $value): ?>
-
-									<div class="carousel-item <?= $key === 0 ? 'active' : '' ?>">
-
-										<img class="d-inline w-100" src="<?= $value->fileroad_sm ?>" alt="First slide" width="100%" height="auto">
-
-									</div>
-
-								<?php endforeach; ?>
-
-								</div>
-
-							</div>
-
-							<?php else: ?>
-
 							<?php if($tasteMedia): ?>
 
-								<img src="<?= $tasteMedia->fileroad_sm ?>" alt="" />
+							<img src="<?= $tasteMedia->fileroad_sm ?>" alt="" />
 
 							<?php else: ?>
 
-								<p class="p-2 m-0"><?= $item->artcontent ?></p>
-
-							<?php endif; ?>
+							<p class="p-2 m-0"><?= $item->artcontent ?></p>
 
 							<?php endif; ?>
 
@@ -253,8 +190,7 @@ if(isset($_POST['getUposts']) && isset($_POST['userid']) && is_numeric($_POST['u
 
 		}
 
-	} else { exit('artworksReachedMax'); }
-
+	}
 }
 
 ?>

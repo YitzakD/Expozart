@@ -70,7 +70,7 @@ if(ex_isalreadyuse("ex_users", "username", $MOD)) {
 
 } else {
 
-	ex_setflashnotification("Nous n'arrivons à trouver cet utilisateur, peut-être se cache t-il?" . "&nnbsp;<i class='far fa-lg fa-laugh-beam'></i>", "info");
+	ex_setflashnotification("Nous n'arrivons à trouver cet utilisateur, peut-être se cache t-il?" . "&nbsp;<i class='far fa-lg fa-laugh-beam'></i>", "info");
 
 	ex_redirect(WURI . '/unfound/user/' . $MOD);
 
@@ -79,7 +79,7 @@ if(ex_isalreadyuse("ex_users", "username", $MOD)) {
 
 ob_start();
 
-if ((isset($CON) && $CON === "topics")) {
+if((isset($CON) && $CON === "topics")) {
 
 	#
 

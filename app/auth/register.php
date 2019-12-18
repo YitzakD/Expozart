@@ -38,7 +38,7 @@ if(isset($_POST["registersubmit"])) {
 
 		if(ex_isalreadyuse("ex_users", "usermail", $ex_usermail) > 0) {
 
-			set_flash("Votre adresse e-mail est déjà liée à un autre compte d'utilisateur. Assurez-vous que vous n'avez fait aucune erreurs lors de la saisie.", "info");
+			ex_setflashnotification("Votre adresse e-mail est déjà liée à un autre compte d'utilisateur. Assurez-vous que vous n'avez fait aucune erreurs lors de la saisie.", "info");
 
 			$error[2] = "L'adresse e-mail saisie est déjà liée à un autre compte.";
 
@@ -58,7 +58,7 @@ if(isset($_POST["registersubmit"])) {
 
         if(!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}$#', $ex_userpass)) {
 
-            set_flash("Pour plus de sécurité, votre mot de passe doit :<ul class='m-0'><li>Contenir six (6) caractères minimum,</li><li>Contenir au moins une lettre MAJUSCULE,</li><li>Contenir un ou plusieurs chiffres.</li></ul>", "info");
+            ex_setflashnotification("Pour plus de sécurité, votre mot de passe doit :<ul class='m-0'><li>Contenir six (6) caractères minimum,</li><li>Contenir au moins une lettre MAJUSCULE,</li><li>Contenir un ou plusieurs chiffres.</li></ul>", "info");
 
             $error[3] = "Le mot de passe saisi est incomplet.";
         

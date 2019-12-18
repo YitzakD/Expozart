@@ -54,10 +54,22 @@ if(isset($_GET['uri'])) {
 		$created = ex_getTimeAgo($createdtime);
 
 
+		$tastMediacount = ex_cellcount("ex_media", "salt", $artwork->ID, "AND fileusability='1'");
 
-		$artworkmedia = ex_findone("ex_media", "salt", $artwork->ID, "AND fileusability='1'");
+		if($tastMediacount > 1) {
 
-		if(!$artworkmedia) { $fileroad = ""; } else { $fileroad = $artworkmedia->fileroad_sm; }
+			$artworkmedia = ex_findall("ex_media", "WHERE salt='$artwork->ID' AND fileusability='1'");
+
+		} else {
+
+			$artworkmedia = ex_findone("ex_media", "salt", $artwork->ID, "AND fileusability='1'");
+
+			if(!$artworkmedia) { $fileroad = ""; } else { $fileroad = $artworkmedia->fileroad_sm; }
+
+		}
+		/*$artworkmedia = ex_findone("ex_media", "salt", $artwork->ID, "AND fileusability='1'");
+
+		if(!$artworkmedia) { $fileroad = ""; } else { $fileroad = $artworkmedia->fileroad_sm; }*/
 
 		
 
@@ -87,7 +99,7 @@ if(isset($_GET['uri'])) {
 
 		$userAvatar = ex_findone("ex_media", "uID", exAuth_getsession("username"), "AND salt='" . exAuth_getsession("username") . "' AND fileusability='0'");
 
-		$q = $db->prepare("
+		/*$q = $db->prepare("
 			SELECT 
 			ex_arts.*, 
 			ex_media.fileroad_sm AS newfileroad
@@ -96,6 +108,11 @@ if(isset($_GET['uri'])) {
 			ON ex_arts.ID = ex_media.salt 
 			WHERE cID IN(SELECT cID FROM ex_usertopics WHERE uID=:userid) 
 			AND ex_media.fileusability='1' ORDER BY ex_arts.ID DESC
+		");*/
+		$q = $db->prepare("
+			SELECT ex_arts.*
+			FROM ex_arts 
+			WHERE cID IN(SELECT cID FROM ex_usertopics WHERE uID=:userid) ORDER BY ex_arts.ID DESC
 		");
 
         $q->execute(['userid' => exAuth_getsession("userid")]);
@@ -122,7 +139,61 @@ if(isset($_GET['uri'])) {
 
 			<div class="d-flex art-content">
 				
+				<?php if($tastMediacount > 1): ?>
+
+				<div id="multiArtworkInimg" class="carousel slide" data-ride="carousel">
+
+					<ol class="carousel-indicators">
+
+					<?php foreach ($artworkmedia as $key => $value): ?>
+
+						<li data-target="#multiArtworkInimg" data-slide-to="<?= $key ?>" class="rounded-circle <?= $key === 0 ? 'active' : '' ?>"></li>
+
+					<?php endforeach; ?>
+
+					</ol>
+
+					<div class="carousel-inner">
+
+						<?php foreach ($artworkmedia as $key => $value): ?>
+
+						<div class="carousel-item <?= $key === 0 ? 'active' : '' ?>">
+
+							<img class="d-inline w-100" src="<?= $value->fileroad_sm ?>" alt="" width="100%" height="auto">
+
+						</div>
+
+						<?php endforeach; ?>
+
+					</div>
+
+					<?php if(count($artworkmedia) > 1): ?>
+
+					<a class="carousel-control-prev" href="#multiArtworkInimg" role="button" data-slide="prev">
+
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+						<span class="sr-only">Previous</span>
+
+					</a>
+
+					<a class="carousel-control-next" href="#multiArtworkInimg" role="button" data-slide="next">
+
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+
+						<span class="sr-only">Next</span>
+
+					</a>
+
+					<?php endif; ?>
+
+				</div>
+
+				<?php else: ?>
+						
 				<img src="<?= $fileroad ?>" id="json-image" alt="" />
+
+				<?php endif; ?>
 
 			</div>
 
@@ -304,7 +375,6 @@ if(isset($_GET['uri'])) {
 <?php endif; ?>
 
 
-
 <?php if($next): ?>
 
 	<a href="<?= $WURI . '/a/' . $next->arthash ?>" class="open-artwork-ajax" id="next" accesskey="<?= $next->ID ?>">
@@ -315,6 +385,11 @@ if(isset($_GET['uri'])) {
 
 <?php endif; ?>
 
+<?php
+
+?>
+
+	<div class="ex-home-page-plus mt-4" accesskey="<?= $artwork->ID ?>"></div>
 <?php
 
 	} else {

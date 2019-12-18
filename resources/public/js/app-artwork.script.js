@@ -331,7 +331,80 @@ $(document).ready(function() {
 										npB = $("#artwork-content").find("a.open-artwork-ajax");
 
 										/** Close btn */
-										closeB = $("#artwork-content").find("a#close");
+										closeB = ("a#close");
+
+										
+
+									    /*SIMILITUDE*/
+									    /** Autres */
+									    exArtcontainerPlus = $("#artwork-content").find("div.ex-home-page-plus");
+									    function appMasonryWS() {
+
+											$(exArtcontainerPlus).imagesLoaded(function() {
+
+											    $(exArtcontainerPlus).masonry({
+
+													itemSelector: '.exart',
+
+													isAnimated: false,
+
+													animateed: false,
+
+											        isFitWidth: true,
+
+											        transitionDuration: 0
+
+												});
+
+											});
+
+									    }
+									    getSimilute();
+									    function getSimilute() {
+									    	
+									    	appMasonryWS();
+									    	
+									    	artworkIDtopass = $(exArtcontainerPlus).attr("accesskey");
+
+									    	$.post(ajaxlink + 'Artwork/parts/artwork-wsameTopics.ajax.php', {getUserArtworksWST:1, awid:artworkIDtopass}, function(artworkWSResponse) {
+
+									    		$(exArtcontainerPlus).html(artworkWSResponse).masonry('reloadItems').masonry();
+
+									    		npBII = $(exArtcontainerPlus).find("a.open-artwork-ajax");
+
+									    		npBII.on('click', function(e) {
+
+													e.preventDefault();
+
+													a = $(this);
+
+													url = a.attr('href');
+
+													nhaid = $(this).attr("accesskey");
+
+													if(isHistoryAvailable) {
+														
+														history.pushState({key: 'value'}, 'Artwork', url);
+
+													}
+
+
+													var _getParent = document.getElementsByClassName("exart");
+
+													if($(_getParent).attr("accesskey", nhaid)) {
+
+														var getParent = $(_getParent);
+
+													}
+
+
+													getArtwork(url);
+
+												});
+
+									    	});
+
+									    }
 
 
 										/** Like & Dislike sytmem */
