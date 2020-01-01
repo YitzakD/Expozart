@@ -18,4 +18,14 @@
 	
 	</div>
 
+	<div class="d-block fixed-bottom p-4 ex-artwork-adder">
+		
+		<a href="<?= $router->generate('artwort-post', ['type' => 'new']); ?>" class="btn btn-primary btn-adder rounded-circle">
+			
+			<i class="fas fa-lg fa-plus"></i>
+
+		</a>
+
+	</div>
+
 </div>	

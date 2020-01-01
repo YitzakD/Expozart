@@ -16,7 +16,10 @@ $(document).ready(function() {
 
 	artworkID = $(".self-artwork").attr("accesskey");
 
-
+	$('.carousel').carousel({
+	    pause: true,
+	    interval: false
+	});
 
 
     /**	Système de Like Utilisateur - Artwork */

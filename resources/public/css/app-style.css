@@ -889,6 +889,21 @@ button.ex-alert-close {
 /** HOME PAGE */
 /** masonry artwork */
 #home-content { display: none; padding-top: 8px; }
+.ex-artwork-adder { text-align: right; }
+.ex-artwork-adder .btn-adder {
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    line-height: 30px;
+    background-color:  var(--ex-color-violet-ea);
+    border-color:  var(--ex-color-violet-ea);
+}
+.ex-artwork-adder .btn-adder:hover,
+.ex-artwork-adder .btn-adder:focus {
+    background-color:  var(--ex-color-violet-hover-ea);
+    border-color:  var(--ex-color-violet-hover-ea);
+    outline-color:  var(--ex-color-violet-hover-ea);
+}
 .ex-home-page,
 .ex-home-page-plus {
     max-width: 1220px;
@@ -1557,4 +1572,57 @@ button.ex-alert-close {
     justify-content: center;
     -webkit-animation: none;
     animation: none;
+}
+
+
+
+
+
+
+
+
+
+/* POST PAGE */
+#dropFileForm { transition: 3s; }
+#dropFileForm .ex-ddf-hover {
+    border-color: var(--ex-color-pink-ea);
+    color: var(--ex-color-violet-hover-ea);
+}
+#artworkLabel {
+    display: block;
+    padding: 1rem;
+    border-radius: .5rem;
+    border: .15rem dashed var(--ex-color-violet-hover-ea);
+    position: relative;
+    text-align: center;
+    font-family: var(--ex-title-font-family);
+    color: var(--ex-color-grey-ea);
+    cursor: pointer;
+}
+#artworkLabel .up-ico {
+    text-align: center;
+    font-size: 3rem;
+}
+#artworkFile { display: none; }
+#artworkLabel:after,
+#artworkLabel:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+.post-artwork-item {
+    padding: .3rem .5rem;
+    width: 100%;
+    height: 88.17px;
+}
+.post-artwork-item img {
+    width: 100%;
+    height: 100%;
+    border-radius: .5rem;
+    object-fit: cover;
 }

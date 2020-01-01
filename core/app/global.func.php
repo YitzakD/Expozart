@@ -101,35 +101,35 @@ if(!function_exists('ex_hashgenerator')) {
     function ex_hashgenerator($qte, $type)
     {
 
-        if($type = "ANSC") {
+        if($type === "ANSC") {
 
         	$caracteres = "ABCDEFGHIJKLMOPQRSTUVXWYZabcdefghijklmnopqrstuvwxyz0123456789!&~-_%";
         
-        } elseif($type = "AN-0") {
+        } elseif($type === "AN-0") {
 
         	$caracteres = "ABCDEFGHIJKLMOPQRSTUVXWYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-        } elseif($type = "AN-1") {
+        } elseif($type === "AN-1") {
 
         	$caracteres = "abcdefghijklmnopqrstuvwxyz0123456789";
 
-        } elseif($type = "A-0") {
+        } elseif($type === "A-0") {
 
         	$caracteres = "ABCDEFGHIJKLMOPQRSTUVXWYZabcdefghijklmnopqrstuvwxyz";
 
-        } elseif($type = "A-1") {
+        } elseif($type ==="A-1") {
 
         	$caracteres = "ABCDEFGHIJKLMOPQRSTUVXWYZ";
 
-        } elseif($type = "A-2") {
+        } elseif($type ==="A-2") {
 
         	$caracteres = "abcdefghijklmnopqrstuvwxyz";
 
-        } elseif($type = "N") {
+        } elseif($type === "N") {
 
         	$caracteres = "0123456789";
 
-        } elseif($type = "NSC") {
+        } else {
 
         	$caracteres = "0123456789!&~-_%";
 

@@ -164,16 +164,6 @@ if(isset($_POST['getUserArtworksTastes'])) {
 
 							<?php endif; ?>
 
-							<!-- <?php if($tasteMedia): ?>
-
-							<img src="<?= $tasteMedia->fileroad_sm ?>" alt="" />
-
-							<?php else: ?>
-
-							<p class="p-2 m-0"><?= $item->artcontent ?></p>
-
-							<?php endif; ?> -->
-
 						</a>
 
 						<!-- Footer -->

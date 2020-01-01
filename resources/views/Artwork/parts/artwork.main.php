@@ -142,8 +142,6 @@
 
 				<?php endif; ?>
 
-				<!-- <img src="<?= $fileroad ?>" alt="" /> -->
-
 			</div>
 
 		</div>

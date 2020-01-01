@@ -314,6 +314,12 @@ $(document).ready(function() {
 
 								setTimeout(exArtworkplaceholder, 3000);
 								
+
+								$('.carousel').carousel({
+								    pause: true,
+								    interval: false
+								});
+								
 								artworktasteLikecounter = $(getParent).find("#ajax-likes-counter");
 
 								cardlikebtn = $(getParent).find("#ajax-liker-box");

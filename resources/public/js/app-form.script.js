@@ -161,4 +161,220 @@ $(document).ready(function() {
     });
 
 
+    /** post artwork:  gestionnaire des postes  */
+
+    /** Liens vers le dossiers des vues  */
+    ajaxlink = "http://localhost:8000/resources/views/";
+
+    rootlink = "http://localhost:8000/";
+
+
+    var dff = $("#dropFileForm");
+
+    rooterlink = dff.attr("action");
+
+    var awlabel = $("#artworkLabel");
+
+    var awfile = $("#artworkFile");
+
+    var awhidden = $("#hashparam");
+
+    var awupload = $("#uploadArtwork");
+
+    var droppedFiles;
+
+
+
+    function overRideDef(e) {
+
+        e.preventDefault();
+
+        e.stopPropagation();
+
+    }
+    function fileHover() {
+
+        $(awlabel).addClass("ex-ddf-hover");
+
+    }
+    function fileHoverEnd() {
+
+        $(awlabel).removeClass("ex-ddf-hover");
+
+    }
+    function addFiles(e) {
+
+        droppedFiles = e.target.files || e.originalEvent.dataTransfer.files;
+
+        countFiles(droppedFiles);
+
+    }
+    function countFiles(files) {
+
+       if(files.length > 1) {
+
+            $("#showtext").text(files.length + " fichiers sélectionnés");
+
+       } else {
+
+            $("#showtext").text(files[0].name);
+
+       }
+
+    }
+    function uploadFiles(e) {
+
+        e.preventDefault();
+
+        changeStatus("Chargement en cours...");
+
+        var saveformdata = new FormData();
+
+        for(var i = 0, file; (file = droppedFiles[i]); i++) {
+        /*for(afile of droppedFiles) {*/
+            
+            saveformdata.append("aFile[]", file);
+
+        }
+
+        saveformdata.append("arthash", awhidden.val());
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function(data) {
+            
+            if(xhr.response !== "nfy") {
+
+                changeStatus("Chargement termner!");
+
+                setTimeout(rechangeStatus, 2000);
+
+                setTimeout(refreshtonext, 5000);
+
+            }
+
+        };
+
+        xhr.open("post", ajaxlink + 'Post/parts/artwork-media-post.ajax.php');
+
+        xhr.send(saveformdata);
+
+
+    }
+    function changeStatus(text) {$("#upstatus").text(text);}
+    function refreshtonext() {
+
+        window.location.replace(rooterlink);        
+
+    }
+    function rechangeStatus() {
+
+        changeStatus("Vueillez patienter quelques instants s'il vous plait...");        
+
+    }
+
+
+    awlabel.on('dragover', function(evnt) { 
+
+        overRideDef(evnt);
+
+        fileHover();
+
+    });
+    awlabel.on('dragenter', function(evnt) { 
+
+        overRideDef(evnt);
+
+        fileHover();
+
+    });
+    awlabel.on('dragleave', function(evnt) {
+
+        overRideDef(evnt);
+
+        fileHoverEnd();
+
+    });
+    awlabel.on('drop', function(evnt) {
+
+        overRideDef(evnt);
+
+        fileHoverEnd();
+
+        addFiles(evnt);
+
+    });
+    awfile.on('change', function(evnt) {
+
+        addFiles(evnt);
+
+    });
+    dff.on('submit', function(evnt) {
+
+        evnt.preventDefault();
+
+        uploadFiles(evnt);
+
+    });
+
+
+    var artworkpublisher = $("#json-artwork-publisher");
+
+    var pMaxlength = 256;
+
+    $(".json-remaining").text(pMaxlength);
+
+    $("#json-post-content").keyup(function(evnt) {
+
+        limitChars($(this));                
+
+    });
+
+    
+    artworkpublisher.click(function() {
+
+        artworkpost = $("#json-post-content").val();
+
+        artworkpost = $.trim(artworkpost);
+
+        
+        jsontopic = $("#json-post-topic").val();
+
+        jsonhash = $("#json-arthash-param").val();
+
+
+        if(artworkpost !== "") {
+
+            $.post(ajaxlink + 'Post/parts/artwork-content-post.ajax.php', {msg:artworkpost,artworkhash:jsonhash,topic:jsontopic}, function(postsenderData) {
+                                            
+                if(postsenderData !== "post-not-send") {
+
+                    $("#json-post-content").val("");
+
+                    window.location.replace(rootlink);
+
+                }
+
+            });
+            
+        }
+
+    });
+
+    function limitChars(description) {
+
+        if(description.val().length > pMaxlength) {
+
+            description.val(description.val().substring(0, pMaxlength));
+
+        } else {
+
+            var nRemaining = pMaxlength - description.val().length;
+
+            $(".json-remaining").text(nRemaining);
+
+        }
+
+    }
+
 });

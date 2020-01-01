@@ -78,6 +78,10 @@
         -ms-flex-pack: center;
         justify-content: center;
     }
+
+
+    .post-artwork-item { height: 79.34px; }
+
 }
   
 
@@ -150,6 +154,7 @@
         -ms-flex-pack: center;
         justify-content: center;
     }
+
 }
  
 
@@ -236,6 +241,10 @@
         -ms-flex-pack: center;
         justify-content: center;
     }
+
+
+
+    .post-artwork-item { height: 119.39px; }
 }
   
 
@@ -338,6 +347,7 @@
 
 
     /** masonry artwork */
+    .ex-artwork-adder { text-align: center; }
     .exart-display-overlay {
         width: 96%!important;
         right: 4%!important;
@@ -420,6 +430,10 @@
         -ms-flex-pack: center;
         justify-content: center;
     }
+
+
+
+    .post-artwork-item { height: 110.02px; }
 }
  
 
@@ -537,4 +551,8 @@
         -ms-flex-pack: center;
         justify-content: center;
     }
+
+
+
+    .post-artwork-item { height: 83.78px; }
 }

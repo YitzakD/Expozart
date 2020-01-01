@@ -104,6 +104,15 @@ $router->map('GET|POST', '/categories', function() {
 
 
 
+$router->map('GET|POST', '/post/[*:type]', function() {
+
+	require ARTWORK . '/post.php';
+
+}, 'artwort-post');
+
+
+
+
 $router->map('GET|POST', '/a/[i:arthash]', function() {
 
 	require ARTWORK . '/artwork.php';
