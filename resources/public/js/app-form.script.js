@@ -357,6 +357,10 @@ $(document).ready(function() {
 
             });
             
+        } else {
+
+            $("#json-post-content").text("De quoi s'agit-il").class("text-danger");
+
         }
 
     });
