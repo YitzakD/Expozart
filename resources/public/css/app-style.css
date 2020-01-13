@@ -1061,7 +1061,11 @@ button.ex-alert-close {
     width: 43px;
     height: 43px;
 }
-.exart-art .exart-info .avatar img { width: 100%; }
+.exart-art .exart-info .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .exart-art .exart-info .avatar .ex-avatarname {
     width: 100%;
     height: 100%;
@@ -1171,6 +1175,11 @@ button.ex-alert-close {
     float: left;
     width: 43px;
     height: 43px;
+}
+.self-artwork .art-comment .artwork-info .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .self-artwork .art-comment .artwork-info .info {
     display: inline-block;
@@ -1365,6 +1374,11 @@ button.ex-alert-close {
     width: 43px;
     height: 43px;
 }
+.self-artwork .artwork-form .critic-info .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .self-artwork .artwork-form .critic-info .critics-form {
     display: inline-block;
     float: left;
@@ -1441,6 +1455,11 @@ button.ex-alert-close {
     font-weight: bold;
     border-radius: 50%;
 }
+.ex-avatarname img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 
 
 
@@ -1508,7 +1527,7 @@ button.ex-alert-close {
 
 /* PROFILE PAGE */
 .ex-profile-page {
-    max-width: 1220px;
+    max-width: 1280px;
     margin: 1rem auto;
     justify-content: center;
     -webkit-animation: none;
@@ -1532,6 +1551,7 @@ button.ex-alert-close {
     height: 100%;
     line-height: 90px;
     font-size: 1.5rem;
+    object-fit: cover;
 }
 .ex-profile-page .exprofile-info-header .exprofile-info-header-counter .ex-btn-primary-outline:hover {
     background-color: var(--ex-color-violet-hover-ea)!important;
@@ -1567,19 +1587,91 @@ button.ex-alert-close {
 }
 .ex-profile-page .ex-profile-tab-content { width: 100%; }
 .ex-profile-page .ex-profile-tab-content .exprofile-posts {
-    max-width: 915px;
+    max-width: 980px;
     margin: 0 auto;
     justify-content: center;
     -webkit-animation: none;
     animation: none;
 }
 
-
-
-
-
-
-
+.ex-account-page {
+    max-width: 1220px;
+    margin: 1rem auto;
+    justify-content: center;
+    -webkit-animation: none;
+    animation: none;
+}
+.ex-account-nav-pills {
+    padding: 0;
+    margin: 0;
+    height: auto;
+    min-height: 520px;
+    border-right: .5px solid var(--ex-color-grey-ea);
+    -webkit-flex-basis: 236px;
+    -ms-flex-preferred-size: 236px;
+    flex-basis: 236px;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0; 
+    list-style: none!important;
+}
+.ex-account-nav-pills .nav-link {
+    border-right: 1px solid transparent;
+    display: block;
+    height: 100%;
+    /*line-height: 20px;
+    font-size: 16px;
+    padding: 16px 16px 16px 30px;
+    width: calc(100% - 48px);*/
+}
+.ex-account-nav-pills .nav-link {
+    color: #262626;
+    font-weight: normal;
+}
+.ex-account-nav-pills .nav-link.active {
+    border-right: 1.5px solid var(--ex-color-violet-hover-ea);
+    color: var(--ex-color-violet-hover-ea);
+    font-weight: 600;
+}
+.ex-account-tab-content {
+    height: auto;
+    min-height: 520px;
+}
+.exaccount-avatar {
+    width: 50%;
+    margin: 1rem auto 2rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    border-bottom: .5px solid var(--ex-color-grey-ea);
+}
+.exaccount-avatar .avatar {
+    margin: 0 auto;
+    width: 90px;
+    height: 90px;
+    padding: 3px;
+    background-color: var(--ex-color-pink-ea);
+}
+.exaccount-avatar .avatar .ex-avatarname,
+.exaccount-avatar .avatar img {
+    width: 100%;
+    height: 100%;
+    line-height: 90px;
+    font-size: 1.5rem;
+    object-fit: cover;
+}
+.exaccount-avatar-form {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+.exaccount-avatar-form .avatar-status {
+    font-weight: 600;
+    color: var(--ex-color-grey-ea);
+}
 
 
 /* POST PAGE */

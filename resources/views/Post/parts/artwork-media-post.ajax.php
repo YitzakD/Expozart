@@ -54,6 +54,10 @@ if(!file_exists($bigpath . exAuth_getsession('userid'))) {
 
 	mkdir($bigpath . exAuth_getsession('userid'), 0777);
 
+}
+	
+if(!file_exists($bigpath . exAuth_getsession('userid') . "/artworks")) {
+
 	mkdir($bigpath . exAuth_getsession('userid') . "/artworks", 0777);
 
 }

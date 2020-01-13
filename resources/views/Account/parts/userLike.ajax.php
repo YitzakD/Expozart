@@ -148,7 +148,7 @@ if(isset($_POST['getUlikes']) && isset($_POST['userid']) && is_numeric($_POST['u
 						</div>	
 						
 						<!-- Content -->
-						<a href="<?= $WURI . '/a/' . $item->arthash; ?>" class="exart-art-item relative open-artwork-ajax" accesskey="<?= $item->arthash  ?>">
+						<a href="<?= $WURI . '/a/' . $item->arthash; ?>" class="exart-art-item relative open-liked-artwork-ajax" accesskey="<?= $item->arthash  ?>">
 
 							<div class="exart-hover" accesskey="<?= $item->ID . '-' . $item->uID . '-' . $item->cID . '-' . $item->tID  ?>"></div>
 
@@ -207,7 +207,7 @@ if(isset($_POST['getUlikes']) && isset($_POST['userid']) && is_numeric($_POST['u
 
 									<?php if($tasteownerAvatar): ?>
 
-										<img src="<?= $tasteownerAvatar->fileroad_sm ?>">
+										<img src="<?= $tasteownerAvatar->fileroad_sm ?>" class="rounded-circle">
 
 									<?php else: ?>
 

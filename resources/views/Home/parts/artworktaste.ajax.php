@@ -93,7 +93,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 
 							<div class="dropdown-menu dropdown-menu-right">
 
-								<form method="POSt" action="<?= $WURI . '/a/' . $item->arthash; ?>" class="m-0 p-0 dropdown-item"><input type="submit" value="Acceder à l'artwork" ></form>
+								<form method="POST" action="<?= $WURI . '/a/' . $item->arthash; ?>" class="m-0 p-0 dropdown-item"><input type="submit" value="Acceder à l'artwork" ></form>
 
 								<?php if($item->uID !== exAuth_getsession("userid")): ?>
 
@@ -175,7 +175,7 @@ if(isset($_POST['getUserArtworksTastes'])) {
 
 									<?php if($tasteownerAvatar): ?>
 
-										<img src="<?= $tasteownerAvatar->fileroad_sm ?>">
+										<img src="<?= $tasteownerAvatar->fileroad_sm ?>" class="rounded-circle">
 
 									<?php else: ?>
 

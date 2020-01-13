@@ -14,7 +14,7 @@
 
 							<?php if($avatar == true): ?>
 
-							<img src="<?= $useravatar ?>" id="json-avatar">
+							<img src="<?= $useravatar ?>" id="json-avatar" class="rounded-circle">
 
 							<?php else: ?>
 

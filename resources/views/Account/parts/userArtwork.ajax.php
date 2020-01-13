@@ -201,7 +201,7 @@ if(isset($_POST['getUposts']) && isset($_POST['userid']) && is_numeric($_POST['u
 
 									<?php if($tasteownerAvatar): ?>
 
-										<img src="<?= $tasteownerAvatar->fileroad_sm ?>">
+										<img src="<?= $tasteownerAvatar->fileroad_sm ?>" class="rounded-circle">
 
 									<?php else: ?>
 

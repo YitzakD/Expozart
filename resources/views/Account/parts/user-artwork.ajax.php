@@ -97,7 +97,7 @@ if(isset($_GET['uri'])) {
 		$logeduseralreadyliked = ex_cellcount("ex_likes", "aID", $artwork->ID, "AND uID=" . exAuth_getsession("userid") . " AND lTYPE='1'");
 
 
-		$userAvatar = ex_findone("ex_media", "uID", exAuth_getsession("username"), "AND salt='" . exAuth_getsession("username") . "' AND fileusability='0'");
+		$userAvatar = ex_findone("ex_media", "uID", exAuth_getsession("userid"), "AND salt='" . exAuth_getsession("userid") . "' AND fileusability='0'");
 
 		/*$q = $db->prepare("
 			SELECT 
@@ -244,7 +244,7 @@ if(isset($_GET['uri'])) {
 
 							<?php if($avatar ==  true): ?>
 
-							<img src="<?= $useravatar ?>" id="json-avatar">
+							<img src="<?= $useravatar ?>" id="json-avatar" class="rounded-circle">
 
 							<?php else: ?>
 
@@ -327,7 +327,7 @@ if(isset($_GET['uri'])) {
 
 							<?php if($userAvatar): ?>
 						
-								<img src="<?= $userAvatar->fileroad_sm ?>">
+								<img src="<?= $userAvatar->fileroad_sm ?>" class="rounded-circle">
 
 							<?php else: ?>
 

@@ -90,7 +90,7 @@ if(isset($CON) && ($CON == $ID) && (ex_isalreadyuse("ex_arts", "arthash", $ID) >
 
 	$artwork = $exVar_artwork;
 
-	$userAvatar = ex_findone("ex_media", "uID", exAuth_getsession("username"), "AND salt='" . exAuth_getsession("username") . "' AND fileusability='0'");
+	$userAvatar = ex_findone("ex_media", "uID", exAuth_getsession("userid"), "AND salt='" . exAuth_getsession("userid") . "' AND fileusability='0'");
 
 	
 

@@ -42,7 +42,7 @@
 
 							<?php if($avatar == true): ?>
 
-							<img src="<?= $useravatar ?>" id="json-avatar">
+							<img src="<?= $useravatar ?>" id="json-avatar" class="rounded-circle">
 
 							<?php else: ?>
 
@@ -198,7 +198,7 @@
 
 							<?php if($userAvatar): ?>
 						
-								<img src="<?= $userAvatar->fileroad_sm ?>">
+								<img src="<?= $userAvatar->fileroad_sm ?>" class="rounded-circle">
 
 							<?php else: ?>
 

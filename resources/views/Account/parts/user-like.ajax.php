@@ -97,17 +97,15 @@ if(isset($_GET['uri'])) {
 		$logeduseralreadyliked = ex_cellcount("ex_likes", "aID", $artwork->ID, "AND uID=" . exAuth_getsession("userid") . " AND lTYPE='1'");
 
 
-		$userAvatar = ex_findone("ex_media", "uID", exAuth_getsession("username"), "AND salt='" . exAuth_getsession("username") . "' AND fileusability='0'");
+		$userAvatar = ex_findone("ex_media", "uID", exAuth_getsession("userid"), "AND salt='" . exAuth_getsession("userid") . "' AND fileusability='0'");
 
 		/*$q = $db->prepare("
 			SELECT 
 			ex_arts.*,
-			ex_likes.uID, 
-			ex_media.fileroad_sm AS newfileroad
+			ex_likes.uID
 			FROM ex_arts 
 			INNER JOIN ex_likes ON ex_arts.ID = ex_likes.aID 
-			INNER JOIN ex_media ON ex_arts.ID = ex_media.salt 
-			WHERE ex_likes.uID=:uID AND ex_likes.lTYPE='1' AND ex_media.fileusability='1' ORDER BY ex_arts.ID DESC
+			WHERE ex_likes.uID=:uID AND ex_likes.lTYPE='1' ORDER BY ex_arts.ID DESC
 		");*/
 		$q = $db->prepare("
 			SELECT 
@@ -115,12 +113,12 @@ if(isset($_GET['uri'])) {
 			ex_likes.uID
 			FROM ex_arts 
 			INNER JOIN ex_likes ON ex_arts.ID = ex_likes.aID 
-			WHERE ex_likes.uID=:uID AND ex_likes.lTYPE='1' ORDER BY ex_arts.ID DESC
+			WHERE ex_likes.uID=:uID AND ex_likes.lTYPE='1' ORDER BY ex_likes.ID DESC
 		");
 
         $q->execute([
-        	#	'uID' => exAuth_getsession("userid"),
-        	'uID' => $userid
+        	'uID' => exAuth_getsession("userid")
+        	#	'uID' => $userid
         ]);
 
         $data = $q->fetchAll(PDO::FETCH_OBJ);
@@ -245,7 +243,7 @@ if(isset($_GET['uri'])) {
 
 							<?php if($avatar ==  true): ?>
 
-							<img src="<?= $useravatar ?>" id="json-avatar">
+							<img src="<?= $useravatar ?>" id="json-avatar" class="rounded-circle">
 
 							<?php else: ?>
 
@@ -328,7 +326,7 @@ if(isset($_GET['uri'])) {
 
 							<?php if($userAvatar): ?>
 						
-								<img src="<?= $userAvatar->fileroad_sm ?>">
+								<img src="<?= $userAvatar->fileroad_sm ?>" class="rounded-circle">
 
 							<?php else: ?>
 
@@ -372,7 +370,7 @@ if(isset($_GET['uri'])) {
 
 <?php if($prev): ?>
 
-	<a href="<?= $WURI . '/a/' . $prev->arthash ?>" class="open-artwork-ajax" id="prev" accesskey="<?= $prev->ID ?>">
+	<a href="<?= $WURI . '/a/' . $prev->arthash ?>" class="open-liked-artwork-ajax" id="prev" accesskey="<?= $prev->ID ?>">
 
 		<i class="fas fa-2x fa-angle-left"></i>
 
@@ -384,7 +382,7 @@ if(isset($_GET['uri'])) {
 
 <?php if($next): ?>
 
-	<a href="<?= $WURI . '/a/' . $next->arthash ?>" class="open-artwork-ajax" id="next" accesskey="<?= $next->ID ?>">
+	<a href="<?= $WURI . '/a/' . $next->arthash ?>" class="open-liked-artwork-ajax" id="next" accesskey="<?= $next->ID ?>">
 
 		<i class="fas fa-2x fa-angle-right"></i>
 

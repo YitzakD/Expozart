@@ -6,13 +6,13 @@
 
 			<?php if($userInfos->username === exAuth_getsession("username")): ?>
 			
-			<a href="<?= $router->generate('account', ['type' => 'edit']); ?>" title="Modifier la photo de profil" id="json-update-avatar-link">
+			<a href="<?= $router->generate('account', ['type' => 'edit']); ?>/avatar" title="Modifier la photo de profil" id="json-update-avatar-link">
 				
 				<div class="avatar rounded-circle">
 				
 				<?php if($avatar == true): ?>
 
-					<img src="<?= $profileAvatar ?>">
+					<img src="<?= $profileAvatar ?>" class="rounded-circle">
 
 				<?php else: ?>
 
@@ -30,7 +30,7 @@
 			
 			<?php if($avatar == true): ?>
 
-				<img src="<?= $profileAvatar ?>">
+				<img src="<?= $profileAvatar ?>" class="rounded-circle">
 
 			<?php else: ?>
 
@@ -71,7 +71,7 @@
 
 				<?php if($userInfos->username === exAuth_getsession("username")): ?>
 
-					<a class="btn btn-sm ex-btn-primary" href="#" title="Modifier mon profil">Modifier mon profil</a>		
+					<a class="btn btn-sm ex-btn-primary" href="<?= $router->generate('account', ['type' => 'edit']); ?>" title="Modifier mon profil">Modifier mon profil</a>		
 
 				<?php else: ?>
 

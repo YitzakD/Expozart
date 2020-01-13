@@ -226,7 +226,7 @@ $(document).ready(function() {
 
         e.preventDefault();
 
-        changeStatus("Chargement en cours...");
+        changeStatus("Redirection dans 5s ...");
 
         var saveformdata = new FormData();
 
@@ -245,7 +245,7 @@ $(document).ready(function() {
             
             if(xhr.response !== "nfy") {
 
-                changeStatus("Chargement termner!");
+                changeStatus("Chargement en cours...");
 
                 setTimeout(rechangeStatus, 2000);
 
@@ -258,7 +258,6 @@ $(document).ready(function() {
         xhr.open("post", ajaxlink + 'Post/parts/artwork-media-post.ajax.php');
 
         xhr.send(saveformdata);
-
 
     }
     function changeStatus(text) {$("#upstatus").text(text);}
@@ -318,9 +317,11 @@ $(document).ready(function() {
     });
 
 
+
+    /** Ajout de texte au status */
     var artworkpublisher = $("#json-artwork-publisher");
 
-    var pMaxlength = 256;
+    var pMaxlength = 512;
 
     $(".json-remaining").text(pMaxlength);
 
@@ -380,5 +381,75 @@ $(document).ready(function() {
         }
 
     }
+
+
+
+    /** post avatar:  gestionnaire de l'image de profil  */
+    /** 
+        ipf = image profil form
+        arl = avatar root link
+        aif = avatar input file 
+    */
+
+    var ipf = $("#upAvatarFileForm");
+
+    arl = ipf.attr("action");
+
+    var aif = $("#avatarFile");
+
+    
+    function uploadAvatarFile(e) {
+
+        e.preventDefault();
+
+        changeStatus("Vueillez patienter quelques instants s'il vous plait...");
+
+        var sfd = new FormData();
+
+        for(var i = 0, file; (file = droppedFiles[i]); i++) {
+
+            sfd.append("avf[]", file);
+
+        }
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function(data) {
+            
+            if(xhr.response !== "nfy") {
+
+                changeStatus("Chargement en cours...");
+
+                setTimeout(rechangeStatus, 2000);
+
+                setTimeout(rtn, 5000);
+
+            }
+
+        };
+
+        xhr.open("post", ajaxlink + 'Account/parts/avatar-media-post.ajax.php');
+
+        xhr.send(sfd);
+
+    }
+    function rtn() {
+
+        window.location.replace(arl);        
+
+    }
+    aif.on('change', function(evnt) {
+
+        addFiles(evnt);
+
+    });
+
+    ipf.on('submit', function(evnt) {
+
+        evnt.preventDefault();
+
+        uploadAvatarFile(evnt);
+
+    });
 
 });

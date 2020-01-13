@@ -331,7 +331,7 @@ $(document).ready(function() {
 
 
 						/** On selected artwork */
-						$('a.open-artwork-ajax').on('click', function(e) {
+						$('a.open-liked-artwork-ajax').on('click', function(e) {
 
 							e.preventDefault();
 
@@ -374,7 +374,7 @@ $(document).ready(function() {
 										$("#artwork-content").html(artworkResponse);
 
 										/** Next & Prev btn */
-										npB = $("#artwork-content").find("a.open-artwork-ajax");
+										nplB = $("#artwork-content").find("a.open-liked-artwork-ajax");
 
 										/** Close btn */
 										closeB = $("#artwork-content").find("a#close");
@@ -683,7 +683,7 @@ $(document).ready(function() {
 
 										
 										/** When user click on Next or Prev btn */
-										npB.on('click', function(e) {
+										nplB.on('click', function(e) {
 
 											e.preventDefault();
 

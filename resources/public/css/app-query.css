@@ -73,6 +73,7 @@
 
 
     .ex-profile-page { max-width: 95%; }
+    .ex-account-page { max-width: 95%; }
     .ex-profile-page .ex-profile-nav-pills {
         -webkit-box-pack: center;
         -ms-flex-pack: center;
