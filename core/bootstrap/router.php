@@ -108,7 +108,7 @@ $router->map('GET|POST', '/post/[*:type]', function() {
 
 	require ARTWORK . '/post.php';
 
-}, 'artwort-post');
+}, 'nouveau artwork');
 
 
 
@@ -135,7 +135,7 @@ $router->map('GET|POST', '/account/[*:type]', function() {
 
 	require ACCOUNT . '/account.php';
 
-}, 'account');
+}, 'modifier le profil');
 
 
 
@@ -144,7 +144,7 @@ $router->map('GET|POST', '/[*:username]', function() {
 
 	require ACCOUNT . '/profile.php';
 
-}, 'profile');
+}, 'profil');
 
 
 

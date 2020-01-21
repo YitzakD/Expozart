@@ -18,7 +18,6 @@
 	        </a>
 	        
 	    </h3>
-
 	    
 	    <div class="ex-auth-form-title-2 h5 text-center text-expozart-grey">Bienvenue sur <?= strtolower(WEBSITE_NAME); ?></div>
 

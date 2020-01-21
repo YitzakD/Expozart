@@ -51,7 +51,9 @@ if(exAuth_getsession('userid') && exAuth_getsession('userhash')) {
 
 
 
-	/**
-	 * 
+	/** 
+	 *  exVar_userInformations
+	 *  variable de récupération des informations privées des utilisateurs
 	 */
+	$exVar_userInformation = ex_findone("ex_userinfos", "uID", exAuth_getsession("userid"));
 }

@@ -83,7 +83,7 @@
 
 		<div class="text-center logo">
 
-			<img src="<?= WURI . 'resources/public/media/uses/logo.png' ?>">
+			<img src="<?= WURI . '/resources/public/media/uses/logo.png' ?>">
 
 		</div>
 

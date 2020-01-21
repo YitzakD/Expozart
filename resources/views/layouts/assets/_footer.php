@@ -25,7 +25,7 @@
 
 		<script src="<?= $JS . '/app-category.script.js'; ?>" type="text/javascript"></script>
 
-		<?php elseif($match['name'] === "profile"): ?>
+		<?php elseif($match['name'] === "profil"): ?>
 
 		<script src="<?= $JS . '/app-profile.script.js'; ?>" type="text/javascript"></script>
 

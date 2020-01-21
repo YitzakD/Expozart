@@ -2,9 +2,9 @@
 	
 	<div class="row no-gutters">
 		
-		<div class="col-xs-12 col-md-12 col-lg-4 col-xl-3"><?php require $SUBPAGE . "profile.infos.php"; ?></div>
+		<div class="col-xs-12 col-md-12 col-lg-3 col-xl-3"><?php require $SUBPAGE . "profile.infos.php"; ?></div>
 
-		<div class="col-xs-12 col-md-12 col-lg-8 col-xl-9">
+		<div class="col-xs-12 col-md-12 col-lg-9 col-xl-9">
 
 			<ul class="nav ex-profile-nav-pills mb-3" accesskey="<?= $MOD ?>">
 

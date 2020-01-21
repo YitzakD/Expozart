@@ -214,7 +214,7 @@ if(!function_exists('ex_gotoprofile')) {
 
         global $router;
 
-        return $router->generate('profile', ['username' => $username]);
+        return $router->generate('profil', ['username' => $username]);
 
     }
 

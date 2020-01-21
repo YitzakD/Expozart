@@ -6,7 +6,7 @@
 
 			<?php if($userInfos->username === exAuth_getsession("username")): ?>
 			
-			<a href="<?= $router->generate('account', ['type' => 'edit']); ?>/avatar" title="Modifier la photo de profil" id="json-update-avatar-link">
+			<a href="<?= $router->generate('modifier le profil', ['type' => 'edit']); ?>/avatar" title="Modifier la photo de profil" id="json-update-avatar-link">
 				
 				<div class="avatar rounded-circle">
 				
@@ -71,7 +71,7 @@
 
 				<?php if($userInfos->username === exAuth_getsession("username")): ?>
 
-					<a class="btn btn-sm ex-btn-primary" href="<?= $router->generate('account', ['type' => 'edit']); ?>" title="Modifier mon profil">Modifier mon profil</a>		
+					<a class="btn btn-sm ex-btn-primary" href="<?= $router->generate('modifier le profil', ['type' => 'edit']); ?>" title="Modifier mon profil">Modifier mon profil</a>		
 
 				<?php else: ?>
 
@@ -174,11 +174,31 @@
 
 					<div class="small text-muted exprofile-info-footer-city">
 
-						<?= $userMoreInfos->city ?> (<?= $userMoreInfos->localisation ?>)
+					<?php if(!empty($userMoreInfos->city)): ?>
+
+					<?= $userMoreInfos->city ?> (<?= $userMoreInfos->localisation ?>)
+
+					<?php else: ?>
+
+					<div class="mt-4">Ville inconnue</div>	
+
+					<?php endif; ?>
 
 					</div>
 
-					<div class="small exprofile-info-footer-bio mt-3"><?= $userMoreInfos->about ?></div>
+					<div class="small exprofile-info-footer-bio mt-3">
+					
+					<?php if(!empty($userMoreInfos->about)): ?>
+					
+						<?= $userMoreInfos->about ?>
+
+					<?php else: ?>
+
+						Et si vous nous parliez de vous? <a href="<?= $router->generate('profil', ['type' => 'edit']); ?>">Completez vos informations</a>
+					
+					<?php endif; ?>				
+					
+					</div>
 
 					<div class="small exprofile-info-footer-weblink mt-3">
 
@@ -194,7 +214,7 @@
 
 					<div class="small">
 						
-						<a href="<?= $router->generate('account', ['type' => 'edit']); ?>">Completez mes informations</a>
+						<a href="<?= $router->generate('profil', ['type' => 'edit']); ?>">Completez mes informations</a>
 						
 					</div>
 					

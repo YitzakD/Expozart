@@ -1587,7 +1587,6 @@ button.ex-alert-close {
 }
 .ex-profile-page .ex-profile-tab-content { width: 100%; }
 .ex-profile-page .ex-profile-tab-content .exprofile-posts {
-    max-width: 980px;
     margin: 0 auto;
     justify-content: center;
     -webkit-animation: none;
@@ -1595,7 +1594,7 @@ button.ex-alert-close {
 }
 
 .ex-account-page {
-    max-width: 1220px;
+    max-width: 1300px;
     margin: 1rem auto;
     justify-content: center;
     -webkit-animation: none;
@@ -1605,8 +1604,6 @@ button.ex-alert-close {
     padding: 0;
     margin: 0;
     height: auto;
-    min-height: 520px;
-    border-right: .5px solid var(--ex-color-grey-ea);
     -webkit-flex-basis: 236px;
     -ms-flex-preferred-size: 236px;
     flex-basis: 236px;
@@ -1623,24 +1620,57 @@ button.ex-alert-close {
     border-right: 1px solid transparent;
     display: block;
     height: 100%;
-    /*line-height: 20px;
-    font-size: 16px;
-    padding: 16px 16px 16px 30px;
-    width: calc(100% - 48px);*/
 }
 .ex-account-nav-pills .nav-link {
     color: #262626;
     font-weight: normal;
+    font-weight: 600;
+}
+.ex-account-nav-pills .nav-link:hover {
+    color: var(--ex-color-grey-ea);
+    font-weight: 700;
 }
 .ex-account-nav-pills .nav-link.active {
     border-right: 1.5px solid var(--ex-color-violet-hover-ea);
     color: var(--ex-color-violet-hover-ea);
-    font-weight: 600;
+    font-weight: 700;
 }
 .ex-account-tab-content {
     height: auto;
     min-height: 520px;
+    border-left: .5px solid var(--ex-color-grey-ea);
 }
+.exaccount-main { width: 100%; }
+.exaccount-main .ex-col-left {
+    text-align: right;
+    padding-right: 1rem;
+}
+.exaccount-main .ex-col-right { padding-left: 1rem; }
+.exaccount-main .ex-col-left .avatar {
+    float: right;
+    width: 45px;
+    height: 45px;
+    padding: 3px;
+    background-color: var(--ex-color-pink-ea);
+}
+.exaccount-main .ex-col-left .avatar .ex-avatarname,
+.exaccount-main .ex-col-left .avatar img {
+    width: 100%;
+    height: 100%;
+    line-height: 45px;
+    font-size: 1.5rem;
+    object-fit: cover;
+}
+.exaccount-main .ex-col-left label {
+    font-weight: 500;
+    font-size: 14px;
+}
+.exaccount-main .ex-col-right .form-control {
+    max-width: 55%;
+    font-weight: 500;
+}
+
+/*---*/
 .exaccount-avatar {
     width: 50%;
     margin: 1rem auto 2rem;
@@ -1672,6 +1702,9 @@ button.ex-alert-close {
     font-weight: 600;
     color: var(--ex-color-grey-ea);
 }
+
+
+
 
 
 /* POST PAGE */

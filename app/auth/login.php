@@ -82,6 +82,14 @@ if(isset($_POST["loginsubmit"])) {
 
 	            } else {
 
+                    if(ex_cellcount("ex_userinfos", "uID", $user->ID) < 1) {
+
+                        $r = $db->prepare("INSERT INTO ex_userinfos(uID) VALUES(:uID)");
+
+                        $r->execute(['uID' => $user->ID]);
+
+                    }
+
 	                if(isset($_SESSION["forwardingURI"])) { ex_redirect(WURI . $_SESSION["forwardingURI"]); }
 
 	                else { ex_redirect(WURI); }

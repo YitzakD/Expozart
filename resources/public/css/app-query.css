@@ -72,8 +72,8 @@
     }
 
 
-    .ex-profile-page { max-width: 95%; }
-    .ex-account-page { max-width: 95%; }
+    /*.ex-profile-page { max-width: 95%; }
+    .ex-account-page { max-width: 95%; }*/
     .ex-profile-page .ex-profile-nav-pills {
         -webkit-box-pack: center;
         -ms-flex-pack: center;
@@ -430,6 +430,18 @@
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
+    }
+
+
+    .ex-account-tab-content {
+        border-left: none;
+        border-top: .5px solid var(--ex-color-grey-ea);
+    }
+
+    .exaccount-main .ex-col-left,
+    .exaccount-main .ex-col-right {
+        text-align: center;
+        padding: .5rem 0;
     }
 
 

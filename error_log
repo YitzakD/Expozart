@@ -1,0 +1,7 @@
+[17-Jan-2020 17:05:38 Africa/Abidjan] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1' for key 'uID_UNIQUE' in /home/u532250745/domains/expozart.com/public_html/app/auth/register.php:103
+Stack trace:
+#0 /home/u532250745/domains/expozart.com/public_html/app/auth/register.php(103): PDOStatement->execute(Array)
+#1 /home/u532250745/domains/expozart.com/public_html/core/bootstrap/router.php(64): require('/home/u53225074...')
+#2 /home/u532250745/domains/expozart.com/public_html/index.php(25): {closure}()
+#3 {main}
+  thrown in /home/u532250745/domains/expozart.com/public_html/app/auth/register.php on line 103
