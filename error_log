@@ -5,3 +5,33 @@ Stack trace:
 #2 /home/u532250745/domains/expozart.com/public_html/index.php(25): {closure}()
 #3 {main}
   thrown in /home/u532250745/domains/expozart.com/public_html/app/auth/register.php on line 103
+[20-Jan-2020 19:49:03 Africa/Abidjan] PHP Fatal error:  Cannot use [] for reading in /home/u532250745/domains/expozart.com/public_html/resources/views/Auth/login/login.php on line 22
+[20-Jan-2020 21:22:39 Africa/Abidjan] PHP Notice:  Undefined variable: EXuserinfo in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[20-Jan-2020 21:22:39 Africa/Abidjan] PHP Notice:  Trying to get property 'firstname' of non-object in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[20-Jan-2020 21:22:39 Africa/Abidjan] PHP Notice:  Undefined variable: EXuserinfo in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[20-Jan-2020 21:22:39 Africa/Abidjan] PHP Notice:  Trying to get property 'lastname' of non-object in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[20-Jan-2020 21:22:39 Africa/Abidjan] PHP Notice:  Undefined variable: EXuserinfo in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 71
+[20-Jan-2020 21:22:39 Africa/Abidjan] PHP Notice:  Trying to get property 'about' of non-object in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 71
+[20-Jan-2020 22:06:56 Africa/Abidjan] PHP Notice:  Undefined variable: EXuserinfo in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[20-Jan-2020 22:06:56 Africa/Abidjan] PHP Notice:  Trying to get property 'firstname' of non-object in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[20-Jan-2020 22:06:56 Africa/Abidjan] PHP Notice:  Undefined variable: EXuserinfo in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[20-Jan-2020 22:06:56 Africa/Abidjan] PHP Notice:  Trying to get property 'lastname' of non-object in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[20-Jan-2020 22:06:56 Africa/Abidjan] PHP Notice:  Undefined variable: EXuserinfo in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 71
+[20-Jan-2020 22:06:56 Africa/Abidjan] PHP Notice:  Trying to get property 'about' of non-object in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 71
+[21-Jan-2020 13:12:37 Africa/Abidjan] PHP Notice:  Undefined variable: EXuserinfo in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[21-Jan-2020 13:12:37 Africa/Abidjan] PHP Notice:  Trying to get property 'firstname' of non-object in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[21-Jan-2020 13:12:37 Africa/Abidjan] PHP Notice:  Undefined variable: EXuserinfo in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[21-Jan-2020 13:12:37 Africa/Abidjan] PHP Notice:  Trying to get property 'lastname' of non-object in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[21-Jan-2020 13:12:37 Africa/Abidjan] PHP Notice:  Undefined variable: EXuserinfo in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 71
+[21-Jan-2020 13:12:37 Africa/Abidjan] PHP Notice:  Trying to get property 'about' of non-object in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 71
+[21-Jan-2020 17:34:11 Africa/Abidjan] PHP Notice:  Undefined offset: 1 in /home/u532250745/domains/expozart.com/public_html/resources/views/Auth/register/parts/register.form.php on line 3
+[21-Jan-2020 17:34:11 Africa/Abidjan] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/u532250745/domains/expozart.com/public_html/resources/views/Auth/register/parts/register.form.php on line 3
+[21-Jan-2020 17:34:11 Africa/Abidjan] PHP Notice:  Undefined offset: 2 in /home/u532250745/domains/expozart.com/public_html/resources/views/Auth/register/parts/register.form.php on line 13
+[21-Jan-2020 17:34:11 Africa/Abidjan] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/u532250745/domains/expozart.com/public_html/resources/views/Auth/register/parts/register.form.php on line 13
+[21-Jan-2020 17:34:11 Africa/Abidjan] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/u532250745/domains/expozart.com/public_html/resources/views/Auth/register/parts/register.form.php on line 23
+[22-Jan-2020 00:14:14 Africa/Abidjan] PHP Notice:  Undefined variable: EXuserinfo in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[22-Jan-2020 00:14:14 Africa/Abidjan] PHP Notice:  Trying to get property 'firstname' of non-object in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[22-Jan-2020 00:14:14 Africa/Abidjan] PHP Notice:  Undefined variable: EXuserinfo in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[22-Jan-2020 00:14:14 Africa/Abidjan] PHP Notice:  Trying to get property 'lastname' of non-object in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 41
+[22-Jan-2020 00:14:14 Africa/Abidjan] PHP Notice:  Undefined variable: EXuserinfo in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 71
+[22-Jan-2020 00:14:14 Africa/Abidjan] PHP Notice:  Trying to get property 'about' of non-object in /home/u532250745/domains/expozart.com/public_html/resources/views/Account/parts/account.main.php on line 71

@@ -10,7 +10,7 @@
 
 define("DB_HOST", "localhost");
 
-define("DB_NAME", "u532250745_expozart");
+define("DB_NAME", "expozart");
 
 define("DB_USERNAME", "root");
 

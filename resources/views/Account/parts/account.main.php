@@ -38,7 +38,7 @@
 			</div>
 			<div class="col col-12 col-xs-12 col-md-6 col-lg-8 col-xl-9 ex-col-right">
 
-				<input type="text" name="ex_nomcomplet" id="ex-nomcomplet" class="form-control form-control-sm" value="<?= $EXuserinfo->firstname . '' . $EXuserinfo->lastname ?>" placeholder="Nom & Prénoms">
+				<input type="text" name="ex_nomcomplet" id="ex-nomcomplet" class="form-control form-control-sm" value="<?= $EXuserinfo->completename ?>" placeholder="Nom & Prénoms">
 			
 			</div>
 
