@@ -444,9 +444,13 @@
         padding: .5rem 0;
     }
 
+    .exaccount-main .ex-col-right { max-width: 100%; }
+
 
 
     .post-artwork-item { height: 110.02px; }
+
+    .ex-block-alert.p-4 { padding: 0!important }
 }
  
 

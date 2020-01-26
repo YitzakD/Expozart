@@ -1665,10 +1665,21 @@ button.ex-alert-close {
     font-weight: 500;
     font-size: 14px;
 }
+.exaccount-main .ex-col-right { max-width: 40%; }
 .exaccount-main .ex-col-right .form-control {
-    max-width: 55%;
+    max-width: 100%;
     font-weight: 500;
 }
+.exaccount-main .ex-col-right .form-control:focus {
+    border-color: var(--ex-color-violet-hover-ea);
+    box-shadow: none;
+}
+.exaccount-main .ex-col-right .field-icon {
+    color: var(--ex-color-grey-ea);
+    padding-right: .5rem;
+}
+
+
 
 /*---*/
 .exaccount-avatar {

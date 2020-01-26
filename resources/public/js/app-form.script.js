@@ -226,7 +226,7 @@ $(document).ready(function() {
 
         e.preventDefault();
 
-        changeStatus("Redirection dans 5s ...");
+        changeStatus("Redirection dans 10s ...");
 
         var saveformdata = new FormData();
 
@@ -249,7 +249,7 @@ $(document).ready(function() {
 
                 setTimeout(rechangeStatus, 2000);
 
-                setTimeout(refreshtonext, 5000);
+                setTimeout(refreshtonext, 10000);
 
             }
 
@@ -268,7 +268,7 @@ $(document).ready(function() {
     }
     function rechangeStatus() {
 
-        changeStatus("Vueillez patienter quelques instants s'il vous plait...");        
+        changeStatus("Vueillez patienter quelques instants s'il vous plait ...");        
 
     }
 
@@ -402,7 +402,7 @@ $(document).ready(function() {
 
         e.preventDefault();
 
-        changeStatus("Vueillez patienter quelques instants s'il vous plait...");
+        changeStatus("Vueillez patienter quelques instants s'il vous plait ...");
 
         var sfd = new FormData();
 
@@ -418,7 +418,7 @@ $(document).ready(function() {
             
             if(xhr.response !== "nfy") {
 
-                changeStatus("Chargement en cours...");
+                changeStatus("Chargement en cours ...");
 
                 setTimeout(rechangeStatus, 2000);
 

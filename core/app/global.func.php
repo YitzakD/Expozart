@@ -645,7 +645,8 @@ if(!function_exists('ex_deleteone')) {
  */
 if(!function_exists('ex_inarray')) {
 
-    function ex_inarray($needle, $needle_field, $haystack, $strict = false) {
+    function ex_inarray($needle, $needle_field, $haystack, $strict = false)
+    {
 
         if($strict) {
             
@@ -849,4 +850,41 @@ if(!function_exists('ex_getRealnumber')) {
 
     }
    
+}
+
+
+
+
+/**
+ *  ex_weblinkvalide($webinnk)
+ *  $weblink => var (un lien)
+ *  permet de vérifier qu'un lien entrer est valide
+ */
+if(!function_exists('ex_weblinkvalide')) {
+
+    function ex_weblinkvalide($weblink)
+    {
+
+        $param = explode("/", $weblink);
+
+        if(!preg_match('%https?:%', $param[0])) {
+            
+            return true;
+            
+        } else {
+
+            if(preg_match('%localhost%', $param[2])) {
+
+                if(preg_match('%\.([a-zA-Z0-9-_\.\/\?=&]+)%', $param[3], $matches)) {return false;}
+            
+            } elseif(preg_match('%\.([a-zA-Z0-9-_\.\/\?=&]+)%', $param[2], $matches)) {
+                
+                return false;
+
+            } else { return true; }
+
+        }
+        
+    }
+
 }

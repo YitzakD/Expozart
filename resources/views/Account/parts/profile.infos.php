@@ -174,13 +174,9 @@
 
 					<div class="small text-muted exprofile-info-footer-city">
 
-					<?php if(!empty($userMoreInfos->city)): ?>
+					<?php if(!empty($userMoreInfos->city) || !empty($userMoreInfos->localisation)): ?>
 
 					<?= $userMoreInfos->city ?> (<?= $userMoreInfos->localisation ?>)
-
-					<?php else: ?>
-
-					<div class="mt-4">Ville inconnue</div>	
 
 					<?php endif; ?>
 
